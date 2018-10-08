@@ -1,0 +1,182 @@
+﻿<ManagementPackFragment SchemaVersion="2.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <TypeDefinitions>
+    <MonitorTypes>
+
+      <!-- AP.F5.LTM.DataSource.Monitor.CertificateExpiration -->
+      <UnitMonitorType ID="AP.F5.LTM.DataSource.Monitor.CertificateExpiration" Accessibility="Public">
+        <MonitorTypeStates>
+          <MonitorTypeState ID="ExpirationCritical" NoDetection="false" />
+          <MonitorTypeState ID="ExpirationWarning" NoDetection="false" />
+          <MonitorTypeState ID="ExpirationOkay" NoDetection="false" />
+        </MonitorTypeStates>
+        <Configuration>
+          <IncludeSchemaTypes>
+            <SchemaType>System!System.ExpressionEvaluatorSchema</SchemaType>
+          </IncludeSchemaTypes>
+          <xsd:element name="IntervalSeconds" type="xsd:integer" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+          <xsd:element name="SyncTime" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+          <xsd:element name="OkayThreshold" type="xsd:integer" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+          <xsd:element name="CriticalThreshold" type="xsd:integer" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+        </Configuration>
+        <OverrideableParameters>
+          <OverrideableParameter ID="IntervalSeconds" Selector="$Config/IntervalSeconds$" ParameterType="int" />
+          <OverrideableParameter ID="SyncTime" Selector="$Config/SyncTime$" ParameterType="string" />
+          <OverrideableParameter ID="OkayThreshold" Selector="$Config/OkayThreshold$" ParameterType="int" />
+          <OverrideableParameter ID="CriticalThreshold" Selector="$Config/CriticalThreshold$" ParameterType="int" />
+        </OverrideableParameters>
+        <MonitorImplementation>
+          <MemberModules>
+            <DataSource ID="Scheduler" TypeID="System!System.SimpleScheduler">
+              <IntervalSeconds>$Config/IntervalSeconds$</IntervalSeconds>
+              <SyncTime>$Config/SyncTime$</SyncTime>
+            </DataSource>
+            <ConditionDetection ID="Mapper" TypeID="Perf!System.Performance.DataGenericMapper">
+              <ObjectName>Certificate</ObjectName>
+              <CounterName>ExpirationDays</CounterName>
+              <InstanceName />
+              <Value>$Target/Property[Type="AP.F5.LTM.Certificate"]/ExpirationDays$</Value>
+            </ConditionDetection>
+            <ConditionDetection ID="CriticalFilterCondition" TypeID="System!System.ExpressionFilter">
+              <Expression>
+                <SimpleExpression>
+                  <ValueExpression>
+                    <XPathQuery Type="Integer">Value</XPathQuery>
+                  </ValueExpression>
+                  <Operator>Less</Operator>
+                  <ValueExpression>
+                    <Value Type="Integer">$Config/CriticalThreshold$</Value>
+                  </ValueExpression>
+                </SimpleExpression>
+              </Expression>
+            </ConditionDetection>
+            <ConditionDetection ID="WarningFilterCondition" TypeID="System!System.ExpressionFilter">
+              <Expression>
+                <And>
+                  <Expression>
+                    <SimpleExpression>
+                      <ValueExpression>
+                        <XPathQuery Type="Integer">Value</XPathQuery>
+                      </ValueExpression>
+                      <Operator>Greater</Operator>
+                      <ValueExpression>
+                        <Value Type="Integer">$Config/CriticalThreshold$</Value>
+                      </ValueExpression>
+                    </SimpleExpression>
+                  </Expression>
+                  <Expression>
+                    <SimpleExpression>
+                      <ValueExpression>
+                        <XPathQuery Type="Integer">Value</XPathQuery>
+                      </ValueExpression>
+                      <Operator>LessEqual</Operator>
+                      <ValueExpression>
+                        <Value Type="Integer">$Config/OkayThreshold$</Value>
+                      </ValueExpression>
+                    </SimpleExpression>
+                  </Expression>
+                </And>
+              </Expression>
+            </ConditionDetection>
+            <ConditionDetection ID="OkayFilterCondition" TypeID="System!System.ExpressionFilter">
+              <Expression>
+                <SimpleExpression>
+                  <ValueExpression>
+                    <XPathQuery Type="Integer">Value</XPathQuery>
+                  </ValueExpression>
+                  <Operator>GreaterEqual</Operator>
+                  <ValueExpression>
+                    <Value Type="Integer">$Config/OkayThreshold$</Value>
+                  </ValueExpression>
+                </SimpleExpression>
+              </Expression>
+            </ConditionDetection>
+          </MemberModules>
+          <RegularDetections>
+            <RegularDetection MonitorTypeStateID="ExpirationCritical">
+              <Node ID="CriticalFilterCondition">
+                <Node ID="Mapper">
+                    <Node ID="Scheduler" />
+                </Node>
+              </Node>  
+            </RegularDetection>
+            <RegularDetection MonitorTypeStateID="ExpirationWarning">
+              <Node ID="WarningFilterCondition">
+                <Node ID="Mapper">
+                    <Node ID="Scheduler" />
+                </Node>
+              </Node>
+            </RegularDetection>
+            <RegularDetection MonitorTypeStateID="ExpirationOkay">
+              <Node ID="OkayFilterCondition">
+                <Node ID="Mapper">
+                    <Node ID="Scheduler" />
+                </Node>
+              </Node>
+            </RegularDetection>
+          </RegularDetections>
+        </MonitorImplementation>
+      </UnitMonitorType>
+    </MonitorTypes>
+  </TypeDefinitions>
+
+  <LanguagePacks>
+    <LanguagePack ID="ENU" IsDefault="true">
+      <DisplayStrings>
+
+        <!-- AP.F5.LTM.DataSource.Monitor.CertificateExpiration -->
+        <DisplayString ElementID="AP.F5.LTM.DataSource.Monitor.CertificateExpiration">
+          <Name>F5 Certificate Expiration Status Monitor</Name>
+          <Description>Monitors the Expiration status of F5 Certificates</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.DataSource.Monitor.CertificateExpiration" SubElementID="IntervalSeconds">
+          <Name>Interval Seconds</Name>
+          <Description>Frequency in seconds that module is run.</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.DataSource.Monitor.CertificateExpiration" SubElementID="SyncTime">
+          <Name>Synchronisation Time</Name>
+          <Description>Offset that this module is started from.</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.DataSource.Monitor.CertificateExpiration" SubElementID="OkayThreshold">
+          <Name>Okay Threshold</Name>
+          <Description>Above this Value Certificate Expiration is Okay (between this and Critical Threshold Expiration is in a warning state</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.DataSource.Monitor.CertificateExpiration" SubElementID="CriticalThreshold">
+          <Name>Critical Threshold</Name>
+          <Description>Below this Value Certificate Expiration is Critical (between this and Critical Okay Expiration is in a warning state</Description>
+        </DisplayString>
+
+      </DisplayStrings>
+
+      <KnowledgeArticles>
+        
+        <!-- AP.F5.LTM.DataSource.Monitor.CertificateExpiration -->
+        <KnowledgeArticle ElementID="AP.F5.LTM.Monitor.Certificate.Expiration.Status" Visible="true">
+          <MamlContent>
+            <section xmlns="http://schemas.microsoft.com/maml/2004/10">
+              <title>Summary</title>
+              <para>
+                Monitors F5 Certificate Expiration, simply uses the Expiration Days value that is collected during Discovery, so make sure Discovery is run at least once a day!
+              </para>
+            </section>
+            <section xmlns="http://schemas.microsoft.com/maml/2004/10">
+              <title>Thresholds</title>
+              <list>
+                <listItem>
+                  <para>If Expiration Days is greater than Okay Threshold then Healthy Condition is returned</para>
+                </listItem>
+                <listItem>
+                  <para>If Expiration Days is less than Okay Threshold but greated than Critical Thrshold then Warning Condition is returned</para>
+                </listItem>
+                <listItem>
+                  <para>If Expiration Days is Less than Critical Threshold then Critical Condition is returned</para>
+                </listItem>
+              </list>
+            </section>
+          </MamlContent>
+        </KnowledgeArticle>
+      
+      </KnowledgeArticles>
+    
+    </LanguagePack>
+  </LanguagePacks>
+</ManagementPackFragment>

@@ -1,0 +1,500 @@
+﻿<ManagementPackFragment SchemaVersion="2.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+  <Presentation>
+
+    <!-- VIEWS -->
+    <Views>
+      <!-- AP.F5.LTM.View.Alert.AllActive -->
+      <View ID="AP.F5.LTM.View.Alert.AllActive" Target="AP.F5.LTM.SyncFailoverGroup" TypeID="SC!Microsoft.SystemCenter.AlertViewType" Accessibility="Internal" Enabled="true" Visible="true">
+        <Category>Custom</Category>
+        <Criteria>
+          <ResolutionState>
+            <StateRange Operator="NotEquals">255</StateRange>
+          </ResolutionState>
+        </Criteria>
+        <Presentation>
+          <ColumnInfo Index="1" SortIndex="1" Width="64" Grouped="false" Sorted="false" IsSortable="true" SortOrder="Descending" Visible="true">
+            <Name>Icon</Name>
+            <Id>Icon</Id>
+          </ColumnInfo>
+          <ColumnInfo Index="2" SortIndex="2" Width="128" Grouped="false" Sorted="false" IsSortable="true" SortOrder="Descending" Visible="true">
+            <Name>Source</Name>
+            <Id>MonitoringObjectDisplayName</Id>
+          </ColumnInfo>
+          <ColumnInfo Index="3" SortIndex="3" Width="128" Grouped="false" Sorted="false" IsSortable="true" SortOrder="Descending" Visible="true">
+            <Name>Name</Name>
+            <Id>Name</Id>
+          </ColumnInfo>
+          <ColumnInfo Index="4" SortIndex="4" Width="128" Grouped="false" Sorted="false" IsSortable="true" SortOrder="Descending" Visible="true">
+            <Name>Resolution State</Name>
+            <Id>ResolutionState</Id>
+          </ColumnInfo>
+          <ColumnInfo Index="5" SortIndex="5" Width="128" Grouped="false" Sorted="true" IsSortable="true" SortOrder="Descending" Visible="true">
+            <Name>Created</Name>
+            <Id>TimeRaised</Id>
+          </ColumnInfo>
+          <ColumnInfo Index="6" SortIndex="6" Width="128" Grouped="false" Sorted="false" IsSortable="true" SortOrder="Descending" Visible="true">
+            <Name>Age</Name>
+            <Id>Age</Id>
+          </ColumnInfo>
+        </Presentation>
+      </View>
+
+      <!-- AP.F5.LTM.View.Alert.AllSyncFailoverGroups -->
+      <View ID="AP.F5.LTM.View.Alert.AllSyncFailoverGroups" Target="AP.F5.LTM.SyncFailoverGroup" TypeID="SC!Microsoft.SystemCenter.AlertViewType" Accessibility="Internal" Enabled="true" Visible="true">
+        <Category>Custom</Category>
+        <Criteria>
+          <ResolutionState>
+            <StateRange Operator="NotEquals">255</StateRange>
+          </ResolutionState>
+        </Criteria>
+        <Presentation>
+          <ColumnInfo Index="1" SortIndex="1" Width="64" Grouped="false" Sorted="false" IsSortable="true" SortOrder="Descending" Visible="true">
+            <Name>Icon</Name>
+            <Id>Icon</Id>
+          </ColumnInfo>
+          <ColumnInfo Index="2" SortIndex="2" Width="128" Grouped="false" Sorted="false" IsSortable="true" SortOrder="Descending" Visible="true">
+            <Name>Source</Name>
+            <Id>MonitoringObjectDisplayName</Id>
+          </ColumnInfo>
+          <ColumnInfo Index="3" SortIndex="3" Width="128" Grouped="false" Sorted="false" IsSortable="true" SortOrder="Descending" Visible="true">
+            <Name>Name</Name>
+            <Id>Name</Id>
+          </ColumnInfo>
+          <ColumnInfo Index="4" SortIndex="4" Width="128" Grouped="false" Sorted="false" IsSortable="true" SortOrder="Descending" Visible="true">
+            <Name>Resolution State</Name>
+            <Id>ResolutionState</Id>
+          </ColumnInfo>
+          <ColumnInfo Index="5" SortIndex="5" Width="128" Grouped="false" Sorted="true" IsSortable="true" SortOrder="Descending" Visible="true">
+            <Name>Created</Name>
+            <Id>TimeRaised</Id>
+          </ColumnInfo>
+          <ColumnInfo Index="6" SortIndex="6" Width="128" Grouped="false" Sorted="false" IsSortable="true" SortOrder="Descending" Visible="true">
+            <Name>Age</Name>
+            <Id>Age</Id>
+          </ColumnInfo>
+        </Presentation>
+      </View>
+      <!-- AP.F5.LTM.View.State.AllSyncFailover -->
+      <View ID="AP.F5.LTM.View.State.AllSyncFailoverGroups" Target="AP.F5.LTM.SyncFailoverGroup" TypeID="SC!Microsoft.SystemCenter.StateViewType" Accessibility="Internal" Enabled="true" Visible="true">
+        <Category>Custom</Category>
+        <Criteria />
+      </View>
+      <!-- AP.F5.LTM.View.Perf.AllSyncFailover -->
+      <View ID="AP.F5.LTM.View.Perf.AllSyncFailoverGroups" Target="AP.F5.LTM.SyncFailoverGroup" TypeID="SC!Microsoft.SystemCenter.PerformanceViewType" Accessibility="Internal" Enabled="true" Visible="true">
+        <Category>Custom</Category>
+        <Criteria />
+      </View>
+
+      <!-- AP.F5.LTM.View.Alert.AllTrafficGroups -->
+      <View ID="AP.F5.LTM.View.Alert.AllTrafficGroups" Target="AP.F5.LTM.TrafficGroup" TypeID="SC!Microsoft.SystemCenter.AlertViewType" Accessibility="Internal" Enabled="true" Visible="true">
+        <Category>Custom</Category>
+        <Criteria>
+          <ResolutionState>
+            <StateRange Operator="NotEquals">255</StateRange>
+          </ResolutionState>
+        </Criteria>
+        <Presentation>
+          <ColumnInfo Index="1" SortIndex="1" Width="64" Grouped="false" Sorted="false" IsSortable="true" SortOrder="Descending" Visible="true">
+            <Name>Icon</Name>
+            <Id>Icon</Id>
+          </ColumnInfo>
+          <ColumnInfo Index="2" SortIndex="2" Width="128" Grouped="false" Sorted="false" IsSortable="true" SortOrder="Descending" Visible="true">
+            <Name>Source</Name>
+            <Id>MonitoringObjectDisplayName</Id>
+          </ColumnInfo>
+          <ColumnInfo Index="3" SortIndex="3" Width="128" Grouped="false" Sorted="false" IsSortable="true" SortOrder="Descending" Visible="true">
+            <Name>Name</Name>
+            <Id>Name</Id>
+          </ColumnInfo>
+          <ColumnInfo Index="4" SortIndex="4" Width="128" Grouped="false" Sorted="false" IsSortable="true" SortOrder="Descending" Visible="true">
+            <Name>Resolution State</Name>
+            <Id>ResolutionState</Id>
+          </ColumnInfo>
+          <ColumnInfo Index="5" SortIndex="5" Width="128" Grouped="false" Sorted="true" IsSortable="true" SortOrder="Descending" Visible="true">
+            <Name>Created</Name>
+            <Id>TimeRaised</Id>
+          </ColumnInfo>
+          <ColumnInfo Index="6" SortIndex="6" Width="128" Grouped="false" Sorted="false" IsSortable="true" SortOrder="Descending" Visible="true">
+            <Name>Age</Name>
+            <Id>Age</Id>
+          </ColumnInfo>
+        </Presentation>
+      </View>
+      <!-- AP.F5.LTM.View.State.AllTrafficGroup -->
+      <View ID="AP.F5.LTM.View.State.AllTrafficGroups" Target="AP.F5.LTM.TrafficGroup" TypeID="SC!Microsoft.SystemCenter.StateViewType" Accessibility="Internal" Enabled="true" Visible="true">
+        <Category>Custom</Category>
+        <Criteria />
+      </View>
+      <!-- AP.F5.LTM.View.Perf.AllTrafficGroup -->
+      <View ID="AP.F5.LTM.View.Perf.AllTrafficGroups" Target="AP.F5.LTM.TrafficGroup" TypeID="SC!Microsoft.SystemCenter.PerformanceViewType" Accessibility="Internal" Enabled="true" Visible="true">
+        <Category>Custom</Category>
+        <Criteria />
+      </View>
+
+      <!-- AP.F5.LTM.View.Alert.AllVirtualServers -->
+      <View ID="AP.F5.LTM.View.Alert.AllVirtualServers" Target="AP.F5.LTM.VirtualServer" TypeID="SC!Microsoft.SystemCenter.AlertViewType" Accessibility="Internal" Enabled="true" Visible="true">
+        <Category>Custom</Category>
+        <Criteria>
+          <ResolutionState>
+            <StateRange Operator="NotEquals">255</StateRange>
+          </ResolutionState>
+        </Criteria>
+        <Presentation>
+          <ColumnInfo Index="1" SortIndex="1" Width="64" Grouped="false" Sorted="false" IsSortable="true" SortOrder="Descending" Visible="true">
+            <Name>Icon</Name>
+            <Id>Icon</Id>
+          </ColumnInfo>
+          <ColumnInfo Index="2" SortIndex="2" Width="128" Grouped="false" Sorted="false" IsSortable="true" SortOrder="Descending" Visible="true">
+            <Name>Source</Name>
+            <Id>MonitoringObjectDisplayName</Id>
+          </ColumnInfo>
+          <ColumnInfo Index="3" SortIndex="3" Width="128" Grouped="false" Sorted="false" IsSortable="true" SortOrder="Descending" Visible="true">
+            <Name>Name</Name>
+            <Id>Name</Id>
+          </ColumnInfo>
+          <ColumnInfo Index="4" SortIndex="4" Width="128" Grouped="false" Sorted="false" IsSortable="true" SortOrder="Descending" Visible="true">
+            <Name>Resolution State</Name>
+            <Id>ResolutionState</Id>
+          </ColumnInfo>
+          <ColumnInfo Index="5" SortIndex="5" Width="128" Grouped="false" Sorted="true" IsSortable="true" SortOrder="Descending" Visible="true">
+            <Name>Created</Name>
+            <Id>TimeRaised</Id>
+          </ColumnInfo>
+          <ColumnInfo Index="6" SortIndex="6" Width="128" Grouped="false" Sorted="false" IsSortable="true" SortOrder="Descending" Visible="true">
+            <Name>Age</Name>
+            <Id>Age</Id>
+          </ColumnInfo>
+        </Presentation>
+      </View>
+      <!-- AP.F5.LTM.View.State.AllVirtualServer -->
+      <View ID="AP.F5.LTM.View.State.AllVirtualServers" Target="AP.F5.LTM.VirtualServer" TypeID="SC!Microsoft.SystemCenter.StateViewType" Accessibility="Internal" Enabled="true" Visible="true">
+        <Category>Custom</Category>
+        <Criteria />
+      </View>
+      <!-- AP.F5.LTM.View.Perf.AllVirtualServer -->
+      <View ID="AP.F5.LTM.View.Perf.AllVirtualServers" Target="AP.F5.LTM.VirtualServer" TypeID="SC!Microsoft.SystemCenter.PerformanceViewType" Accessibility="Internal" Enabled="true" Visible="true">
+        <Category>Custom</Category>
+        <Criteria />
+      </View>
+
+      <!-- AP.F5.LTM.View.Alert.AllPools -->
+      <View ID="AP.F5.LTM.View.Alert.AllPools" Target="AP.F5.LTM.Pool" TypeID="SC!Microsoft.SystemCenter.AlertViewType" Accessibility="Internal" Enabled="true" Visible="true">
+        <Category>Custom</Category>
+        <Criteria>
+          <ResolutionState>
+            <StateRange Operator="NotEquals">255</StateRange>
+          </ResolutionState>
+        </Criteria>
+        <Presentation>
+          <ColumnInfo Index="1" SortIndex="1" Width="64" Grouped="false" Sorted="false" IsSortable="true" SortOrder="Descending" Visible="true">
+            <Name>Icon</Name>
+            <Id>Icon</Id>
+          </ColumnInfo>
+          <ColumnInfo Index="2" SortIndex="2" Width="128" Grouped="false" Sorted="false" IsSortable="true" SortOrder="Descending" Visible="true">
+            <Name>Source</Name>
+            <Id>MonitoringObjectDisplayName</Id>
+          </ColumnInfo>
+          <ColumnInfo Index="3" SortIndex="3" Width="128" Grouped="false" Sorted="false" IsSortable="true" SortOrder="Descending" Visible="true">
+            <Name>Name</Name>
+            <Id>Name</Id>
+          </ColumnInfo>
+          <ColumnInfo Index="4" SortIndex="4" Width="128" Grouped="false" Sorted="false" IsSortable="true" SortOrder="Descending" Visible="true">
+            <Name>Resolution State</Name>
+            <Id>ResolutionState</Id>
+          </ColumnInfo>
+          <ColumnInfo Index="5" SortIndex="5" Width="128" Grouped="false" Sorted="true" IsSortable="true" SortOrder="Descending" Visible="true">
+            <Name>Created</Name>
+            <Id>TimeRaised</Id>
+          </ColumnInfo>
+          <ColumnInfo Index="6" SortIndex="6" Width="128" Grouped="false" Sorted="false" IsSortable="true" SortOrder="Descending" Visible="true">
+            <Name>Age</Name>
+            <Id>Age</Id>
+          </ColumnInfo>
+        </Presentation>
+      </View>
+      <!-- AP.F5.LTM.View.State.AllPool -->
+      <View ID="AP.F5.LTM.View.State.AllPools" Target="AP.F5.LTM.Pool" TypeID="SC!Microsoft.SystemCenter.StateViewType" Accessibility="Internal" Enabled="true" Visible="true">
+        <Category>Custom</Category>
+        <Criteria />
+      </View>
+      <!-- AP.F5.LTM.View.Perf.AllPool -->
+      <View ID="AP.F5.LTM.View.Perf.AllPools" Target="AP.F5.LTM.Pool" TypeID="SC!Microsoft.SystemCenter.PerformanceViewType" Accessibility="Internal" Enabled="true" Visible="true">
+        <Category>Custom</Category>
+        <Criteria />
+      </View>
+
+      <!-- AP.F5.LTM.View.Alert.AllPoolMembers -->
+      <View ID="AP.F5.LTM.View.Alert.AllPoolMembers" Target="AP.F5.LTM.PoolMember" TypeID="SC!Microsoft.SystemCenter.AlertViewType" Accessibility="Internal" Enabled="true" Visible="true">
+        <Category>Custom</Category>
+        <Criteria>
+          <ResolutionState>
+            <StateRange Operator="NotEquals">255</StateRange>
+          </ResolutionState>
+        </Criteria>
+        <Presentation>
+          <ColumnInfo Index="1" SortIndex="1" Width="64" Grouped="false" Sorted="false" IsSortable="true" SortOrder="Descending" Visible="true">
+            <Name>Icon</Name>
+            <Id>Icon</Id>
+          </ColumnInfo>
+          <ColumnInfo Index="2" SortIndex="2" Width="128" Grouped="false" Sorted="false" IsSortable="true" SortOrder="Descending" Visible="true">
+            <Name>Source</Name>
+            <Id>MonitoringObjectDisplayName</Id>
+          </ColumnInfo>
+          <ColumnInfo Index="3" SortIndex="3" Width="128" Grouped="false" Sorted="false" IsSortable="true" SortOrder="Descending" Visible="true">
+            <Name>Name</Name>
+            <Id>Name</Id>
+          </ColumnInfo>
+          <ColumnInfo Index="4" SortIndex="4" Width="128" Grouped="false" Sorted="false" IsSortable="true" SortOrder="Descending" Visible="true">
+            <Name>Resolution State</Name>
+            <Id>ResolutionState</Id>
+          </ColumnInfo>
+          <ColumnInfo Index="5" SortIndex="5" Width="128" Grouped="false" Sorted="true" IsSortable="true" SortOrder="Descending" Visible="true">
+            <Name>Created</Name>
+            <Id>TimeRaised</Id>
+          </ColumnInfo>
+          <ColumnInfo Index="6" SortIndex="6" Width="128" Grouped="false" Sorted="false" IsSortable="true" SortOrder="Descending" Visible="true">
+            <Name>Age</Name>
+            <Id>Age</Id>
+          </ColumnInfo>
+        </Presentation>
+      </View>
+      <!-- AP.F5.LTM.View.State.AllPoolMember -->
+      <View ID="AP.F5.LTM.View.State.AllPoolMembers" Target="AP.F5.LTM.PoolMember" TypeID="SC!Microsoft.SystemCenter.StateViewType" Accessibility="Internal" Enabled="true" Visible="true">
+        <Category>Custom</Category>
+        <Criteria />
+      </View>
+      <!-- AP.F5.LTM.View.Perf.AllPoolMember -->
+      <View ID="AP.F5.LTM.View.Perf.AllPoolMembers" Target="AP.F5.LTM.PoolMember" TypeID="SC!Microsoft.SystemCenter.PerformanceViewType" Accessibility="Internal" Enabled="true" Visible="true">
+        <Category>Custom</Category>
+        <Criteria />
+      </View>
+
+      <!-- AP.F5.LTM.View.Alert.AllNodes -->
+      <View ID="AP.F5.LTM.View.Alert.AllNodes" Target="AP.F5.LTM.Node" TypeID="SC!Microsoft.SystemCenter.AlertViewType" Accessibility="Internal" Enabled="true" Visible="true">
+        <Category>Custom</Category>
+        <Criteria>
+          <ResolutionState>
+            <StateRange Operator="NotEquals">255</StateRange>
+          </ResolutionState>
+        </Criteria>
+        <Presentation>
+          <ColumnInfo Index="1" SortIndex="1" Width="64" Grouped="false" Sorted="false" IsSortable="true" SortOrder="Descending" Visible="true">
+            <Name>Icon</Name>
+            <Id>Icon</Id>
+          </ColumnInfo>
+          <ColumnInfo Index="2" SortIndex="2" Width="128" Grouped="false" Sorted="false" IsSortable="true" SortOrder="Descending" Visible="true">
+            <Name>Source</Name>
+            <Id>MonitoringObjectDisplayName</Id>
+          </ColumnInfo>
+          <ColumnInfo Index="3" SortIndex="3" Width="128" Grouped="false" Sorted="false" IsSortable="true" SortOrder="Descending" Visible="true">
+            <Name>Name</Name>
+            <Id>Name</Id>
+          </ColumnInfo>
+          <ColumnInfo Index="4" SortIndex="4" Width="128" Grouped="false" Sorted="false" IsSortable="true" SortOrder="Descending" Visible="true">
+            <Name>Resolution State</Name>
+            <Id>ResolutionState</Id>
+          </ColumnInfo>
+          <ColumnInfo Index="5" SortIndex="5" Width="128" Grouped="false" Sorted="true" IsSortable="true" SortOrder="Descending" Visible="true">
+            <Name>Created</Name>
+            <Id>TimeRaised</Id>
+          </ColumnInfo>
+          <ColumnInfo Index="6" SortIndex="6" Width="128" Grouped="false" Sorted="false" IsSortable="true" SortOrder="Descending" Visible="true">
+            <Name>Age</Name>
+            <Id>Age</Id>
+          </ColumnInfo>
+        </Presentation>
+      </View>
+      <!-- AP.F5.LTM.View.State.AllNode -->
+      <View ID="AP.F5.LTM.View.State.AllNodes" Target="AP.F5.LTM.Node" TypeID="SC!Microsoft.SystemCenter.StateViewType" Accessibility="Internal" Enabled="true" Visible="true">
+        <Category>Custom</Category>
+        <Criteria />
+      </View>
+      <!-- AP.F5.LTM.View.Perf.AllNode -->
+      <View ID="AP.F5.LTM.View.Perf.AllNodes" Target="AP.F5.LTM.Node" TypeID="SC!Microsoft.SystemCenter.PerformanceViewType" Accessibility="Internal" Enabled="true" Visible="true">
+        <Category>Custom</Category>
+        <Criteria />
+      </View>
+      
+    </Views>
+
+    <!-- FOLDERS -->
+    <Folders>
+      <Folder ID="AP.F5.Folder.LTM.Root" Accessibility="Public" ParentFolder="APF5!AP.F5.Folder.Root" />
+      <Folder ID="AP.F5.Folder.LTM.SyncFailoverGroups" Accessibility="Public" ParentFolder="AP.F5.Folder.LTM.Root" />
+      <Folder ID="AP.F5.Folder.LTM.TrafficGroups" Accessibility="Public" ParentFolder="AP.F5.Folder.LTM.Root" />
+      <Folder ID="AP.F5.Folder.LTM.VirtualServers" Accessibility="Public" ParentFolder="AP.F5.Folder.LTM.Root" />
+      <Folder ID="AP.F5.Folder.LTM.Pools" Accessibility="Public" ParentFolder="AP.F5.Folder.LTM.Root" />
+      <Folder ID="AP.F5.Folder.LTM.PoolMembers" Accessibility="Public" ParentFolder="AP.F5.Folder.LTM.Root" />
+      <Folder ID="AP.F5.Folder.LTM.Nodes" Accessibility="Public" ParentFolder="AP.F5.Folder.LTM.Root" />
+    </Folders>
+    <FolderItems>
+      <FolderItem ElementID="AP.F5.LTM.View.Alert.AllActive" ID="AP.F5.LTM.Folderitem.StateView.AllSyncFailover" Folder="AP.F5.Folder.LTM.Root"/>
+      <FolderItem ElementID="AP.F5.LTM.View.State.AllSyncFailoverGroups" ID="AP.F5.LTM.Folderitem.StateView.AllSyncFailover" Folder="AP.F5.Folder.LTM.SyncFailoverGroups"/>
+      <FolderItem ElementID="AP.F5.LTM.View.Alert.AllSyncFailoverGroups" ID="AP.F5.LTM.Folderitem.AlertView.AllSyncFailover" Folder="AP.F5.Folder.LTM.SyncFailoverGroups"/>
+      <FolderItem ElementID="AP.F5.LTM.View.Perf.AllSyncFailoverGroups" ID="AP.F5.LTM.Folderitem.PerfView.AllSyncFailover" Folder="AP.F5.Folder.LTM.SyncFailoverGroups"/>
+      <FolderItem ElementID="AP.F5.LTM.View.Alert.AllTrafficGroups" ID="AP.F5.LTM.Folderitem.AlertView.AllTrafficGroups" Folder="AP.F5.Folder.LTM.TrafficGroups"/>
+      <FolderItem ElementID="AP.F5.LTM.View.State.AllTrafficGroups" ID="AP.F5.LTM.Folderitem.StateView.AllTrafficGroups" Folder="AP.F5.Folder.LTM.TrafficGroups"/>
+      <FolderItem ElementID="AP.F5.LTM.View.Perf.AllTrafficGroups" ID="AP.F5.LTM.Folderitem.PerfView.AllTrafficGroups" Folder="AP.F5.Folder.LTM.TrafficGroups"/>
+      <FolderItem ElementID="AP.F5.LTM.View.Alert.AllVirtualServers" ID="AP.F5.LTM.Folderitem.AlertView.AllVirtualServers" Folder="AP.F5.Folder.LTM.VirtualServers"/>
+      <FolderItem ElementID="AP.F5.LTM.View.State.AllVirtualServers" ID="AP.F5.LTM.Folderitem.StateView.AllVirtualServers" Folder="AP.F5.Folder.LTM.VirtualServers"/>
+      <FolderItem ElementID="AP.F5.LTM.View.Perf.AllVirtualServers" ID="AP.F5.LTM.Folderitem.PerfView.AllVirtualServers" Folder="AP.F5.Folder.LTM.VirtualServers"/>
+      <FolderItem ElementID="AP.F5.LTM.View.Alert.AllPools" ID="AP.F5.LTM.Folderitem.AlertView.AllPools" Folder="AP.F5.Folder.LTM.Pools"/>
+      <FolderItem ElementID="AP.F5.LTM.View.State.AllPools" ID="AP.F5.LTM.Folderitem.StateView.AllPools" Folder="AP.F5.Folder.LTM.Pools"/>
+      <FolderItem ElementID="AP.F5.LTM.View.Perf.AllPools" ID="AP.F5.LTM.Folderitem.PerfView.AllPools" Folder="AP.F5.Folder.LTM.Pools"/>
+      <FolderItem ElementID="AP.F5.LTM.View.Alert.AllPoolMembers" ID="AP.F5.LTM.Folderitem.AlertView.AllPoolMembers" Folder="AP.F5.Folder.LTM.PoolMembers"/>
+      <FolderItem ElementID="AP.F5.LTM.View.State.AllPoolMembers" ID="AP.F5.LTM.Folderitem.StateView.AllPoolMembers" Folder="AP.F5.Folder.LTM.PoolMembers"/>
+      <FolderItem ElementID="AP.F5.LTM.View.Perf.AllPoolMembers" ID="AP.F5.LTM.Folderitem.PerfView.AllPoolMembers" Folder="AP.F5.Folder.LTM.PoolMembers"/>
+      <FolderItem ElementID="AP.F5.LTM.View.Alert.AllNodes" ID="AP.F5.LTM.Folderitem.AlertView.AllNodes" Folder="AP.F5.Folder.LTM.Nodes"/>
+      <FolderItem ElementID="AP.F5.LTM.View.State.AllNodes" ID="AP.F5.LTM.Folderitem.StateView.AllNodes" Folder="AP.F5.Folder.LTM.Nodes"/>
+      <FolderItem ElementID="AP.F5.LTM.View.Perf.AllNodes" ID="AP.F5.LTM.Folderitem.PerfView.AllNodes" Folder="AP.F5.Folder.LTM.Nodes"/>
+    </FolderItems>
+  </Presentation>
+
+  <LanguagePacks>
+    <LanguagePack ID="ENU" IsDefault="true">
+      <DisplayStrings>
+
+        <!-- AP.F5.Folder.LTM.Root -->
+        <DisplayString ElementID="AP.F5.Folder.LTM.Root">
+          <Name>F5 LTM</Name>
+          <Description />
+        </DisplayString>
+        <!-- AP.F5.Folder.LTM.SyncFailover -->
+        <DisplayString ElementID="AP.F5.Folder.LTM.SyncFailoverGroups">
+          <Name>Sync-Failover Groups</Name>
+          <Description />
+        </DisplayString>
+        <!-- AP.F5.Folder.LTM.TrafficGroup -->
+        <DisplayString ElementID="AP.F5.Folder.LTM.TrafficGroups">
+          <Name>Traffic Groups</Name>
+          <Description />
+        </DisplayString>
+        <!-- AP.F5.Folder.LTM.VirtualServer -->
+        <DisplayString ElementID="AP.F5.Folder.LTM.VirtualServers">
+          <Name>Virtual Servers</Name>
+          <Description />
+        </DisplayString>
+        <!-- AP.F5.Folder.LTM.Pool -->
+        <DisplayString ElementID="AP.F5.Folder.LTM.Pools">
+          <Name>Pools</Name>
+          <Description />
+        </DisplayString>
+        <!-- AP.F5.Folder.LTM.PoolMember -->
+        <DisplayString ElementID="AP.F5.Folder.LTM.PoolMembers">
+          <Name>Pool Members</Name>
+          <Description />
+        </DisplayString>
+        <!-- AP.F5.Folder.LTM.Node -->
+        <DisplayString ElementID="AP.F5.Folder.LTM.Nodes">
+          <Name>Nodes</Name>
+          <Description />
+        </DisplayString>
+
+        <!-- AP.F5.LTM.View.Alert.AllActive -->
+        <DisplayString ElementID="AP.F5.LTM.View.Alert.AllActive">
+          <Name>Active Alerts</Name>
+          <Description />
+        </DisplayString>
+
+
+        <!-- AP.F5.LTM.View.Alert.AllSyncFailoverGroups -->
+        <DisplayString ElementID="AP.F5.LTM.View.Alert.AllSyncFailoverGroups">
+          <Name>All Active Sync-Failover Group Alerts</Name>
+          <Description />
+        </DisplayString>
+        <!-- AP.F5.LTM.View.State.AllSyncFailoverGroups -->
+        <DisplayString ElementID="AP.F5.LTM.View.State.AllSyncFailoverGroups">
+          <Name>All Sync-Failover Group States</Name>
+          <Description />
+        </DisplayString>
+        <!-- AP.F5.LTM.View.Perf.AllSyncFailoverGroups -->
+        <DisplayString ElementID="AP.F5.LTM.View.Perf.AllSyncFailoverGroups">
+          <Name>All Sync-Failover Group Performance</Name>
+          <Description />
+        </DisplayString>
+
+        <!-- AP.F5.LTM.View.Alert.AllTrafficGroups -->
+        <DisplayString ElementID="AP.F5.LTM.View.Alert.AllTrafficGroups">
+          <Name>All Active Traffic Group Alerts</Name>
+          <Description />
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.View.State.AllTrafficGroups">
+          <Name>All Traffic Group States</Name>
+          <Description />
+        </DisplayString>
+        <!-- AP.F5.LTM.View.Perf.AllTrafficGroups -->
+        <DisplayString ElementID="AP.F5.LTM.View.Perf.AllTrafficGroups">
+          <Name>All Traffic Group Performance</Name>
+          <Description />
+        </DisplayString>
+
+        <!-- AP.F5.LTM.View.Alert.AllVirtualServers -->
+        <DisplayString ElementID="AP.F5.LTM.View.Alert.AllVirtualServers">
+          <Name>All Active Virtual Server Alerts</Name>
+          <Description />
+        </DisplayString>
+        <!-- AP.F5.LTM.View.State.AllVirtualServers -->
+        <DisplayString ElementID="AP.F5.LTM.View.State.AllVirtualServers">
+          <Name>All Virtual Server States</Name>
+          <Description />
+        </DisplayString>
+        <!-- AP.F5.LTM.View.Perf.AllVirtualServers -->
+        <DisplayString ElementID="AP.F5.LTM.View.Perf.AllVirtualServers">
+          <Name>All Virtual Server Performance</Name>
+          <Description />
+        </DisplayString>
+
+        <!-- AP.F5.LTM.View.Alert.AllPools -->
+        <DisplayString ElementID="AP.F5.LTM.View.Alert.AllPools">
+          <Name>All Active Pool Alerts</Name>
+          <Description />
+        </DisplayString>
+        <!-- AP.F5.LTM.View.State.AllPools -->
+        <DisplayString ElementID="AP.F5.LTM.View.State.AllPools">
+          <Name>All Pool States</Name>
+          <Description />
+        </DisplayString>
+        <!-- AP.F5.LTM.View.Perf.AllPools -->
+        <DisplayString ElementID="AP.F5.LTM.View.Perf.AllPools">
+          <Name>All Pool Performance</Name>
+          <Description />
+        </DisplayString>
+
+        <!-- AP.F5.LTM.View.Alert.AllPoolMembers -->
+        <DisplayString ElementID="AP.F5.LTM.View.Alert.AllPoolMembers">
+          <Name>All Active Pool Member Alerts</Name>
+          <Description />
+        </DisplayString>
+        <!-- AP.F5.LTM.View.State.AllPoolMembers -->
+        <DisplayString ElementID="AP.F5.LTM.View.State.AllPoolMembers">
+          <Name>All Pool Member States</Name>
+          <Description />
+        </DisplayString>
+        <!-- AP.F5.LTM.View.Perf.AllPoolMembers -->
+        <DisplayString ElementID="AP.F5.LTM.View.Perf.AllPoolMembers">
+          <Name>All Pool Member Performance</Name>
+          <Description />
+        </DisplayString>
+
+        <!-- AP.F5.LTM.View.Alert.AllNodes -->
+        <DisplayString ElementID="AP.F5.LTM.View.Alert.AllNodes">
+          <Name>All Active Node Alerts</Name>
+          <Description />
+        </DisplayString>
+        <!-- AP.F5.LTM.View.State.AllNodes -->
+        <DisplayString ElementID="AP.F5.LTM.View.State.AllNodes">
+          <Name>All Node States</Name>
+          <Description />
+        </DisplayString>
+        <!-- AP.F5.LTM.View.Perf.AllNodes -->
+        <DisplayString ElementID="AP.F5.LTM.View.Perf.AllNodes">
+          <Name>All Node Performance</Name>
+          <Description />
+        </DisplayString>
+
+      </DisplayStrings>
+    </LanguagePack>
+  </LanguagePacks>
+  
+</ManagementPackFragment>

@@ -1,0 +1,97 @@
+﻿<ManagementPackFragment SchemaVersion="2.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <TypeDefinitions>
+    <EntityTypes>
+      <ClassTypes>
+        <ClassType ID="AP.F5.LTM.SyncFailoverGroup" Accessibility="Public" Abstract="false" Base="System!System.Group" Hosted="false" Singleton="false" Extension="false">
+          <Property ID="Name" Type="string" Key="false" />
+          <Property ID="Key" Type="string" Key="true" />
+          <Property ID="Standalone" Type="bool" Key="false" />
+          <Property ID="Devices" Type="string" Key="false" />
+          <Property ID="Addresses" Type="string" Key="false" />
+          <Property ID="Ports" Type="string" Key="false" />
+          <Property ID="Communities" Type="string" Key="false" />
+        </ClassType>
+      </ClassTypes>
+      <RelationshipTypes>
+
+        <!-- SyncFailoverGroup -> Partition Hosting Relationship-->
+        <RelationshipType ID="AP.F5.LTM.SyncFailoverGroupHostsPartitions" Accessibility="Public" Abstract="false" Base="System!System.Hosting">
+          <Source ID="Source" Type="AP.F5.LTM.SyncFailoverGroup" />
+          <Target ID="Target" Type="AP.F5.LTM.Partition" />
+        </RelationshipType>
+
+        <!-- SyncFailoverGroup -> Device Containment Relationship-->
+        <RelationshipType ID="AP.F5.LTM.SyncFailoverGroupContainsDevices" Accessibility="Public" Abstract="false" Base="System!System.Containment">
+          <Source ID="Source" Type="AP.F5.LTM.SyncFailoverGroup" />
+          <Target ID="Target" Type="APF5!AP.F5.Device" />
+        </RelationshipType>
+
+        <!-- SyncFailoverGroup -> TrafficGroup Hosting Relationship-->
+        <RelationshipType ID="AP.F5.LTM.SyncFailoverGroupHostsTrafficGroups" Accessibility="Public" Abstract="false" Base="System!System.Hosting">
+          <Source ID="Source" Type="AP.F5.LTM.SyncFailoverGroup" />
+          <Target ID="Target" Type="AP.F5.LTM.TrafficGroup" />
+        </RelationshipType>
+
+      </RelationshipTypes>
+    </EntityTypes>
+  </TypeDefinitions>
+  <LanguagePacks>
+    <LanguagePack ID="ENU" IsDefault="true">
+      <DisplayStrings>
+
+        <!-- AP.F5.LTM.SyncFailoverGroup -->
+        <DisplayString ElementID="AP.F5.LTM.SyncFailoverGroup">
+          <Name>F5 Sync-Failover Group</Name>
+          <Description>F5 Sync-Failover Group Class</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.SyncFailoverGroup" SubElementID="Name">
+          <Name>Name</Name>
+          <Description>Name of Sync-Failover Group</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.SyncFailoverGroup" SubElementID="Key">
+          <Name>Key</Name>
+          <Description>Key of Sync-Failover Group</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.SyncFailoverGroup" SubElementID="Standalone">
+          <Name>Standalone</Name>
+          <Description>Is Sync-Failover Group standalone</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.SyncFailoverGroup" SubElementID="Devices">
+          <Name>Devices</Name>
+          <Description>List of Devices in Sync-Failover Group</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.SyncFailoverGroup" SubElementID="Addresses">
+          <Name>Device Addresses</Name>
+          <Description>Comma seperated list of addresses for devices in this Sync-Failover Group, used for monitoring.</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.SyncFailoverGroup" SubElementID="Ports">
+          <Name>Device Ports</Name>
+          <Description>Comma seperated list of SNMP Ports for devices in this Sync-Failover Group, used for monitoring.</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.SyncFailoverGroup" SubElementID="Communities">
+          <Name>Device Communities</Name>
+          <Description>Comma seperated list of SNMP Community Strings for devices in this Sync-Failover Group, used for monitoring.</Description>
+        </DisplayString>
+
+        <!-- AP.F5.LTM.SyncFailoverGroupContainsDevices -->
+        <DisplayString ElementID="AP.F5.LTM.SyncFailoverGroupContainsDevices">
+          <Name>SyncFailover Group Contains Device</Name>
+          <Description>Defines the containment relationship between SyncFailover Groups and Devices</Description>
+        </DisplayString>
+
+        <!-- AP.F5.LTM.SyncFailoverGroupHostsTrafficGroups -->
+        <DisplayString ElementID="AP.F5.LTM.SyncFailoverGroupHostsTrafficGroups">
+          <Name>SyncFailover Group Hosts Traffic Groups</Name>
+          <Description>Defines the hosting relationship between SyncFailover Groups and Traffic Groups</Description>
+        </DisplayString>
+
+        <!-- AP.F5.LTM.SyncFailoverGroupHostsPartitions -->
+        <DisplayString ElementID="AP.F5.LTM.SyncFailoverGroupHostsPartitions">
+          <Name>SyncFailover Group Hosts Partitions</Name>
+          <Description>Defines the hosting relationship between SyncFailover Groups and Traffic Groups</Description>
+        </DisplayString>
+
+      </DisplayStrings>
+    </LanguagePack>
+  </LanguagePacks>
+</ManagementPackFragment>

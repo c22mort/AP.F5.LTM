@@ -1,0 +1,162 @@
+﻿<ManagementPackFragment SchemaVersion="2.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <TypeDefinitions>
+    <EntityTypes>
+      <ClassTypes>
+
+        <ClassType ID="AP.F5.LTM.Certificate" Base="System!System.LogicalEntity" Accessibility="Public" Abstract="false" Hosted="true" Singleton="false">
+          <Property ID="FullName" Key="true" Type="string"/>
+          <Property ID="Name" Key="false" Type="string"/>
+          <Property ID="eMail" Key="false" Type="string"/>
+          <Property ID="FileName" Key="false" Type="string"/>
+          <Property ID="CertType" Key="false" Type="string"/>
+          <Property ID="KeyType" Key="false" Type="string"/>
+          <Property ID="BitLength" Key="false" Type="int"/>
+          <Property ID="Version" Key="false" Type="int"/>
+          <Property ID="SerialNumber" Key="false" Type="string"/>
+          <Property ID="ExpirationDate" Key="false" Type="string"/>
+          <Property ID="ExpirationDays" Key="false" Type="int"/>
+          <Property ID="IssuerCommonName" Key="false" Type="string"/>
+          <Property ID="IssuerCountryName" Key="false" Type="string"/>
+          <Property ID="IssuerDivisionName" Key="false" Type="string"/>
+          <Property ID="IssuerLocalityName" Key="false" Type="string"/>
+          <Property ID="IssuerOrganisationName" Key="false" Type="string"/>
+          <Property ID="IssuerStateName" Key="false" Type="string"/>
+          <Property ID="SubjectCommonName" Key="false" Type="string"/>
+          <Property ID="SubjectCountryName" Key="false" Type="string"/>
+          <Property ID="SubjectDivisionName" Key="false" Type="string"/>
+          <Property ID="SubjectLocalityName" Key="false" Type="string"/>
+          <Property ID="SubjectOrganisationName" Key="false" Type="string"/>
+          <Property ID="SubjectStateName" Key="false" Type="string"/>
+          <Property ID="DeviceGroup" Key="false" Type="string"/>
+          <Property ID="DeviceAddress" Key="false" Type="string"/>
+          <Property ID="DeviceName" Key="false" Type="string"/>
+          <Property ID="Partition" Key="false" Type="string"/>
+        </ClassType>
+      </ClassTypes>
+
+    </EntityTypes>
+  </TypeDefinitions>
+
+
+  <LanguagePacks>
+    <LanguagePack ID="ENU" IsDefault="true">
+      <DisplayStrings>
+
+        <DisplayString ElementID="AP.F5.LTM.Certificate">
+          <Name>F5 Certificate</Name>
+          <Description>F5 Certificate Class</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.Certificate" SubElementID="Name">
+          <Name>Name</Name>
+          <Description>Name of Certificate</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.Certificate" SubElementID="FullName">
+          <Name>Full Name</Name>
+          <Description>Full Name of Certificate, including partition</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.Certificate" SubElementID="Partition">
+          <Name>Partition</Name>
+          <Description>Partition hosting Certificate</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.Certificate" SubElementID="DeviceAddress">
+          <Name>Device Address</Name>
+          <Description>IP Address of Hosting Device</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.Certificate" SubElementID="DeviceName">
+          <Name>Device Name</Name>
+          <Description>Device Name of Hosting Device</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.Certificate" SubElementID="DeviceGroup">
+          <Name>Device Group</Name>
+          <Description>Device Group of Hosting Device</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.Certificate" SubElementID="eMail">
+          <Name>e-Mail</Name>
+          <Description>e-Mail address of owner</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.Certificate" SubElementID="FileName">
+          <Name>File Name</Name>
+          <Description>File Name of Certificate</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.Certificate" SubElementID="CertType">
+          <Name>Certificate Type</Name>
+          <Description>Type of Certificate</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.Certificate" SubElementID="KeyType">
+          <Name>Key Type</Name>
+          <Description>Type of Key</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.Certificate" SubElementID="BitLength">
+          <Name>Bit Length</Name>
+          <Description>Length of Certificate Hash</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.Certificate" SubElementID="Version">
+          <Name>Version</Name>
+          <Description>Version # of Certificate</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.Certificate" SubElementID="SerialNumber">
+          <Name>Serial Number</Name>
+          <Description>Serial Number of Certificate</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.Certificate" SubElementID="ExpirationDate">
+          <Name>Expiration Date/Time</Name>
+          <Description>Expiration Date/Time of Certificate</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.Certificate" SubElementID="ExpirationDays">
+          <Name>Expiration Days</Name>
+          <Description>Number of Days till certificate expires, if negative the days since it expired.</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.Certificate" SubElementID="IssuerCommonName">
+          <Name>Issuer Common Name</Name>
+          <Description>Certificate Issuer Common Name</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.Certificate" SubElementID="IssuerCountryName">
+          <Name>Issuer Country Name</Name>
+          <Description>Certificate Issuer Country Name</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.Certificate" SubElementID="IssuerDivisionName">
+          <Name>Issuer Division Name</Name>
+          <Description>Certificate Issuer Division Name</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.Certificate" SubElementID="IssuerLocalityName">
+          <Name>Issuer Locality Name</Name>
+          <Description>Certificate Issuer Locality Name</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.Certificate" SubElementID="IssuerOrganisationName">
+          <Name>Issuer Organisation Name</Name>
+          <Description>Certificate Issuer Organisation Name</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.Certificate" SubElementID="IssuerStateName">
+          <Name>Issuer State Name</Name>
+          <Description>Certificate Issuer State Name</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.Certificate" SubElementID="SubjectCommonName">
+          <Name>Subject Common Name</Name>
+          <Description>Certificate Subject Common Name</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.Certificate" SubElementID="SubjectCountryName">
+          <Name>Subject Country Name</Name>
+          <Description>Certificate Subject Country Name</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.Certificate" SubElementID="SubjectDivisionName">
+          <Name>Subject Division Name</Name>
+          <Description>Certificate Subject Division Name</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.Certificate" SubElementID="SubjectLocalityName">
+          <Name>Subject Locality Name</Name>
+          <Description>Certificate Subject Locality Name</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.Certificate" SubElementID="SubjectOrganisationName">
+          <Name>Subject Organisation Name</Name>
+          <Description>Certificate Subject Organisation Name</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.Certificate" SubElementID="SubjectStateName">
+          <Name>Subject State Name</Name>
+          <Description>Certificate Subject State Name</Description>
+        </DisplayString>
+
+      </DisplayStrings>
+
+    </LanguagePack>
+  </LanguagePacks>
+</ManagementPackFragment>

@@ -1,0 +1,140 @@
+﻿<ManagementPackFragment SchemaVersion="2.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <TypeDefinitions>
+    <MonitorTypes>
+
+      <!-- AP.F5.LTM.DataSource.Monitor.ServerSslProfile.Status -->
+      <UnitMonitorType ID="AP.F5.LTM.DataSource.Monitor.ServerSslProfile.Status" Accessibility="Public">
+        <MonitorTypeStates>
+          <MonitorTypeState ID="ProfileHealthy" NoDetection="false"/>
+          <MonitorTypeState ID="ProfileCritical" NoDetection="false"/>
+        </MonitorTypeStates>
+        <Configuration>
+          <IncludeSchemaTypes>
+            <SchemaType>System!System.ExpressionEvaluatorSchema</SchemaType>
+          </IncludeSchemaTypes>
+          <xsd:element name="IntervalSeconds" type="xsd:integer" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+          <xsd:element name="SyncTime" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+          <xsd:element name="Debug" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+        </Configuration>
+        <OverrideableParameters>
+          <OverrideableParameter ID="IntervalSeconds" Selector="$Config/IntervalSeconds$" ParameterType="int" />
+          <OverrideableParameter ID="SyncTime" Selector="$Config/SyncTime$" ParameterType="string" />
+          <OverrideableParameter ID="Debug" Selector="$Config/Debug$" ParameterType="string" />
+        </OverrideableParameters>
+        <MonitorImplementation>
+          <MemberModules>
+            <DataSource ID="Scheduler" TypeID="System!System.Scheduler">
+              <Scheduler>
+                <SimpleReccuringSchedule>
+                  <Interval>$Config/IntervalSeconds$</Interval>
+                  <SyncTime>$Config/SyncTime$</SyncTime>
+                </SimpleReccuringSchedule>
+                <ExcludeDates />
+              </Scheduler>
+            </DataSource>
+            <ProbeAction ID="ScriptProbePS" TypeID="Windows!Microsoft.Windows.PowerShellPropertyBagTriggerOnlyProbe">
+              <ScriptName>Get-ServerProfileSslStatus.ps1</ScriptName>
+              <ScriptBody>$IncludeFileContent/Scripts/Monitors/Get-ServerProfileSslStatus.ps1$</ScriptBody>
+              <SnapIns />
+              <Parameters>
+                <Parameter>
+                  <Name>Debug</Name>
+                  <Value>$Config/Debug$</Value>
+                </Parameter>
+              </Parameters>
+              <TimeoutSeconds>300</TimeoutSeconds>
+            </ProbeAction>
+            <ConditionDetection ID="FilterOnProfileName" TypeID="System!System.ExpressionFilter">
+              <Expression>
+                <SimpleExpression>
+                  <ValueExpression>
+                    <XPathQuery Type="String">Property[@Name='ProfileName']</XPathQuery>
+                  </ValueExpression>
+                  <Operator>Equal</Operator>
+                  <ValueExpression>
+                    <Value Type="String">$Target/Property[Type="AP.F5.LTM.ProfileServerSSL"]/FullName$</Value>
+                  </ValueExpression>
+                </SimpleExpression>
+              </Expression>
+            </ConditionDetection>
+            <ConditionDetection ID="ProfileHealthyFilterCondition" TypeID="System!System.ExpressionFilter">
+              <Expression>
+                <SimpleExpression>
+                  <ValueExpression>
+                    <XPathQuery Type="String">Property[@Name='Value']</XPathQuery>
+                  </ValueExpression>
+                  <Operator>Equal</Operator>
+                  <ValueExpression>
+                    <Value Type="String">okay</Value>
+                  </ValueExpression>
+                </SimpleExpression>
+              </Expression>
+            </ConditionDetection>
+          </MemberModules>
+          <RegularDetections>
+            <RegularDetection MonitorTypeStateID="ProfileHealthy">
+              <Node ID="ProfileHealthyFilterCondition">
+                <Node ID="FilterOnProfileName">
+                  <Node ID="ScriptProbePS">
+                    <Node ID="Scheduler" />
+                  </Node>
+                </Node>
+              </Node>
+            </RegularDetection>
+          </RegularDetections>
+        </MonitorImplementation>
+      </UnitMonitorType>
+    </MonitorTypes>
+  </TypeDefinitions>
+
+  <LanguagePacks>
+    <LanguagePack ID="ENU" IsDefault="true">
+      <DisplayStrings>
+
+        <!-- AP.F5.LTM.DataSource.Monitor.ServerSslProfile.Status -->
+        <DisplayString ElementID="AP.F5.LTM.DataSource.Monitor.ServerSslProfile.Status">
+          <Name>F5 Server SSL Profile Status Monitor</Name>
+          <Description>Monitors the status of F5 Traffic Group</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.DataSource.Monitor.ServerSslProfile.Status" SubElementID="IntervalSeconds">
+          <Name>Interval Seconds</Name>
+          <Description>Frequency in seconds that module is run.</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.DataSource.Monitor.ServerSslProfile.Status" SubElementID="SyncTime">
+          <Name>Synchronisation Time</Name>
+          <Description>Offset that this module is started from.</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.DataSource.Monitor.ServerSslProfile.Status" SubElementID="Debug">
+          <Name>Debug</Name>
+          <Description>Is this script running in debug mode (creates Even Log Entries)</Description>
+        </DisplayString>
+
+      </DisplayStrings>
+
+      <KnowledgeArticles>
+
+        <!-- AP.F5.LTM.Monitor.ProfileServerSSL.Status -->
+        <KnowledgeArticle ElementID="AP.F5.LTM.Monitor.ProfileServerSSL.Status" Visible="true">
+          <MamlContent>
+            <section xmlns="http://schemas.microsoft.com/maml/2004/10">
+              <title>Summary</title>
+              <para>
+                Monitors F5 Server SSL Profile Status for those profiles that have no certificate, health of profiles is usually done with a roll-up of certificate health, but certain Server SSL Profiles might 
+                not have a certificate this monitor simply sets those to Healthy!
+              </para>
+            </section>
+            <section xmlns="http://schemas.microsoft.com/maml/2004/10">
+              <title>Thresholds</title>
+              <list>
+                <listItem>
+                  <para>Healthy : Profile Contains no Certificate</para>
+                </listItem>
+              </list>
+            </section>
+          </MamlContent>
+        </KnowledgeArticle>
+      </KnowledgeArticles>
+
+    </LanguagePack>
+  </LanguagePacks>
+</ManagementPackFragment>

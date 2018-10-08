@@ -1,0 +1,1203 @@
+﻿<ManagementPackFragment SchemaVersion="2.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <TypeDefinitions>
+    <ModuleTypes>
+
+      <!-- AP.F5.LTM.DataSource.VirtualServerAvailabilityState.Filtered -->
+      <!-- Calls AP.F5.LTM.DataSource.VirtualServerAvailabilityState.Powershell, Filters results by VirtualServer Name -->
+      <DataSourceModuleType ID="AP.F5.LTM.DataSource.VirtualServerAvailabilityState.Filtered" Accessibility="Public" Batching="false">
+        <Configuration>
+          <IncludeSchemaTypes>
+            <SchemaType>Windows!Microsoft.Windows.PowerShellSchema</SchemaType>
+          </IncludeSchemaTypes>
+          <xsd:element minOccurs="1" name="IntervalSeconds" type="xsd:integer"/>
+          <xsd:element minOccurs="1" name="SyncTime" type="xsd:string"/>
+          <xsd:element minOccurs="1" name="Debug" type="xsd:boolean"/>
+          <xsd:element minOccurs="1" name="DeviceAddresses" type="xsd:string"/>
+          <xsd:element minOccurs="1" name="DevicePorts" type="xsd:string"/>
+          <xsd:element minOccurs="1" name="DeviceCommunities" type="xsd:string"/>
+          <xsd:element minOccurs="1" name="VirtualServerName" type="xsd:string"/>
+        </Configuration>
+        <OverrideableParameters>
+          <OverrideableParameter ID="IntervalSeconds" Selector="$Config/IntervalSeconds$" ParameterType="int"/>
+          <OverrideableParameter ID="SyncTime" Selector="$Config/SyncTime$" ParameterType="string"/>
+          <OverrideableParameter ID="Debug" Selector="$Config/Debug$" ParameterType="bool"/>
+        </OverrideableParameters>
+        <ModuleImplementation Isolation="Any">
+          <Composite>
+            <MemberModules>
+              <DataSource ID="Script" TypeID="AP.F5.LTM.DataSource.VirtualServerAvailabilityState.Powershell">
+                <IntervalSeconds>$Config/IntervalSeconds$</IntervalSeconds>
+                <SyncTime>$Config/SyncTime$</SyncTime>
+                <Debug>$Config/Debug$</Debug>
+                <DeviceAddresses>$Config/DeviceAddresses$</DeviceAddresses>
+                <DevicePorts>$Config/DevicePorts$</DevicePorts>
+                <DeviceCommunities>$Config/DeviceCommunities$</DeviceCommunities>
+              </DataSource>
+              <ConditionDetection ID="FilterVirtualServerName" TypeID="System!System.ExpressionFilter">
+                <Expression>
+                  <SimpleExpression>
+                    <ValueExpression>
+                      <XPathQuery Type="String">Property[@Name='VirtualServerName']</XPathQuery>
+                    </ValueExpression>
+                    <Operator>Equal</Operator>
+                    <ValueExpression>
+                      <Value Type="String">$Config/VirtualServerName$</Value>
+                    </ValueExpression>
+                  </SimpleExpression>
+                </Expression>
+              </ConditionDetection>
+            </MemberModules>
+            <Composition>
+              <Node ID="FilterVirtualServerName">
+                <Node ID="Script" />
+              </Node>
+            </Composition>
+          </Composite>
+        </ModuleImplementation>
+        <OutputType>System!System.PropertyBagData</OutputType>
+      </DataSourceModuleType>
+
+      <!-- AP.F5.LTM.DataSource.VirtualServerEnabledState.Filtered -->
+      <!-- Calls AP.F5.LTM.DataSource.VirtualServerEnabledState.Powershell, Filters results by VirtualServer Name -->
+      <DataSourceModuleType ID="AP.F5.LTM.DataSource.VirtualServerEnabledState.Filtered" Accessibility="Public" Batching="false">
+        <Configuration>
+          <IncludeSchemaTypes>
+            <SchemaType>Windows!Microsoft.Windows.PowerShellSchema</SchemaType>
+          </IncludeSchemaTypes>
+          <xsd:element minOccurs="1" name="IntervalSeconds" type="xsd:integer"/>
+          <xsd:element minOccurs="1" name="SyncTime" type="xsd:string"/>
+          <xsd:element minOccurs="1" name="Debug" type="xsd:boolean"/>
+          <xsd:element minOccurs="1" name="DeviceAddresses" type="xsd:string"/>
+          <xsd:element minOccurs="1" name="DevicePorts" type="xsd:string"/>
+          <xsd:element minOccurs="1" name="DeviceCommunities" type="xsd:string"/>
+          <xsd:element minOccurs="1" name="VirtualServerName" type="xsd:string"/>
+        </Configuration>
+        <OverrideableParameters>
+          <OverrideableParameter ID="IntervalSeconds" Selector="$Config/IntervalSeconds$" ParameterType="int"/>
+          <OverrideableParameter ID="SyncTime" Selector="$Config/SyncTime$" ParameterType="string"/>
+          <OverrideableParameter ID="Debug" Selector="$Config/Debug$" ParameterType="bool"/>
+        </OverrideableParameters>
+        <ModuleImplementation Isolation="Any">
+          <Composite>
+            <MemberModules>
+              <DataSource ID="Script" TypeID="AP.F5.LTM.DataSource.VirtualServerEnabledState.Powershell">
+                <IntervalSeconds>$Config/IntervalSeconds$</IntervalSeconds>
+                <SyncTime>$Config/SyncTime$</SyncTime>
+                <Debug>$Config/Debug$</Debug>
+                <DeviceAddresses>$Config/DeviceAddresses$</DeviceAddresses>
+                <DevicePorts>$Config/DevicePorts$</DevicePorts>
+                <DeviceCommunities>$Config/DeviceCommunities$</DeviceCommunities>
+              </DataSource>
+              <ConditionDetection ID="FilterVirtualServerName" TypeID="System!System.ExpressionFilter">
+                <Expression>
+                  <SimpleExpression>
+                    <ValueExpression>
+                      <XPathQuery Type="String">Property[@Name='VirtualServerName']</XPathQuery>
+                    </ValueExpression>
+                    <Operator>Equal</Operator>
+                    <ValueExpression>
+                      <Value Type="String">$Config/VirtualServerName$</Value>
+                    </ValueExpression>
+                  </SimpleExpression>
+                </Expression>
+              </ConditionDetection>
+            </MemberModules>
+            <Composition>
+              <Node ID="FilterVirtualServerName">
+                <Node ID="Script" />
+              </Node>
+            </Composition>
+          </Composite>
+        </ModuleImplementation>
+        <OutputType>System!System.PropertyBagData</OutputType>
+      </DataSourceModuleType>
+
+      <!-- AP.F5.LTM.DataSource.VirtualServerConnections.Filtered -->
+      <!-- Calls AP.F5.LTM.DataSource.VirtualServerConnections.Powershell, Filters results by VirtualServer Name -->
+      <DataSourceModuleType ID="AP.F5.LTM.DataSource.VirtualServerConnections.Filtered" Accessibility="Public" Batching="false">
+        <Configuration>
+          <IncludeSchemaTypes>
+            <SchemaType>Windows!Microsoft.Windows.PowerShellSchema</SchemaType>
+          </IncludeSchemaTypes>
+          <xsd:element minOccurs="1" name="IntervalSeconds" type="xsd:integer"/>
+          <xsd:element minOccurs="1" name="SyncTime" type="xsd:string"/>
+          <xsd:element minOccurs="1" name="Debug" type="xsd:boolean"/>
+          <xsd:element minOccurs="1" name="DeviceAddresses" type="xsd:string"/>
+          <xsd:element minOccurs="1" name="DevicePorts" type="xsd:string"/>
+          <xsd:element minOccurs="1" name="DeviceCommunities" type="xsd:string"/>
+          <xsd:element minOccurs="1" name="VirtualServerName" type="xsd:string"/>
+        </Configuration>
+        <OverrideableParameters>
+          <OverrideableParameter ID="IntervalSeconds" Selector="$Config/IntervalSeconds$" ParameterType="int"/>
+          <OverrideableParameter ID="SyncTime" Selector="$Config/SyncTime$" ParameterType="string"/>
+          <OverrideableParameter ID="Debug" Selector="$Config/Debug$" ParameterType="bool"/>
+        </OverrideableParameters>
+        <ModuleImplementation Isolation="Any">
+          <Composite>
+            <MemberModules>
+              <DataSource ID="Script" TypeID="AP.F5.LTM.DataSource.VirtualServerConnections.Powershell">
+                <IntervalSeconds>$Config/IntervalSeconds$</IntervalSeconds>
+                <SyncTime>$Config/SyncTime$</SyncTime>
+                <Debug>$Config/Debug$</Debug>
+                <DeviceAddresses>$Config/DeviceAddresses$</DeviceAddresses>
+                <DevicePorts>$Config/DevicePorts$</DevicePorts>
+                <DeviceCommunities>$Config/DeviceCommunities$</DeviceCommunities>
+              </DataSource>
+              <ConditionDetection ID="FilterVirtualServerName" TypeID="System!System.ExpressionFilter">
+                <Expression>
+                  <SimpleExpression>
+                    <ValueExpression>
+                      <XPathQuery Type="String">Property[@Name='VirtualServerName']</XPathQuery>
+                    </ValueExpression>
+                    <Operator>Equal</Operator>
+                    <ValueExpression>
+                      <Value Type="String">$Config/VirtualServerName$</Value>
+                    </ValueExpression>
+                  </SimpleExpression>
+                </Expression>
+              </ConditionDetection>
+              <ConditionDetection ID="PerfMapper" TypeID="Perf!System.Performance.DataGenericMapper">
+                <ObjectName>Connections</ObjectName>
+                <CounterName>Current</CounterName>
+                <InstanceName></InstanceName>
+                <Value>$Data/Property[@Name="Connections"]$</Value>
+              </ConditionDetection>
+            </MemberModules>
+            <Composition>
+              <Node ID="PerfMapper">
+                <Node ID="FilterVirtualServerName">
+                  <Node ID="Script" />
+                </Node>
+              </Node>
+            </Composition>
+          </Composite>
+        </ModuleImplementation>
+        <OutputType>Perf!System.Performance.Data</OutputType>
+      </DataSourceModuleType>
+
+      <!-- AP.F5.LTM.DataSource.VirtualServerAverageConnectionDuration.Filtered -->
+      <!-- Calls AP.F5.LTM.DataSource.VirtualServerAverageConnectionDuration.Powershell, Filters results by VirtualServer Name -->
+      <DataSourceModuleType ID="AP.F5.LTM.DataSource.VirtualServerAverageConnectionDuration.Filtered" Accessibility="Public" Batching="false">
+        <Configuration>
+          <IncludeSchemaTypes>
+            <SchemaType>Windows!Microsoft.Windows.PowerShellSchema</SchemaType>
+          </IncludeSchemaTypes>
+          <xsd:element minOccurs="1" name="IntervalSeconds" type="xsd:integer"/>
+          <xsd:element minOccurs="1" name="SyncTime" type="xsd:string"/>
+          <xsd:element minOccurs="1" name="Debug" type="xsd:boolean"/>
+          <xsd:element minOccurs="1" name="DeviceAddresses" type="xsd:string"/>
+          <xsd:element minOccurs="1" name="DevicePorts" type="xsd:string"/>
+          <xsd:element minOccurs="1" name="DeviceCommunities" type="xsd:string"/>
+          <xsd:element minOccurs="1" name="VirtualServerName" type="xsd:string"/>
+        </Configuration>
+        <OverrideableParameters>
+          <OverrideableParameter ID="IntervalSeconds" Selector="$Config/IntervalSeconds$" ParameterType="int"/>
+          <OverrideableParameter ID="SyncTime" Selector="$Config/SyncTime$" ParameterType="string"/>
+          <OverrideableParameter ID="Debug" Selector="$Config/Debug$" ParameterType="bool"/>
+        </OverrideableParameters>
+        <ModuleImplementation Isolation="Any">
+          <Composite>
+            <MemberModules>
+              <DataSource ID="Script" TypeID="AP.F5.LTM.DataSource.VirtualServerAverageConnectionDuration.Powershell">
+                <IntervalSeconds>$Config/IntervalSeconds$</IntervalSeconds>
+                <SyncTime>$Config/SyncTime$</SyncTime>
+                <Debug>$Config/Debug$</Debug>
+                <DeviceAddresses>$Config/DeviceAddresses$</DeviceAddresses>
+                <DevicePorts>$Config/DevicePorts$</DevicePorts>
+                <DeviceCommunities>$Config/DeviceCommunities$</DeviceCommunities>
+              </DataSource>
+              <ConditionDetection ID="FilterVirtualServerName" TypeID="System!System.ExpressionFilter">
+                <Expression>
+                  <SimpleExpression>
+                    <ValueExpression>
+                      <XPathQuery Type="String">Property[@Name='VirtualServerName']</XPathQuery>
+                    </ValueExpression>
+                    <Operator>Equal</Operator>
+                    <ValueExpression>
+                      <Value Type="String">$Config/VirtualServerName$</Value>
+                    </ValueExpression>
+                  </SimpleExpression>
+                </Expression>
+              </ConditionDetection>
+              <ConditionDetection ID="PerfMapper" TypeID="Perf!System.Performance.DataGenericMapper">
+                <ObjectName>Connection Duration</ObjectName>
+                <CounterName>Average (Secs)</CounterName>
+                <InstanceName></InstanceName>
+                <Value>$Data/Property[@Name="ConnectionDuration"]$</Value>
+              </ConditionDetection>
+            </MemberModules>
+            <Composition>
+              <Node ID="PerfMapper">
+                <Node ID="FilterVirtualServerName">
+                  <Node ID="Script" />
+                </Node>
+              </Node>
+            </Composition>
+          </Composite>
+        </ModuleImplementation>
+        <OutputType>Perf!System.Performance.Data</OutputType>
+      </DataSourceModuleType>
+
+      <!-- AP.F5.LTM.DataSource.VirtualServerAvailabilityState.Powershell -->
+      <!-- Calls AP.F5.LTM.Probe.VirtualServerAvailabilityState.Powershell wraps it with a scheduler -->
+      <DataSourceModuleType ID="AP.F5.LTM.DataSource.VirtualServerAvailabilityState.Powershell" Accessibility="Public" Batching="false">
+        <Configuration>
+          <IncludeSchemaTypes>
+            <SchemaType>Windows!Microsoft.Windows.PowerShellSchema</SchemaType>
+          </IncludeSchemaTypes>
+          <xsd:element minOccurs="1" name="IntervalSeconds" type="xsd:integer"/>
+          <xsd:element minOccurs="1" name="SyncTime" type="xsd:string"/>
+          <xsd:element minOccurs="1" name="Debug" type="xsd:boolean"/>
+          <xsd:element minOccurs="1" name="DeviceAddresses" type="xsd:string"/>
+          <xsd:element minOccurs="1" name="DevicePorts" type="xsd:string"/>
+          <xsd:element minOccurs="1" name="DeviceCommunities" type="xsd:string"/>
+        </Configuration>
+        <OverrideableParameters>
+          <OverrideableParameter ID="IntervalSeconds" Selector="$Config/IntervalSeconds$" ParameterType="int"/>
+          <OverrideableParameter ID="SyncTime" Selector="$Config/SyncTime$" ParameterType="string"/>
+          <OverrideableParameter ID="Debug" Selector="$Config/Debug$" ParameterType="bool"/>
+        </OverrideableParameters>
+        <ModuleImplementation Isolation="Any">
+          <Composite>
+            <MemberModules>
+              <DataSource ID="Scheduler" TypeID="System!System.SimpleScheduler">
+                <IntervalSeconds>$Config/IntervalSeconds$</IntervalSeconds>
+                <SyncTime>$Config/SyncTime$</SyncTime>
+              </DataSource>
+              <ProbeAction ID="PSScript" TypeID="AP.F5.LTM.Probe.VirtualServerAvailabilityState.Powershell">
+                <Debug>$Config/Debug$</Debug>
+                <DeviceAddresses>$Config/DeviceAddresses$</DeviceAddresses>
+                <DevicePorts>$Config/DevicePorts$</DevicePorts>
+                <DeviceCommunities>$Config/DeviceCommunities$</DeviceCommunities>
+              </ProbeAction>
+            </MemberModules>
+            <Composition>
+              <Node ID="PSScript">
+                <Node ID="Scheduler" />
+              </Node>
+            </Composition>
+          </Composite>
+        </ModuleImplementation>
+        <OutputType>System!System.PropertyBagData</OutputType>
+      </DataSourceModuleType>
+
+      <!-- AP.F5.LTM.DataSource.VirtualServerEnabledState.Powershell -->
+      <!-- Calls AP.F5.LTM.Probe.VirtualServerEnabledState.Powershell wraps it with a scheduler -->
+      <DataSourceModuleType ID="AP.F5.LTM.DataSource.VirtualServerEnabledState.Powershell" Accessibility="Public" Batching="false">
+        <Configuration>
+          <IncludeSchemaTypes>
+            <SchemaType>Windows!Microsoft.Windows.PowerShellSchema</SchemaType>
+          </IncludeSchemaTypes>
+          <xsd:element minOccurs="1" name="IntervalSeconds" type="xsd:integer"/>
+          <xsd:element minOccurs="1" name="SyncTime" type="xsd:string"/>
+          <xsd:element minOccurs="1" name="Debug" type="xsd:boolean"/>
+          <xsd:element minOccurs="1" name="DeviceAddresses" type="xsd:string"/>
+          <xsd:element minOccurs="1" name="DevicePorts" type="xsd:string"/>
+          <xsd:element minOccurs="1" name="DeviceCommunities" type="xsd:string"/>
+        </Configuration>
+        <OverrideableParameters>
+          <OverrideableParameter ID="IntervalSeconds" Selector="$Config/IntervalSeconds$" ParameterType="int"/>
+          <OverrideableParameter ID="SyncTime" Selector="$Config/SyncTime$" ParameterType="string"/>
+          <OverrideableParameter ID="Debug" Selector="$Config/Debug$" ParameterType="bool"/>
+        </OverrideableParameters>
+        <ModuleImplementation Isolation="Any">
+          <Composite>
+            <MemberModules>
+              <DataSource ID="Scheduler" TypeID="System!System.SimpleScheduler">
+                <IntervalSeconds>$Config/IntervalSeconds$</IntervalSeconds>
+                <SyncTime>$Config/SyncTime$</SyncTime>
+              </DataSource>
+              <ProbeAction ID="PSScript" TypeID="AP.F5.LTM.Probe.VirtualServerEnabledState.Powershell">
+                <Debug>$Config/Debug$</Debug>
+                <DeviceAddresses>$Config/DeviceAddresses$</DeviceAddresses>
+                <DevicePorts>$Config/DevicePorts$</DevicePorts>
+                <DeviceCommunities>$Config/DeviceCommunities$</DeviceCommunities>
+              </ProbeAction>
+            </MemberModules>
+            <Composition>
+              <Node ID="PSScript">
+                <Node ID="Scheduler" />
+              </Node>
+            </Composition>
+          </Composite>
+        </ModuleImplementation>
+        <OutputType>System!System.PropertyBagData</OutputType>
+      </DataSourceModuleType>
+
+      <!-- AP.F5.LTM.DataSource.VirtualServerConnections.Powershell -->
+      <!-- Calls AP.F5.LTM.Probe.VirtualServerConnections.Powershell wraps it with a scheduler -->
+      <DataSourceModuleType ID="AP.F5.LTM.DataSource.VirtualServerConnections.Powershell" Accessibility="Public" Batching="false">
+        <Configuration>
+          <IncludeSchemaTypes>
+            <SchemaType>Windows!Microsoft.Windows.PowerShellSchema</SchemaType>
+          </IncludeSchemaTypes>
+          <xsd:element minOccurs="1" name="IntervalSeconds" type="xsd:integer"/>
+          <xsd:element minOccurs="1" name="SyncTime" type="xsd:string"/>
+          <xsd:element minOccurs="1" name="Debug" type="xsd:boolean"/>
+          <xsd:element minOccurs="1" name="DeviceAddresses" type="xsd:string"/>
+          <xsd:element minOccurs="1" name="DevicePorts" type="xsd:string"/>
+          <xsd:element minOccurs="1" name="DeviceCommunities" type="xsd:string"/>
+        </Configuration>
+        <OverrideableParameters>
+          <OverrideableParameter ID="IntervalSeconds" Selector="$Config/IntervalSeconds$" ParameterType="int"/>
+          <OverrideableParameter ID="SyncTime" Selector="$Config/SyncTime$" ParameterType="string"/>
+          <OverrideableParameter ID="Debug" Selector="$Config/Debug$" ParameterType="bool"/>
+        </OverrideableParameters>
+        <ModuleImplementation Isolation="Any">
+          <Composite>
+            <MemberModules>
+              <DataSource ID="Scheduler" TypeID="System!System.SimpleScheduler">
+                <IntervalSeconds>$Config/IntervalSeconds$</IntervalSeconds>
+                <SyncTime>$Config/SyncTime$</SyncTime>
+              </DataSource>
+              <ProbeAction ID="PSScript" TypeID="AP.F5.LTM.Probe.VirtualServerConnections.Powershell">
+                <Debug>$Config/Debug$</Debug>
+                <DeviceAddresses>$Config/DeviceAddresses$</DeviceAddresses>
+                <DevicePorts>$Config/DevicePorts$</DevicePorts>
+                <DeviceCommunities>$Config/DeviceCommunities$</DeviceCommunities>
+              </ProbeAction>
+            </MemberModules>
+            <Composition>
+              <Node ID="PSScript">
+                <Node ID="Scheduler" />
+              </Node>
+            </Composition>
+          </Composite>
+        </ModuleImplementation>
+        <OutputType>System!System.PropertyBagData</OutputType>
+      </DataSourceModuleType>
+
+      <!-- AP.F5.LTM.DataSource.VirtualServerAverageConnectionDuration.Powershell -->
+      <!-- Calls AP.F5.LTM.Probe.VirtualServerAverageConnectionDuration.Powershell wraps it with a scheduler -->
+      <DataSourceModuleType ID="AP.F5.LTM.DataSource.VirtualServerAverageConnectionDuration.Powershell" Accessibility="Public" Batching="false">
+        <Configuration>
+          <IncludeSchemaTypes>
+            <SchemaType>Windows!Microsoft.Windows.PowerShellSchema</SchemaType>
+          </IncludeSchemaTypes>
+          <xsd:element minOccurs="1" name="IntervalSeconds" type="xsd:integer"/>
+          <xsd:element minOccurs="1" name="SyncTime" type="xsd:string"/>
+          <xsd:element minOccurs="1" name="Debug" type="xsd:boolean"/>
+          <xsd:element minOccurs="1" name="DeviceAddresses" type="xsd:string"/>
+          <xsd:element minOccurs="1" name="DevicePorts" type="xsd:string"/>
+          <xsd:element minOccurs="1" name="DeviceCommunities" type="xsd:string"/>
+        </Configuration>
+        <OverrideableParameters>
+          <OverrideableParameter ID="IntervalSeconds" Selector="$Config/IntervalSeconds$" ParameterType="int"/>
+          <OverrideableParameter ID="SyncTime" Selector="$Config/SyncTime$" ParameterType="string"/>
+          <OverrideableParameter ID="Debug" Selector="$Config/Debug$" ParameterType="bool"/>
+        </OverrideableParameters>
+        <ModuleImplementation Isolation="Any">
+          <Composite>
+            <MemberModules>
+              <DataSource ID="Scheduler" TypeID="System!System.SimpleScheduler">
+                <IntervalSeconds>$Config/IntervalSeconds$</IntervalSeconds>
+                <SyncTime>$Config/SyncTime$</SyncTime>
+              </DataSource>
+              <ProbeAction ID="PSScript" TypeID="AP.F5.LTM.Probe.VirtualServerAverageConnectionDuration.Powershell">
+                <Debug>$Config/Debug$</Debug>
+                <DeviceAddresses>$Config/DeviceAddresses$</DeviceAddresses>
+                <DevicePorts>$Config/DevicePorts$</DevicePorts>
+                <DeviceCommunities>$Config/DeviceCommunities$</DeviceCommunities>
+              </ProbeAction>
+            </MemberModules>
+            <Composition>
+              <Node ID="PSScript">
+                <Node ID="Scheduler" />
+              </Node>
+            </Composition>
+          </Composite>
+        </ModuleImplementation>
+        <OutputType>System!System.PropertyBagData</OutputType>
+      </DataSourceModuleType>
+
+      <!-- AP.F5.LTM.Probe.VirtualServerAvailabilityState.Powershell -->
+      <!-- Runs script to Return All VirtualServers (Name & AvailabilityState) in property bags -->
+      <ProbeActionModuleType ID="AP.F5.LTM.Probe.VirtualServerAvailabilityState.Powershell" Accessibility="Public" Batching="false">
+        <Configuration>
+          <IncludeSchemaTypes>
+            <SchemaType>Windows!Microsoft.Windows.PowerShellSchema</SchemaType>
+          </IncludeSchemaTypes>
+          <xsd:element minOccurs="1" name="Debug" type="xsd:boolean"/>
+          <xsd:element minOccurs="1" name="DeviceAddresses" type="xsd:string"/>
+          <xsd:element minOccurs="1" name="DevicePorts" type="xsd:string"/>
+          <xsd:element minOccurs="1" name="DeviceCommunities" type="xsd:string"/>
+        </Configuration>
+        <OverrideableParameters>
+          <OverrideableParameter ID="Debug" Selector="$Config/Debug$" ParameterType="bool"/>
+        </OverrideableParameters>
+        <ModuleImplementation Isolation="Any">
+          <Composite>
+            <MemberModules>
+              <ProbeAction ID="PSScript" TypeID="Windows!Microsoft.Windows.PowerShellPropertyBagTriggerOnlyProbe">
+                <ScriptName>Get-VirtualServerAvailabilityState.ps1</ScriptName>
+                <ScriptBody>$IncludeFileContent/Scripts/Monitors/Get-VirtualServerAvailabilityState.ps1$</ScriptBody>
+                <SnapIns />
+                <Parameters>
+                  <Parameter>
+                    <Name>DeviceAddresses</Name>
+                    <Value>$Config/DeviceAddresses$</Value>
+                  </Parameter>
+                  <Parameter>
+                    <Name>DevicePorts</Name>
+                    <Value>$Config/DevicePorts$</Value>
+                  </Parameter>
+                  <Parameter>
+                    <Name>DeviceCommunities</Name>
+                    <Value>$Config/DeviceCommunities$</Value>
+                  </Parameter>
+                  <Parameter>
+                    <Name>debug</Name>
+                    <Value>$Config/Debug$</Value>
+                  </Parameter>
+                  <Parameter>
+                    <Name>SharpSnmpLocation</Name>
+                    <Value>$FileResource[Name="AP.F5.LTM.SharpSnmpLib"]/Path$</Value>
+                  </Parameter>
+                </Parameters>
+                <TimeoutSeconds>60</TimeoutSeconds>
+              </ProbeAction>
+            </MemberModules>
+            <Composition>
+              <Node ID="PSScript" />
+            </Composition>
+          </Composite>
+        </ModuleImplementation>
+        <OutputType>System!System.PropertyBagData</OutputType>
+        <TriggerOnly>true</TriggerOnly>
+      </ProbeActionModuleType>
+
+      <!-- AP.F5.LTM.Probe.VirtualServerEnabledState.Powershell -->
+      <!-- Runs script to Return All VirtualServers (Name & EnabledState) in property bags -->
+      <ProbeActionModuleType ID="AP.F5.LTM.Probe.VirtualServerEnabledState.Powershell" Accessibility="Public" Batching="false">
+        <Configuration>
+          <IncludeSchemaTypes>
+            <SchemaType>Windows!Microsoft.Windows.PowerShellSchema</SchemaType>
+          </IncludeSchemaTypes>
+          <xsd:element minOccurs="1" name="Debug" type="xsd:boolean"/>
+          <xsd:element minOccurs="1" name="DeviceAddresses" type="xsd:string"/>
+          <xsd:element minOccurs="1" name="DevicePorts" type="xsd:string"/>
+          <xsd:element minOccurs="1" name="DeviceCommunities" type="xsd:string"/>
+        </Configuration>
+        <OverrideableParameters>
+          <OverrideableParameter ID="Debug" Selector="$Config/Debug$" ParameterType="bool"/>
+        </OverrideableParameters>
+        <ModuleImplementation Isolation="Any">
+          <Composite>
+            <MemberModules>
+              <ProbeAction ID="PSScript" TypeID="Windows!Microsoft.Windows.PowerShellPropertyBagTriggerOnlyProbe">
+                <ScriptName>Get-VirtualServerEnabledState.ps1</ScriptName>
+                <ScriptBody>$IncludeFileContent/Scripts/Monitors/Get-VirtualServerEnabledState.ps1$</ScriptBody>
+                <SnapIns />
+                <Parameters>
+                  <Parameter>
+                    <Name>DeviceAddresses</Name>
+                    <Value>$Config/DeviceAddresses$</Value>
+                  </Parameter>
+                  <Parameter>
+                    <Name>DevicePorts</Name>
+                    <Value>$Config/DevicePorts$</Value>
+                  </Parameter>
+                  <Parameter>
+                    <Name>DeviceCommunities</Name>
+                    <Value>$Config/DeviceCommunities$</Value>
+                  </Parameter>
+                  <Parameter>
+                    <Name>debug</Name>
+                    <Value>$Config/Debug$</Value>
+                  </Parameter>
+                  <Parameter>
+                    <Name>SharpSnmpLocation</Name>
+                    <Value>$FileResource[Name="AP.F5.LTM.SharpSnmpLib"]/Path$</Value>
+                  </Parameter>
+                </Parameters>
+                <TimeoutSeconds>60</TimeoutSeconds>
+              </ProbeAction>
+            </MemberModules>
+            <Composition>
+              <Node ID="PSScript" />
+            </Composition>
+          </Composite>
+        </ModuleImplementation>
+        <OutputType>System!System.PropertyBagData</OutputType>
+        <TriggerOnly>true</TriggerOnly>
+      </ProbeActionModuleType>
+      
+      <!-- AP.F5.LTM.Probe.VirtualServerConnections.Powershell -->
+      <!-- Runs script to Return All VirtualServers (Name & Connections) in property bags -->
+      <ProbeActionModuleType ID="AP.F5.LTM.Probe.VirtualServerConnections.Powershell" Accessibility="Public" Batching="false">
+        <Configuration>
+          <IncludeSchemaTypes>
+            <SchemaType>Windows!Microsoft.Windows.PowerShellSchema</SchemaType>
+          </IncludeSchemaTypes>
+          <xsd:element minOccurs="1" name="Debug" type="xsd:boolean"/>
+          <xsd:element minOccurs="1" name="DeviceAddresses" type="xsd:string"/>
+          <xsd:element minOccurs="1" name="DevicePorts" type="xsd:string"/>
+          <xsd:element minOccurs="1" name="DeviceCommunities" type="xsd:string"/>
+        </Configuration>
+        <OverrideableParameters>
+          <OverrideableParameter ID="Debug" Selector="$Config/Debug$" ParameterType="bool"/>
+        </OverrideableParameters>
+        <ModuleImplementation Isolation="Any">
+          <Composite>
+            <MemberModules>
+              <ProbeAction ID="PSScript" TypeID="Windows!Microsoft.Windows.PowerShellPropertyBagTriggerOnlyProbe">
+                <ScriptName>Get-VirtualServerConnections.ps1</ScriptName>
+                <ScriptBody>$IncludeFileContent/Scripts/Rules/Get-VirtualServerConnections.ps1$</ScriptBody>
+                <SnapIns />
+                <Parameters>
+                  <Parameter>
+                    <Name>DeviceAddresses</Name>
+                    <Value>$Config/DeviceAddresses$</Value>
+                  </Parameter>
+                  <Parameter>
+                    <Name>DevicePorts</Name>
+                    <Value>$Config/DevicePorts$</Value>
+                  </Parameter>
+                  <Parameter>
+                    <Name>DeviceCommunities</Name>
+                    <Value>$Config/DeviceCommunities$</Value>
+                  </Parameter>
+                  <Parameter>
+                    <Name>debug</Name>
+                    <Value>$Config/Debug$</Value>
+                  </Parameter>
+                  <Parameter>
+                    <Name>SharpSnmpLocation</Name>
+                    <Value>$FileResource[Name="AP.F5.LTM.SharpSnmpLib"]/Path$</Value>
+                  </Parameter>
+                </Parameters>
+                <TimeoutSeconds>60</TimeoutSeconds>
+              </ProbeAction>
+            </MemberModules>
+            <Composition>
+              <Node ID="PSScript" />
+            </Composition>
+          </Composite>
+        </ModuleImplementation>
+        <OutputType>System!System.PropertyBagData</OutputType>
+        <TriggerOnly>true</TriggerOnly>
+      </ProbeActionModuleType>
+
+      <!-- AP.F5.LTM.Probe.VirtualServerConnections.Powershell -->
+      <!-- Runs script to Return All VirtualServers (Name & Connections) in property bags -->
+      <ProbeActionModuleType ID="AP.F5.LTM.Probe.VirtualServerAverageConnectionDuration.Powershell" Accessibility="Public" Batching="false">
+        <Configuration>
+          <IncludeSchemaTypes>
+            <SchemaType>Windows!Microsoft.Windows.PowerShellSchema</SchemaType>
+          </IncludeSchemaTypes>
+          <xsd:element minOccurs="1" name="Debug" type="xsd:boolean"/>
+          <xsd:element minOccurs="1" name="DeviceAddresses" type="xsd:string"/>
+          <xsd:element minOccurs="1" name="DevicePorts" type="xsd:string"/>
+          <xsd:element minOccurs="1" name="DeviceCommunities" type="xsd:string"/>
+        </Configuration>
+        <OverrideableParameters>
+          <OverrideableParameter ID="Debug" Selector="$Config/Debug$" ParameterType="bool"/>
+        </OverrideableParameters>
+        <ModuleImplementation Isolation="Any">
+          <Composite>
+            <MemberModules>
+              <ProbeAction ID="PSScript" TypeID="Windows!Microsoft.Windows.PowerShellPropertyBagTriggerOnlyProbe">
+                <ScriptName>Get-VirtualServerAverageConnectionDuration.ps1</ScriptName>
+                <ScriptBody>$IncludeFileContent/Scripts/Rules/Get-VirtualServerAverageConnectionDuration.ps1$</ScriptBody>
+                <SnapIns />
+                <Parameters>
+                  <Parameter>
+                    <Name>DeviceAddresses</Name>
+                    <Value>$Config/DeviceAddresses$</Value>
+                  </Parameter>
+                  <Parameter>
+                    <Name>DevicePorts</Name>
+                    <Value>$Config/DevicePorts$</Value>
+                  </Parameter>
+                  <Parameter>
+                    <Name>DeviceCommunities</Name>
+                    <Value>$Config/DeviceCommunities$</Value>
+                  </Parameter>
+                  <Parameter>
+                    <Name>debug</Name>
+                    <Value>$Config/Debug$</Value>
+                  </Parameter>
+                  <Parameter>
+                    <Name>SharpSnmpLocation</Name>
+                    <Value>$FileResource[Name="AP.F5.LTM.SharpSnmpLib"]/Path$</Value>
+                  </Parameter>
+                </Parameters>
+                <TimeoutSeconds>60</TimeoutSeconds>
+              </ProbeAction>
+            </MemberModules>
+            <Composition>
+              <Node ID="PSScript" />
+            </Composition>
+          </Composite>
+        </ModuleImplementation>
+        <OutputType>System!System.PropertyBagData</OutputType>
+        <TriggerOnly>true</TriggerOnly>
+      </ProbeActionModuleType>
+
+    </ModuleTypes>
+    <MonitorTypes>
+
+      <!-- AP.F5.LTM.Monitor.VirtualServerAvailabilityState.Powershell -->
+      <UnitMonitorType ID="AP.F5.LTM.Monitor.VirtualServerAvailabilityState.Powershell" Accessibility="Public">
+        <MonitorTypeStates>
+          <MonitorTypeState ID="VirtualServerOkay" NoDetection="false"/>
+          <MonitorTypeState ID="VirtualServerWarning" NoDetection="false"/>
+          <MonitorTypeState ID="VirtualServerCritical" NoDetection="false"/>
+        </MonitorTypeStates>
+        <Configuration>
+          <xsd:element minOccurs="1" name="IntervalSeconds" type="xsd:integer"/>
+          <xsd:element minOccurs="1" name="SyncTime" type="xsd:string"/>
+          <xsd:element minOccurs="1" name="Debug" type="xsd:boolean"/>
+          <xsd:element minOccurs="1" name="DeviceAddresses" type="xsd:string"/>
+          <xsd:element minOccurs="1" name="DevicePorts" type="xsd:string"/>
+          <xsd:element minOccurs="1" name="DeviceCommunities" type="xsd:string"/>
+          <xsd:element minOccurs="1" name="VirtualServerName" type="xsd:string"/>
+        </Configuration>
+        <OverrideableParameters>
+          <OverrideableParameter ID="IntervalSeconds" Selector="$Config/IntervalSeconds$" ParameterType="int"/>
+          <OverrideableParameter ID="SyncTime" Selector="$Config/SyncTime$" ParameterType="string"/>
+          <OverrideableParameter ID="Debug" Selector="$Config/Debug$" ParameterType="bool"/>
+        </OverrideableParameters>
+        <MonitorImplementation>
+          <MemberModules>
+            <DataSource ID="DS" TypeID="AP.F5.LTM.DataSource.VirtualServerAvailabilityState.Filtered">
+              <IntervalSeconds>$Config/IntervalSeconds$</IntervalSeconds>
+              <SyncTime>$Config/SyncTime$</SyncTime>
+              <Debug>$Config/Debug$</Debug>
+              <DeviceAddresses>$Config/DeviceAddresses$</DeviceAddresses>
+              <DevicePorts>$Config/DevicePorts$</DevicePorts>
+              <DeviceCommunities>$Config/DeviceCommunities$</DeviceCommunities>
+              <VirtualServerName>$Config/VirtualServerName$</VirtualServerName>
+            </DataSource>
+            <ProbeAction ID="Probe" TypeID="AP.F5.LTM.Probe.VirtualServerAvailabilityState.Powershell">
+              <Debug>$Config/Debug$</Debug>
+              <DeviceAddresses>$Config/DeviceAddresses$</DeviceAddresses>
+              <DevicePorts>$Config/DeviceAddresses$</DevicePorts>
+              <DeviceCommunities>$Config/DeviceAddresses$</DeviceCommunities>
+            </ProbeAction>
+            <ConditionDetection ID="VirtualServerOkayFilter" TypeID="System!System.ExpressionFilter">
+              <Expression>
+                <SimpleExpression>
+                  <ValueExpression>
+                    <XPathQuery Type="Integer">Property[@Name='AvailabilityState']</XPathQuery>
+                  </ValueExpression>
+                  <Operator>Equal</Operator>
+                  <ValueExpression>
+                    <Value Type="Integer">1</Value>
+                  </ValueExpression>
+                </SimpleExpression>
+              </Expression>
+            </ConditionDetection>
+            <ConditionDetection ID="VirtualServerWarningFilter" TypeID="System!System.ExpressionFilter">
+              <Expression>
+                <Or>
+                  <Expression>
+                    <SimpleExpression>
+                      <ValueExpression>
+                        <XPathQuery Type="Integer">Property[@Name='AvailabilityState']</XPathQuery>
+                      </ValueExpression>
+                      <Operator>Equal</Operator>
+                      <ValueExpression>
+                        <Value Type="Integer">2</Value>
+                      </ValueExpression>
+                    </SimpleExpression>
+                  </Expression>
+                  <Expression>
+                    <SimpleExpression>
+                      <ValueExpression>
+                        <XPathQuery Type="Integer">Property[@Name='AvailabilityState']</XPathQuery>
+                      </ValueExpression>
+                      <Operator>Equal</Operator>
+                      <ValueExpression>
+                        <Value Type="Integer">4</Value>
+                      </ValueExpression>
+                    </SimpleExpression>
+                  </Expression>
+                </Or>
+              </Expression>
+            </ConditionDetection>
+            <ConditionDetection ID="VirtualServerCriticalFilter" TypeID="System!System.ExpressionFilter">
+              <Expression>
+                <Or>
+                  <Expression>
+                    <SimpleExpression>
+                      <ValueExpression>
+                        <XPathQuery Type="Integer">Property[@Name='AvailabilityState']</XPathQuery>
+                      </ValueExpression>
+                      <Operator>Equal</Operator>
+                      <ValueExpression>
+                        <Value Type="Integer">0</Value>
+                      </ValueExpression>
+                    </SimpleExpression>
+                  </Expression>
+                  <Expression>
+                    <SimpleExpression>
+                      <ValueExpression>
+                        <XPathQuery Type="Integer">Property[@Name='AvailabilityState']</XPathQuery>
+                      </ValueExpression>
+                      <Operator>Equal</Operator>
+                      <ValueExpression>
+                        <Value Type="Integer">3</Value>
+                      </ValueExpression>
+                    </SimpleExpression>
+                  </Expression>
+                </Or>
+              </Expression>
+            </ConditionDetection>
+          </MemberModules>
+          <RegularDetections>
+            <RegularDetection MonitorTypeStateID="VirtualServerOkay">
+              <Node ID="VirtualServerOkayFilter">
+                <Node ID="DS" />
+              </Node>
+            </RegularDetection>
+            <RegularDetection MonitorTypeStateID="VirtualServerWarning">
+              <Node ID="VirtualServerWarningFilter">
+                <Node ID="DS" />
+              </Node>
+            </RegularDetection>
+            <RegularDetection MonitorTypeStateID="VirtualServerCritical">
+              <Node ID="VirtualServerCriticalFilter">
+                <Node ID="DS" />
+              </Node>
+            </RegularDetection>
+          </RegularDetections>
+        </MonitorImplementation>
+      </UnitMonitorType>
+
+      <!-- AP.F5.LTM.Monitor.VirtualServerEnabledState.Powershell -->
+      <UnitMonitorType ID="AP.F5.LTM.Monitor.VirtualServerEnabledState.Powershell" Accessibility="Public">
+        <MonitorTypeStates>
+          <MonitorTypeState ID="VirtualServerEnabled" NoDetection="false"/>
+          <MonitorTypeState ID="VirtualServerDisabled" NoDetection="false"/>
+        </MonitorTypeStates>
+        <Configuration>
+          <xsd:element minOccurs="1" name="IntervalSeconds" type="xsd:integer"/>
+          <xsd:element minOccurs="1" name="SyncTime" type="xsd:string"/>
+          <xsd:element minOccurs="1" name="Debug" type="xsd:boolean"/>
+          <xsd:element minOccurs="1" name="DeviceAddresses" type="xsd:string"/>
+          <xsd:element minOccurs="1" name="DevicePorts" type="xsd:string"/>
+          <xsd:element minOccurs="1" name="DeviceCommunities" type="xsd:string"/>
+          <xsd:element minOccurs="1" name="VirtualServerName" type="xsd:string"/>
+        </Configuration>
+        <OverrideableParameters>
+          <OverrideableParameter ID="IntervalSeconds" Selector="$Config/IntervalSeconds$" ParameterType="int"/>
+          <OverrideableParameter ID="SyncTime" Selector="$Config/SyncTime$" ParameterType="string"/>
+          <OverrideableParameter ID="Debug" Selector="$Config/Debug$" ParameterType="bool"/>
+        </OverrideableParameters>
+        <MonitorImplementation>
+          <MemberModules>
+            <DataSource ID="DS" TypeID="AP.F5.LTM.DataSource.VirtualServerEnabledState.Filtered">
+              <IntervalSeconds>$Config/IntervalSeconds$</IntervalSeconds>
+              <SyncTime>$Config/SyncTime$</SyncTime>
+              <Debug>$Config/Debug$</Debug>
+              <DeviceAddresses>$Config/DeviceAddresses$</DeviceAddresses>
+              <DevicePorts>$Config/DevicePorts$</DevicePorts>
+              <DeviceCommunities>$Config/DeviceCommunities$</DeviceCommunities>
+              <VirtualServerName>$Config/VirtualServerName$</VirtualServerName>
+            </DataSource>
+            <ProbeAction ID="Probe" TypeID="AP.F5.LTM.Probe.VirtualServerEnabledState.Powershell">
+              <Debug>$Config/Debug$</Debug>
+              <DeviceAddresses>$Config/DeviceAddresses$</DeviceAddresses>
+              <DevicePorts>$Config/DeviceAddresses$</DevicePorts>
+              <DeviceCommunities>$Config/DeviceAddresses$</DeviceCommunities>
+            </ProbeAction>
+            <ConditionDetection ID="VirtualServerEnabledFilter" TypeID="System!System.ExpressionFilter">
+              <Expression>
+                <SimpleExpression>
+                  <ValueExpression>
+                    <XPathQuery Type="Integer">Property[@Name='EnabledState']</XPathQuery>
+                  </ValueExpression>
+                  <Operator>Equal</Operator>
+                  <ValueExpression>
+                    <Value Type="Integer">1</Value>
+                  </ValueExpression>
+                </SimpleExpression>
+              </Expression>
+            </ConditionDetection>
+            <ConditionDetection ID="VirtualServerDisabledFilter" TypeID="System!System.ExpressionFilter">
+              <Expression>
+                <SimpleExpression>
+                  <ValueExpression>
+                    <XPathQuery Type="Integer">Property[@Name='EnabledState']</XPathQuery>
+                  </ValueExpression>
+                  <Operator>NotEqual</Operator>
+                  <ValueExpression>
+                    <Value Type="Integer">1</Value>
+                  </ValueExpression>
+                </SimpleExpression>
+              </Expression>
+            </ConditionDetection>
+          </MemberModules>
+          <RegularDetections>
+            <RegularDetection MonitorTypeStateID="VirtualServerEnabled">
+              <Node ID="VirtualServerEnabledFilter">
+                <Node ID="DS" />
+              </Node>
+            </RegularDetection>
+            <RegularDetection MonitorTypeStateID="VirtualServerDisabled">
+              <Node ID="VirtualServerDisabledFilter">
+                <Node ID="DS" />
+              </Node>
+            </RegularDetection>
+          </RegularDetections>
+        </MonitorImplementation>
+      </UnitMonitorType>
+
+    </MonitorTypes>
+  </TypeDefinitions>
+
+  <LanguagePacks>
+    <LanguagePack ID="ENU" IsDefault="true">
+      <DisplayStrings>
+
+        <!-- AP.F5.LTM.DataSource.VirtualServerAvailabilityState.Filtered -->
+        <DisplayString ElementID="AP.F5.LTM.DataSource.VirtualServerAvailabilityState.Filtered">
+          <Name>VirtualServer AvailabilityState Filtered Data Source</Name>
+          <Description>Filters Property Bags by VirtualServerName to return the one property bag we want.</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.DataSource.VirtualServerAvailabilityState.Filtered" SubElementID="IntervalSeconds">
+          <Name>Interval Seconds</Name>
+          <Description>Frequency in seconds that module is run.</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.DataSource.VirtualServerAvailabilityState.Filtered" SubElementID="SyncTime">
+          <Name>Synchronisation Time</Name>
+          <Description>Offset that this module is started from.</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.DataSource.VirtualServerAvailabilityState.Filtered" SubElementID="Debug">
+          <Name>Debug</Name>
+          <Description>Debug Flag, if true then additional info is posted to event log.</Description>
+        </DisplayString>
+
+        <!-- AP.F5.LTM.DataSource.VirtualServerEnabledState.Filtered -->
+        <DisplayString ElementID="AP.F5.LTM.DataSource.VirtualServerEnabledState.Filtered">
+          <Name>VirtualServer EnabledState Filtered Data Source</Name>
+          <Description>Filters Property Bags by VirtualServerName to return the one property bag we want.</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.DataSource.VirtualServerEnabledState.Filtered" SubElementID="IntervalSeconds">
+          <Name>Interval Seconds</Name>
+          <Description>Frequency in seconds that module is run.</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.DataSource.VirtualServerEnabledState.Filtered" SubElementID="SyncTime">
+          <Name>Synchronisation Time</Name>
+          <Description>Offset that this module is started from.</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.DataSource.VirtualServerEnabledState.Filtered" SubElementID="Debug">
+          <Name>Debug</Name>
+          <Description>Debug Flag, if true then additional info is posted to event log.</Description>
+        </DisplayString>
+
+        <!-- AP.F5.LTM.DataSource.VirtualServerConnections.Filtered -->
+        <DisplayString ElementID="AP.F5.LTM.DataSource.VirtualServerConnections.Filtered">
+          <Name>VirtualServer Connections Filtered Data Source</Name>
+          <Description>Filters Property Bags by VirtualServerName to return the one property bag we want.</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.DataSource.VirtualServerConnections.Filtered" SubElementID="IntervalSeconds">
+          <Name>Interval Seconds</Name>
+          <Description>Frequency in seconds that module is run.</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.DataSource.VirtualServerConnections.Filtered" SubElementID="SyncTime">
+          <Name>Synchronisation Time</Name>
+          <Description>Offset that this module is started from.</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.DataSource.VirtualServerConnections.Filtered" SubElementID="Debug">
+          <Name>Debug</Name>
+          <Description>Debug Flag, if true then additional info is posted to event log.</Description>
+        </DisplayString>
+
+        <!-- AP.F5.LTM.DataSource.VirtualServerAverageConnectionDuration.Filtered -->
+        <DisplayString ElementID="AP.F5.LTM.DataSource.VirtualServerAverageConnectionDuration.Filtered">
+          <Name>VirtualServer Average Connection Duraction Filtered Data Source</Name>
+          <Description>Filters Property Bags by VirtualServerName to return the one property bag we want.</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.DataSource.VirtualServerAverageConnectionDuration.Filtered" SubElementID="IntervalSeconds">
+          <Name>Interval Seconds</Name>
+          <Description>Frequency in seconds that module is run.</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.DataSource.VirtualServerAverageConnectionDuration.Filtered" SubElementID="SyncTime">
+          <Name>Synchronisation Time</Name>
+          <Description>Offset that this module is started from.</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.DataSource.VirtualServerAverageConnectionDuration.Filtered" SubElementID="Debug">
+          <Name>Debug</Name>
+          <Description>Debug Flag, if true then additional info is posted to event log.</Description>
+        </DisplayString>
+
+        <!-- AP.F5.LTM.DataSource.VirtualServerAvailabilityState.Powershell -->
+        <DisplayString ElementID="AP.F5.LTM.DataSource.VirtualServerAvailabilityState.Powershell">
+          <Name>VirtualServer AvailabilityState Powershell Data Source</Name>
+          <Description>Gets all VirtualServer AvailabilityState as Property Bags</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.DataSource.VirtualServerAvailabilityState.Powershell" SubElementID="IntervalSeconds">
+          <Name>Interval Seconds</Name>
+          <Description>Frequency in seconds that module is run.</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.DataSource.VirtualServerAvailabilityState.Powershell" SubElementID="SyncTime">
+          <Name>Synchronisation Time</Name>
+          <Description>Offset that this module is started from.</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.DataSource.VirtualServerAvailabilityState.Powershell" SubElementID="Debug">
+          <Name>Debug</Name>
+          <Description>Debug Flag, if true then additional info is posted to event log.</Description>
+        </DisplayString>
+
+        <!-- AP.F5.LTM.DataSource.VirtualServerEnabledState.Powershell -->
+        <DisplayString ElementID="AP.F5.LTM.DataSource.VirtualServerEnabledState.Powershell">
+          <Name>VirtualServer EnabledState Powershell Data Source</Name>
+          <Description>Gets all VirtualServer EnabledState as Property Bags</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.DataSource.VirtualServerEnabledState.Powershell" SubElementID="IntervalSeconds">
+          <Name>Interval Seconds</Name>
+          <Description>Frequency in seconds that module is run.</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.DataSource.VirtualServerEnabledState.Powershell" SubElementID="SyncTime">
+          <Name>Synchronisation Time</Name>
+          <Description>Offset that this module is started from.</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.DataSource.VirtualServerEnabledState.Powershell" SubElementID="Debug">
+          <Name>Debug</Name>
+          <Description>Debug Flag, if true then additional info is posted to event log.</Description>
+        </DisplayString>
+
+        <!-- AP.F5.LTM.DataSource.VirtualServerConnections.Powershell -->
+        <DisplayString ElementID="AP.F5.LTM.DataSource.VirtualServerConnections.Powershell">
+          <Name>VirtualServer Connections Powershell Data Source</Name>
+          <Description>Gets all VirtualServer Connections as Property Bags</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.DataSource.VirtualServerConnections.Powershell" SubElementID="IntervalSeconds">
+          <Name>Interval Seconds</Name>
+          <Description>Frequency in seconds that module is run.</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.DataSource.VirtualServerConnections.Powershell" SubElementID="SyncTime">
+          <Name>Synchronisation Time</Name>
+          <Description>Offset that this module is started from.</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.DataSource.VirtualServerConnections.Powershell" SubElementID="Debug">
+          <Name>Debug</Name>
+          <Description>Debug Flag, if true then additional info is posted to event log.</Description>
+        </DisplayString>
+
+        <!-- AP.F5.LTM.DataSource.VirtualServerAverageConnectionDuration.Powershell -->
+        <DisplayString ElementID="AP.F5.LTM.DataSource.VirtualServerAverageConnectionDuration.Powershell">
+          <Name>VirtualServer AverageConnectionDuration Powershell Data Source</Name>
+          <Description>Gets all VirtualServer AverageConnectionDuration as Property Bags</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.DataSource.VirtualServerAverageConnectionDuration.Powershell" SubElementID="IntervalSeconds">
+          <Name>Interval Seconds</Name>
+          <Description>Frequency in seconds that module is run.</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.DataSource.VirtualServerAverageConnectionDuration.Powershell" SubElementID="SyncTime">
+          <Name>Synchronisation Time</Name>
+          <Description>Offset that this module is started from.</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.DataSource.VirtualServerAverageConnectionDuration.Powershell" SubElementID="Debug">
+          <Name>Debug</Name>
+          <Description>Debug Flag, if true then additional info is posted to event log.</Description>
+        </DisplayString>
+
+        <!-- AP.F5.LTM.Probe.VirtualServerAvailabilityState.Powershell -->
+        <DisplayString ElementID="AP.F5.LTM.Probe.VirtualServerAvailabilityState.Powershell">
+          <Name>VirtualServer AvailabilityState Powershell Probe</Name>
+          <Description>Gets all VirtualServer AvailabilityState as Property Bags</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.Probe.VirtualServerAvailabilityState.Powershell" SubElementID="Debug">
+          <Name>Debug</Name>
+          <Description>Debug Flag, if true then additional info is posted to event log.</Description>
+        </DisplayString>
+
+        <!-- AP.F5.LTM.Probe.VirtualServerEnabledState.Powershell -->
+        <DisplayString ElementID="AP.F5.LTM.Probe.VirtualServerEnabledState.Powershell">
+          <Name>VirtualServer EnabledState Powershell Probe</Name>
+          <Description>Gets all VirtualServer EnabledState as Property Bags</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.Probe.VirtualServerEnabledState.Powershell" SubElementID="Debug">
+          <Name>Debug</Name>
+          <Description>Debug Flag, if true then additional info is posted to event log.</Description>
+        </DisplayString>
+
+        <!-- AP.F5.LTM.Probe.VirtualServerConnections.Powershell -->
+        <DisplayString ElementID="AP.F5.LTM.Probe.VirtualServerConnections.Powershell">
+          <Name>VirtualServer Connections Powershell Probe</Name>
+          <Description>Gets all VirtualServer Connections as Property Bags</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.Probe.VirtualServerConnections.Powershell" SubElementID="Debug">
+          <Name>Debug</Name>
+          <Description>Debug Flag, if true then additional info is posted to event log.</Description>
+        </DisplayString>
+
+        <!-- AP.F5.LTM.Probe.VirtualServerAverageConnectionDuration.Powershell -->
+        <DisplayString ElementID="AP.F5.LTM.Probe.VirtualServerAverageConnectionDuration.Powershell">
+          <Name>VirtualServer AverageConnectionDuration Powershell Probe</Name>
+          <Description>Gets all VirtualServer AverageConnectionDuration as Property Bags</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.Probe.VirtualServerAverageConnectionDuration.Powershell" SubElementID="Debug">
+          <Name>Debug</Name>
+          <Description>Debug Flag, if true then additional info is posted to event log.</Description>
+        </DisplayString>
+        
+        <!-- AP.F5.LTM.Monitor.VirtualServerAvailabilityState.Powershell -->
+        <DisplayString ElementID="AP.F5.LTM.Monitor.VirtualServerAvailabilityState.Powershell">
+          <Name>VirtualServer AvailabilityState Monitor Data Source</Name>
+          <Description>Gets VirtualServer AvailabilityState via Powershell/SNMP (Cookdown compliant)</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.Monitor.VirtualServerAvailabilityState.Powershell" SubElementID="IntervalSeconds">
+          <Name>Interval Seconds</Name>
+          <Description>Frequency in seconds that module is run.</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.Monitor.VirtualServerAvailabilityState.Powershell" SubElementID="SyncTime">
+          <Name>Synchronisation Time</Name>
+          <Description>Offset that this module is started from.</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.Monitor.VirtualServerAvailabilityState.Powershell" SubElementID="Debug">
+          <Name>Debug</Name>
+          <Description>Debug Flag, if true then additional info is posted to event log.</Description>
+        </DisplayString>
+
+        <!-- AP.F5.LTM.Monitor.VirtualServerEnabledState.Powershell -->
+        <DisplayString ElementID="AP.F5.LTM.Monitor.VirtualServerEnabledState.Powershell">
+          <Name>VirtualServer EnabledState Monitor Data Source</Name>
+          <Description>Gets VirtualServer EnabledState via Powershell/SNMP (Cookdown compliant)</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.Monitor.VirtualServerEnabledState.Powershell" SubElementID="IntervalSeconds">
+          <Name>Interval Seconds</Name>
+          <Description>Frequency in seconds that module is run.</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.Monitor.VirtualServerEnabledState.Powershell" SubElementID="SyncTime">
+          <Name>Synchronisation Time</Name>
+          <Description>Offset that this module is started from.</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.Monitor.VirtualServerEnabledState.Powershell" SubElementID="Debug">
+          <Name>Debug</Name>
+          <Description>Debug Flag, if true then additional info is posted to event log.</Description>
+        </DisplayString>
+        
+      </DisplayStrings>
+
+      <KnowledgeArticles>
+
+        <!-- AP.F5.LTM.Monitor.VirtualServer.AvailabilityState -->
+        <KnowledgeArticle ElementID="AP.F5.LTM.Monitor.VirtualServer.AvailabilityState" Visible="true">
+          <MamlContent>
+            <section xmlns="http://schemas.microsoft.com/maml/2004/10">
+              <title>Summary</title>
+              <para>
+                Monitors F5 VirtualServer Availability State, Uses a Powershell Script and SNMP to collect all VirtualServer Availability States for a SyncFailoverGroup, Supports Cookdown!
+              </para>
+            </section>
+            <section xmlns="http://schemas.microsoft.com/maml/2004/10">
+              <title>Thresholds</title>
+              <list>
+                <listItem>
+                  <para>Healthy : VirtualServer is Available (State 1)</para>
+                </listItem>
+                <listItem>
+                  <para>Warning : Unknown or Temporarily unavailable (State 2 or 4)</para>
+                </listItem>
+                <listItem>
+                  <para>Critical : Error, Unavailable or Unlicenced (State 0, 3 or 5)</para>
+                </listItem>
+              </list>
+            </section>
+            <section xmlns="http://schemas.microsoft.com/maml/2004/10">
+              <title>SNMP Information</title>
+              <para>SNMP OIDs Used;</para>
+              <list>
+                <listItem>
+                  <para>.1.3.6.1.4.1.3375.2.2.10.13.2.1.1 - bigipTrafficMgmt.bigipLocalTM.ltmVirtualServers.ltmVirtualServStatus.ltmVsStatusTable.ltmVsStatusEntry.ltmVsStatusName</para>
+                </listItem>
+                <listItem>
+                  <para>.1.3.6.1.4.1.3375.2.2.10.13.2.1.2 - bigipTrafficMgmt.bigipLocalTM.ltmVirtualServers.ltmVirtualServStatus.ltmVsStatusTable.ltmVsStatusEntry.ltmVsStatusAvailState</para>
+                </listItem>
+              </list>
+            </section>
+          </MamlContent>
+        </KnowledgeArticle>
+
+        <!-- AP.F5.LTM.Monitor.VirtualServer.EnabledState -->
+        <KnowledgeArticle ElementID="AP.F5.LTM.Monitor.VirtualServer.EnabledState" Visible="true">
+          <MamlContent>
+            <section xmlns="http://schemas.microsoft.com/maml/2004/10">
+              <title>Summary</title>
+              <para>
+                Monitors F5 VirtualServer Enabled State, Uses a Powershell Script and SNMP to collect all VirtualServer Enabled States for a SyncFailoverGroup, Supports Cookdown!
+              </para>
+            </section>
+            <section xmlns="http://schemas.microsoft.com/maml/2004/10">
+              <title>Thresholds</title>
+              <list>
+                <listItem>
+                  <para>VirtualServerEnabled : VirtualServer is Enabled (State 1)</para>
+                </listItem>
+                <listItem>
+                  <para>VirtualServerDisabled : VirtualServer is NOT Enabled (State 0, 2 or 3)</para>
+                </listItem>
+              </list>
+            </section>
+            <section xmlns="http://schemas.microsoft.com/maml/2004/10">
+              <title>SNMP Information</title>
+              <para>SNMP OIDs Used;</para>
+              <list>
+                <listItem>
+                  <para>.1.3.6.1.4.1.3375.2.2.10.13.2.1.1 - bigipTrafficMgmt.bigipLocalTM.ltmVirtualServers.ltmVirtualServStatus.ltmVsStatusTable.ltmVsStatusEntry.ltmVsStatusName</para>
+                </listItem>
+                <listItem>
+                  <para>.1.3.6.1.4.1.3375.2.2.10.13.2.1.3 - bigipTrafficMgmt.bigipLocalTM.ltmVirtualServers.ltmVirtualServStatus.ltmVsStatusTable.ltmVsStatusEntry.ltmVsStatusEnabledState</para>
+                </listItem>
+              </list>
+            </section>
+          </MamlContent>
+        </KnowledgeArticle>
+
+        <!-- AP.F5.LTM.Perf.VirtualServer.Connections -->
+        <KnowledgeArticle ElementID="AP.F5.LTM.Perf.VirtualServer.Connections" Visible="true">
+          <MamlContent>
+            <section xmlns="http://schemas.microsoft.com/maml/2004/10">
+              <title>Summary</title>
+              <para>
+                F5 VirtualServer Current Connections Performance Collection, Uses a Powershell Script and SNMP to collect Current Connection data for all VirtualServers in a SyncFailoverGroup, Supports Cookdown!
+              </para>
+            </section>
+            <section xmlns="http://schemas.microsoft.com/maml/2004/10">
+              <title>SNMP Information</title>
+              <para>SNMP OIDs Used;</para>
+              <list>
+                <listItem>
+                  <para>.1.3.6.1.4.1.3375.2.2.10.2.3.1.1 - bigipTrafficMgmt.bigipLocalTM.ltmVirtualServers.ltmVirtualServStat.ltmVirtualServStatTable.ltmVirtualServStatEntry.ltmVirtualServStatName</para>
+                </listItem>
+                <listItem>
+                  <para>.1.3.6.1.4.1.3375.2.2.10.2.3.1.12 - bigipTrafficMgmt.bigipLocalTM.ltmVirtualServers.ltmVirtualServStat.ltmVirtualServStatTable.ltmVirtualServStatEntry.ltmVirtualServStatClientCurConns</para>
+                </listItem>
+              </list>
+            </section>
+          </MamlContent>
+        </KnowledgeArticle>
+
+        <!-- AP.F5.LTM.Perf.VirtualServer.AverageConnectionDuration -->
+        <KnowledgeArticle ElementID="AP.F5.LTM.Perf.VirtualServer.AverageConnectionDuration" Visible="true">
+          <MamlContent>
+            <section xmlns="http://schemas.microsoft.com/maml/2004/10">
+              <title>Summary</title>
+              <para>
+                F5 VirtualServer Average Connection Duration Performance Collection, Uses a Powershell Script and SNMP to collect Average Connection Duration data for all VirtualServers in a SyncFailoverGroup, Supports Cookdown!
+              </para>
+            </section>
+            <section xmlns="http://schemas.microsoft.com/maml/2004/10">
+              <title>SNMP Information</title>
+              <para>SNMP OIDs Used;</para>
+              <list>
+                <listItem>
+                  <para>.1.3.6.1.4.1.3375.2.2.10.2.3.1.1 - bigipTrafficMgmt.bigipLocalTM.ltmVirtualServers.ltmVirtualServStat.ltmVirtualServStatTable.ltmVirtualServStatEntry.ltmVirtualServStatName</para>
+                </listItem>
+                <listItem>
+                  <para>.1.3.6.1.4.1.3375.2.2.10.2.3.1.4 - bigipTrafficMgmt.bigipLocalTM.ltmVirtualServers.ltmVirtualServStat.ltmVirtualServStatTable.ltmVirtualServStatEntry.ltmVirtualServStatCsMeanConnDur</para>
+                </listItem>
+              </list>
+            </section>
+          </MamlContent>
+        </KnowledgeArticle>
+        
+      </KnowledgeArticles>
+
+    </LanguagePack>
+  </LanguagePacks>
+</ManagementPackFragment>

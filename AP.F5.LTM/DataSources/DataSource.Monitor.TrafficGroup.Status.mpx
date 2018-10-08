@@ -1,0 +1,203 @@
+﻿<ManagementPackFragment SchemaVersion="2.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <TypeDefinitions>
+    <MonitorTypes>
+
+      <!-- AP.F5.LTM.DataSource.Monitor.TrafficGroup.Status -->
+      <UnitMonitorType ID="AP.F5.LTM.DataSource.Monitor.TrafficGroup.Status" Accessibility="Public">
+        <MonitorTypeStates>
+          <MonitorTypeState ID="TrafficGroupActive" NoDetection="false" />
+          <MonitorTypeState ID="TrafficGroupStandby" NoDetection="false" />
+          <MonitorTypeState ID="TrafficGroupOffline" NoDetection="false" />
+        </MonitorTypeStates>
+        <Configuration>
+          <IncludeSchemaTypes>
+            <SchemaType>System!System.ExpressionEvaluatorSchema</SchemaType>
+            <SchemaType>SNMP!System.SnmpVarBindsSchema</SchemaType>
+          </IncludeSchemaTypes>
+          <xsd:element name="IntervalSeconds" type="xsd:integer" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+        </Configuration>
+        <OverrideableParameters>
+          <OverrideableParameter ID="IntervalSeconds" Selector="$Config/IntervalSeconds$" ParameterType="int" />
+        </OverrideableParameters>
+        <MonitorImplementation>
+          <MemberModules>
+            <DataSource ID="Scheduler" TypeID="System!System.Scheduler">
+              <Scheduler>
+                <SimpleReccuringSchedule>
+                  <Interval>$Config/IntervalSeconds$</Interval>
+                </SimpleReccuringSchedule>
+                <ExcludeDates />
+              </Scheduler>
+            </DataSource>
+            <ProbeAction ID="ScriptProbePS" TypeID="Windows!Microsoft.Windows.PowerShellPropertyBagTriggerOnlyProbe">
+              <ScriptName>Get-TrafficGroupStatus.ps1</ScriptName>
+              <ScriptBody>$IncludeFileContent/Scripts/Monitors/Get-TrafficGroupStatus.ps1$</ScriptBody>
+              <SnapIns />
+              <Parameters>
+                <Parameter>
+                  <Name>TrafficGroupName</Name>
+                  <Value>$Target/Property[Type="AP.F5.LTM.TrafficGroup"]/FullName$</Value>
+                </Parameter>
+                <Parameter>
+                  <Name>GroupAddresses</Name>
+                  <Value>$Target/Host/Property[Type="AP.F5.LTM.SyncFailoverGroup"]/Addresses$</Value>
+                </Parameter>
+                <Parameter>
+                  <Name>GroupPorts</Name>
+                  <Value>$Target/Host/Property[Type="AP.F5.LTM.SyncFailoverGroup"]/Ports$</Value>
+                </Parameter>
+                <Parameter>
+                  <Name>GroupCommunities</Name>
+                  <Value>$Target/Host/Property[Type="AP.F5.LTM.SyncFailoverGroup"]/Communities$</Value>
+                </Parameter>
+                <Parameter>
+                  <Name>SharpSnmpLocation</Name>
+                  <Value>$FileResource[Name="AP.F5.LTM.SharpSnmpLib"]/Path$</Value>
+                </Parameter>
+              </Parameters>
+              <TimeoutSeconds>300</TimeoutSeconds>
+            </ProbeAction>
+            <ConditionDetection ID="FilterOnTrafficGroupName" TypeID="System!System.ExpressionFilter">
+              <Expression>
+                <SimpleExpression>
+                  <ValueExpression>
+                    <XPathQuery Type="String">Property[@Name='TrafficGroupName']</XPathQuery>
+                  </ValueExpression>
+                  <Operator>Equal</Operator>
+                  <ValueExpression>
+                    <Value>$Target/Property[Type="AP.F5.LTM.TrafficGroup"]/FullName$</Value>
+                  </ValueExpression>
+                </SimpleExpression>
+              </Expression>
+            </ConditionDetection>
+            <ConditionDetection ID="TrafficGroupActiveFilterCondition" TypeID="System!System.ExpressionFilter">
+              <Expression>
+                <SimpleExpression>
+                  <ValueExpression>
+                    <XPathQuery Type="Integer">Property[@Name='Value']</XPathQuery>
+                  </ValueExpression>
+                  <Operator>Equal</Operator>
+                  <ValueExpression>
+                    <Value Type="Integer">4</Value>
+                  </ValueExpression>
+                </SimpleExpression>
+              </Expression>
+            </ConditionDetection>
+            <ConditionDetection ID="TrafficGroupStandbyFilterCondition" TypeID="System!System.ExpressionFilter">
+              <Expression>
+                <SimpleExpression>
+                  <ValueExpression>
+                    <XPathQuery Type="Integer">Property[@Name='Value']</XPathQuery>
+                  </ValueExpression>
+                  <Operator>Equal</Operator>
+                  <ValueExpression>
+                    <Value Type="String">3</Value>
+                  </ValueExpression>
+                </SimpleExpression>
+              </Expression>
+            </ConditionDetection>
+            <ConditionDetection ID="TrafficGroupOfflineFilterCondition" TypeID="System!System.ExpressionFilter">
+              <Expression>
+                <SimpleExpression>
+                  <ValueExpression>
+                    <XPathQuery Type="Integer">Property[@Name='Value']</XPathQuery>
+                  </ValueExpression>
+                  <Operator>Less</Operator>
+                  <ValueExpression>
+                    <Value Type="String">3</Value>
+                  </ValueExpression>
+                </SimpleExpression>
+              </Expression>
+            </ConditionDetection>
+          </MemberModules>
+          <RegularDetections>
+            <RegularDetection MonitorTypeStateID="TrafficGroupActive">
+              <Node ID="TrafficGroupActiveFilterCondition">
+                <Node ID="FilterOnTrafficGroupName">
+                  <Node ID="ScriptProbePS">
+                    <Node ID="Scheduler" />
+                  </Node>
+                </Node>
+              </Node>
+            </RegularDetection>
+            <RegularDetection MonitorTypeStateID="TrafficGroupStandby">
+              <Node ID="TrafficGroupStandbyFilterCondition">
+                <Node ID="FilterOnTrafficGroupName">
+                  <Node ID="ScriptProbePS">
+                    <Node ID="Scheduler" />
+                  </Node>
+                </Node>
+              </Node>
+            </RegularDetection>
+            <RegularDetection MonitorTypeStateID="TrafficGroupOffline">
+              <Node ID="TrafficGroupOfflineFilterCondition">
+                <Node ID="FilterOnTrafficGroupName">
+                  <Node ID="ScriptProbePS">
+                    <Node ID="Scheduler" />
+                  </Node>
+                </Node>
+              </Node>
+            </RegularDetection>
+          </RegularDetections>
+        </MonitorImplementation>
+      </UnitMonitorType>
+    </MonitorTypes>
+  </TypeDefinitions>
+
+  <LanguagePacks>
+    <LanguagePack ID="ENU" IsDefault="true">
+      <DisplayStrings>
+
+        <!-- AP.F5.LTM.DataSource.Monitor.TrafficGroup.Status -->
+        <DisplayString ElementID="AP.F5.LTM.DataSource.Monitor.TrafficGroup.Status">
+          <Name>F5 Traffic Group Status Monitor</Name>
+          <Description>Monitors the status of F5 Traffic Group</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.DataSource.Monitor.TrafficGroup.Status" SubElementID="IntervalSeconds">
+          <Name>Interval Seconds</Name>
+          <Description>Frequency in seconds that module is run.</Description>
+        </DisplayString>
+
+      </DisplayStrings>
+
+      <KnowledgeArticles>
+        <KnowledgeArticle ElementID="AP.F5.LTM.Monitor.TrafficGroup.Status" Visible="true">
+          <MamlContent>
+            <section xmlns="http://schemas.microsoft.com/maml/2004/10">
+              <title>Summary</title>
+              <para>
+                Monitors F5 Traffic Group Status, Uses a Powershell Script and SNMP to collect Traffic Group Status, Supports Cookdown!
+              </para>
+            </section>
+            <section xmlns="http://schemas.microsoft.com/maml/2004/10">
+              <title>Thresholds</title>
+              <list>
+                <listItem>
+                  <para>Healthy : Traffic Group is Active (State 4)</para>
+                </listItem>
+                <listItem>
+                  <para>Warning : Traffic Group is in Standby(State 3)</para>
+                </listItem>
+                <listItem>
+                  <para>Critical : Traffic Group is Offline (State 0, 1 or 2)</para>
+                </listItem>
+              </list>
+            </section>
+            <section xmlns="http://schemas.microsoft.com/maml/2004/10">
+              <title>SNMP Information</title>
+              <para>SNMP OIDs Used;</para>
+              <list>
+                <listItem>
+                  <para>.1.3.6.1.4.1.3375.2.1.14.5.2.1.1 - bigipTrafficMgmt.bigipSystem.sysCM.sysCmTrafficGroupStatus.sysCmTrafficGroupStatusTable.sysCmTrafficGroupStatusEntry.sysCmTrafficGroupStatusTrafficGroup</para>
+                </listItem>
+                <listItem>
+                  <para>.1.3.6.1.4.1.3375.2.1.14.5.2.1.3 - bigipTrafficMgmt.bigipSystem.sysCM.sysCmTrafficGroupStatus.sysCmTrafficGroupStatusTable.sysCmTrafficGroupStatusEntry.sysCmTrafficGroupStatusFailoverStatus</para>
+                </listItem>
+              </list>
+            </section>
+          </MamlContent>
+        </KnowledgeArticle>
+      </KnowledgeArticles>
+    </LanguagePack>
+  </LanguagePacks>
+</ManagementPackFragment>

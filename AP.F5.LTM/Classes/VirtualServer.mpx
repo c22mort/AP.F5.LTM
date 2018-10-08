@@ -1,0 +1,124 @@
+﻿<ManagementPackFragment SchemaVersion="2.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <TypeDefinitions>
+    <EntityTypes>
+      <ClassTypes>
+        
+        <ClassType ID="AP.F5.LTM.VirtualServer" Base="System!System.LogicalEntity" Accessibility="Public" Abstract="false" Hosted="true" Singleton="false">
+          <Property ID="FullName" Key="true" Type="string"/>
+          <Property ID="Name" Key="false" Type="string"/>
+          <Property ID="Description" Key="false" Type="string"/>
+          <Property ID="Address" Key="false" Type="string"/>
+          <Property ID="Port" Key="false" Type="string"/>
+          <Property ID="Type" Key="false" Type="string"/>
+          <Property ID="Partition" Key="false" Type="string"/>
+          <Property ID="DefaultPool" Key="false" Type="string"/>
+          <Property ID="DeviceGroup" Key="false" Type="string"/>
+          <Property ID="ConnectionLimit" Key="false" Type="string"/>
+          <Property ID="ProfileClientSSL" Key="false" Type="string" MaxLength="512" />
+          <Property ID="ProfileServerSSL" Key="false" Type="string" MaxLength="512" />
+        </ClassType>
+      
+      </ClassTypes>
+      <RelationshipTypes>
+
+        <!-- VirtualServer -> ProfileClientSSL Containment Relationship -->
+        <RelationshipType ID="AP.F5.LTM.VirtualServerContainsProfileClientSSL" Base="System!System.Containment" Abstract="false" Accessibility="Public">
+          <Source ID="Source" Type="AP.F5.LTM.VirtualServer"/>
+          <Target ID="Target" Type="AP.F5.LTM.ProfileClientSSL"/>
+        </RelationshipType>
+
+        <!-- VirtualServer -> ProfileServerSSL Containment Relationship -->
+        <RelationshipType ID="AP.F5.LTM.VirtualServerContainsProfileServerSSL" Base="System!System.Containment" Abstract="false" Accessibility="Public">
+          <Source ID="Source" Type="AP.F5.LTM.VirtualServer"/>
+          <Target ID="Target" Type="AP.F5.LTM.ProfileServerSSL"/>
+        </RelationshipType>
+
+        <!-- VirtualServer -> Pool Containment Relationship -->
+        <RelationshipType ID="AP.F5.LTM.VirtualServerContainsPools" Base="System!System.Containment" Abstract="false" Accessibility="Public">
+          <Source ID="Source" Type="AP.F5.LTM.VirtualServer"/>
+          <Target ID="Target" Type="AP.F5.LTM.Pool"/>
+        </RelationshipType>
+
+      </RelationshipTypes>
+    </EntityTypes>
+  </TypeDefinitions>
+  <LanguagePacks>
+    <LanguagePack ID="ENU" IsDefault="true">
+      <DisplayStrings>
+
+        <!-- AP.F5.LTM.VirtualServer -->
+        <DisplayString ElementID="AP.F5.LTM.VirtualServer">
+          <Name>F5 Virtual Server</Name>
+          <Description>F5 Virtual Server Class</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.VirtualServer" SubElementID="FullName">
+          <Name>Full Name</Name>
+          <Description>Full Name of Virtual Server</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.VirtualServer" SubElementID="Name">
+          <Name>Name</Name>
+          <Description>Short Name of Virtual Server</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.VirtualServer" SubElementID="Description">
+          <Name>Description</Name>
+          <Description>Description of Virtual Server</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.VirtualServer" SubElementID="Address">
+          <Name>Address</Name>
+          <Description>IP Address of Virtual Server</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.VirtualServer" SubElementID="Port">
+          <Name>Port</Name>
+          <Description>Port # of Virtual Server</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.VirtualServer" SubElementID="Type">
+          <Name>Type</Name>
+          <Description>Type of Virtual Server</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.VirtualServer" SubElementID="Partition">
+          <Name>Partition</Name>
+          <Description>Containing Partition of Virtual Server</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.VirtualServer" SubElementID="DeviceGroup">
+          <Name>DeviceGroup</Name>
+          <Description>Containing Device Group of Virtual Server</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.VirtualServer" SubElementID="DefaultPool">
+          <Name>Default Pool</Name>
+          <Description>Default Pool of Virtual Server</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.VirtualServer" SubElementID="ConnectionLimit">
+          <Name>Connection Limit</Name>
+          <Description>Connection Limit of Virtual Server</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.VirtualServer" SubElementID="ProfileClientSSL">
+          <Name>Client SSL Profile(s)</Name>
+          <Description>Comma Seperated List of Client SSL Profiles</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.VirtualServer" SubElementID="ProfileServerSSL">
+          <Name>Server SSL Profile(s)</Name>
+          <Description>Comma Seperated List of Server SSL Profiles</Description>
+        </DisplayString>
+
+        <!-- AP.F5.LTM.VirtualServerContainsProfileClientSSL -->
+        <DisplayString ElementID="AP.F5.LTM.VirtualServerContainsProfileClientSSL">
+          <Name>Virtual Server Contains Client SSL Profile</Name>
+          <Description>Defines the hosting relationship between Client SSL Profiles and Virtual Servers</Description>
+        </DisplayString>
+
+        <!-- AP.F5.LTM.VirtualServerContainsProfileServerSSL -->
+        <DisplayString ElementID="AP.F5.LTM.VirtualServerContainsProfileServerSSL">
+          <Name>Virtual Server Contains Server SSL Profile</Name>
+          <Description>Defines the hosting relationship between Server SSL Profiles and Virtual Servers</Description>
+        </DisplayString>
+
+        <!-- AP.F5.LTM.VirtualServerContainsPools -->
+        <DisplayString ElementID="AP.F5.LTM.VirtualServerContainsPools">
+          <Name>Virtual Server Contains Pools</Name>
+          <Description>Defines the hosting relationship between Pools and Virtual Servers</Description>
+        </DisplayString>
+
+      </DisplayStrings>
+    </LanguagePack>
+  </LanguagePacks>
+</ManagementPackFragment>

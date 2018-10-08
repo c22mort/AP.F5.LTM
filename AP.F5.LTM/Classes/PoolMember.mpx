@@ -1,0 +1,61 @@
+﻿<ManagementPackFragment SchemaVersion="2.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <TypeDefinitions>
+    <EntityTypes>
+      <ClassTypes>
+
+        <!-- AP.F5.LTM.PoolMember -->
+        <ClassType ID="AP.F5.LTM.PoolMember" Base="System!System.LogicalEntity" Accessibility="Public" Abstract="false" Hosted="true" Singleton="false">
+          <Property ID="FullName" Key="true" Type="string" />
+          <Property ID="Name" Key="false" Type="string" />
+          <Property ID="Partition" Key="false" Type="string" />
+          <Property ID="Description" Key="false" Type="string" />
+          <Property ID="MonitorRule" Key="false" Type="string" />
+          <Property ID="Port" Key="false" Type="string" />
+          <Property ID="PoolName" Key="false" Type="string" />
+        </ClassType>
+
+      </ClassTypes>
+    </EntityTypes>
+  </TypeDefinitions>
+  <LanguagePacks>
+    <LanguagePack ID="ENU" IsDefault="true">
+      <DisplayStrings>
+
+        <!-- AP.F5.LTM.PoolMember -->
+        <DisplayString ElementID="AP.F5.LTM.PoolMember">
+          <Name>F5 PoolMember</Name>
+          <Description>F5 PoolMember Class</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.PoolMember" SubElementID="FullName">
+          <Name>Full Name</Name>
+          <Description>Full Name of F5 PoolMember</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.PoolMember" SubElementID="Name">
+          <Name>Name</Name>
+          <Description>Short Name of F5 PoolMember</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.PoolMember" SubElementID="Partition">
+          <Name>Partition</Name>
+          <Description>Partition of F5 PoolMember</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.PoolMember" SubElementID="Description">
+          <Name>Description</Name>
+          <Description>Description of F5 PoolMember</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.PoolMember" SubElementID="MonitorRule">
+          <Name>Monitor Rule</Name>
+          <Description>Montior Rule of F5 Pool Member</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.PoolMember" SubElementID="Port">
+          <Name>Port</Name>
+          <Description>port of F5 Pool Member</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.PoolMember" SubElementID="PoolName">
+          <Name>Pool Name</Name>
+          <Description>Name of F5 Pool this POolMember belongs to.</Description>
+        </DisplayString>
+
+      </DisplayStrings>
+    </LanguagePack>
+  </LanguagePacks>
+</ManagementPackFragment>

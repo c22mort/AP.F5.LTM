@@ -1,0 +1,1023 @@
+﻿<ManagementPackFragment SchemaVersion="2.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <TypeDefinitions>
+    <ModuleTypes>
+
+
+      <!-- AP.F5.LTM.DataSource.NodeAvailabilityState.Filtered -->
+      <!-- Calls AP.F5.LTM.DataSource.NodeAvailabilityState.Powershell, Filters results by Node Name -->
+      <DataSourceModuleType ID="AP.F5.LTM.DataSource.NodeAvailabilityState.Filtered" Accessibility="Public" Batching="false">
+        <Configuration>
+          <IncludeSchemaTypes>
+            <SchemaType>Windows!Microsoft.Windows.PowerShellSchema</SchemaType>
+          </IncludeSchemaTypes>
+          <xsd:element minOccurs="1" name="IntervalSeconds" type="xsd:integer"/>
+          <xsd:element minOccurs="1" name="SyncTime" type="xsd:string"/>
+          <xsd:element minOccurs="1" name="Debug" type="xsd:boolean"/>
+          <xsd:element minOccurs="1" name="DeviceAddresses" type="xsd:string"/>
+          <xsd:element minOccurs="1" name="DevicePorts" type="xsd:string"/>
+          <xsd:element minOccurs="1" name="DeviceCommunities" type="xsd:string"/>
+          <xsd:element minOccurs="1" name="NodeName" type="xsd:string"/>
+        </Configuration>
+        <OverrideableParameters>
+          <OverrideableParameter ID="IntervalSeconds" Selector="$Config/IntervalSeconds$" ParameterType="int"/>
+          <OverrideableParameter ID="SyncTime" Selector="$Config/SyncTime$" ParameterType="string"/>
+          <OverrideableParameter ID="Debug" Selector="$Config/Debug$" ParameterType="bool"/>
+        </OverrideableParameters>
+        <ModuleImplementation Isolation="Any">
+          <Composite>
+            <MemberModules>
+              <DataSource ID="Script" TypeID="AP.F5.LTM.DataSource.NodeAvailabilityState.Powershell">
+                <IntervalSeconds>$Config/IntervalSeconds$</IntervalSeconds>
+                <SyncTime>$Config/SyncTime$</SyncTime>
+                <Debug>$Config/Debug$</Debug>
+                <DeviceAddresses>$Config/DeviceAddresses$</DeviceAddresses>
+                <DevicePorts>$Config/DevicePorts$</DevicePorts>
+                <DeviceCommunities>$Config/DeviceCommunities$</DeviceCommunities>
+              </DataSource>
+              <ConditionDetection ID="FilterNodeName" TypeID="System!System.ExpressionFilter">
+                <Expression>
+                  <And>
+                    <Expression>
+                      <SimpleExpression>
+                        <ValueExpression>
+                          <XPathQuery Type="String">Property[@Name='NodeName']</XPathQuery>
+                        </ValueExpression>
+                        <Operator>Equal</Operator>
+                        <ValueExpression>
+                          <Value Type="String">$Config/NodeName$</Value>
+                        </ValueExpression>
+                      </SimpleExpression>
+                    </Expression>
+                    <Expression>
+                      <SimpleExpression>
+                        <ValueExpression>
+                          <XPathQuery Type="String">Property[@Name='NodeName']</XPathQuery>
+                        </ValueExpression>
+                        <Operator>Equal</Operator>
+                        <ValueExpression>
+                          <Value Type="String">$Config/NodeName$</Value>
+                        </ValueExpression>
+                      </SimpleExpression>
+                    </Expression>
+                  </And>
+                </Expression>
+              </ConditionDetection>
+            </MemberModules>
+            <Composition>
+              <Node ID="FilterNodeName">
+                <Node ID="Script" />
+              </Node>
+            </Composition>
+          </Composite>
+        </ModuleImplementation>
+        <OutputType>System!System.PropertyBagData</OutputType>
+      </DataSourceModuleType>
+
+      <!-- AP.F5.LTM.DataSource.NodeEnabledState.Filtered -->
+      <!-- Calls AP.F5.LTM.DataSource.NodeEnabledState.Powershell, Filters results by Node Name -->
+      <DataSourceModuleType ID="AP.F5.LTM.DataSource.NodeEnabledState.Filtered" Accessibility="Public" Batching="false">
+        <Configuration>
+          <IncludeSchemaTypes>
+            <SchemaType>Windows!Microsoft.Windows.PowerShellSchema</SchemaType>
+          </IncludeSchemaTypes>
+          <xsd:element minOccurs="1" name="IntervalSeconds" type="xsd:integer"/>
+          <xsd:element minOccurs="1" name="SyncTime" type="xsd:string"/>
+          <xsd:element minOccurs="1" name="Debug" type="xsd:boolean"/>
+          <xsd:element minOccurs="1" name="DeviceAddresses" type="xsd:string"/>
+          <xsd:element minOccurs="1" name="DevicePorts" type="xsd:string"/>
+          <xsd:element minOccurs="1" name="DeviceCommunities" type="xsd:string"/>
+          <xsd:element minOccurs="1" name="NodeName" type="xsd:string"/>
+        </Configuration>
+        <OverrideableParameters>
+          <OverrideableParameter ID="IntervalSeconds" Selector="$Config/IntervalSeconds$" ParameterType="int"/>
+          <OverrideableParameter ID="SyncTime" Selector="$Config/SyncTime$" ParameterType="string"/>
+          <OverrideableParameter ID="Debug" Selector="$Config/Debug$" ParameterType="bool"/>
+        </OverrideableParameters>
+        <ModuleImplementation Isolation="Any">
+          <Composite>
+            <MemberModules>
+              <DataSource ID="Script" TypeID="AP.F5.LTM.DataSource.NodeEnabledState.Powershell">
+                <IntervalSeconds>$Config/IntervalSeconds$</IntervalSeconds>
+                <SyncTime>$Config/SyncTime$</SyncTime>
+                <Debug>$Config/Debug$</Debug>
+                <DeviceAddresses>$Config/DeviceAddresses$</DeviceAddresses>
+                <DevicePorts>$Config/DevicePorts$</DevicePorts>
+                <DeviceCommunities>$Config/DeviceCommunities$</DeviceCommunities>
+              </DataSource>
+              <ConditionDetection ID="FilterNodeName" TypeID="System!System.ExpressionFilter">
+                <Expression>
+                  <And>
+                    <Expression>
+                      <SimpleExpression>
+                        <ValueExpression>
+                          <XPathQuery Type="String">Property[@Name='NodeName']</XPathQuery>
+                        </ValueExpression>
+                        <Operator>Equal</Operator>
+                        <ValueExpression>
+                          <Value Type="String">$Config/NodeName$</Value>
+                        </ValueExpression>
+                      </SimpleExpression>
+                    </Expression>
+                    <Expression>
+                      <SimpleExpression>
+                        <ValueExpression>
+                          <XPathQuery Type="String">Property[@Name='NodeName']</XPathQuery>
+                        </ValueExpression>
+                        <Operator>Equal</Operator>
+                        <ValueExpression>
+                          <Value Type="String">$Config/NodeName$</Value>
+                        </ValueExpression>
+                      </SimpleExpression>
+                    </Expression>
+                  </And>
+                </Expression>
+              </ConditionDetection>
+            </MemberModules>
+            <Composition>
+              <Node ID="FilterNodeName">
+                <Node ID="Script" />
+              </Node>
+            </Composition>
+          </Composite>
+        </ModuleImplementation>
+        <OutputType>System!System.PropertyBagData</OutputType>
+      </DataSourceModuleType>
+
+      <!-- AP.F5.LTM.DataSource.NodeConnections.Filtered -->
+      <!-- Calls AP.F5.LTM.DataSource.NodeConnections.Powershell, Filters results by Node Name -->
+      <!-- Returned As Performance Data -->
+      <DataSourceModuleType ID="AP.F5.LTM.DataSource.Perf.NodeConnections.Filtered" Accessibility="Public" Batching="false">
+        <Configuration>
+          <IncludeSchemaTypes>
+            <SchemaType>Windows!Microsoft.Windows.PowerShellSchema</SchemaType>
+          </IncludeSchemaTypes>
+          <xsd:element minOccurs="1" name="IntervalSeconds" type="xsd:integer"/>
+          <xsd:element minOccurs="1" name="SyncTime" type="xsd:string"/>
+          <xsd:element minOccurs="1" name="Debug" type="xsd:boolean"/>
+          <xsd:element minOccurs="1" name="DeviceAddresses" type="xsd:string"/>
+          <xsd:element minOccurs="1" name="DevicePorts" type="xsd:string"/>
+          <xsd:element minOccurs="1" name="DeviceCommunities" type="xsd:string"/>
+          <xsd:element minOccurs="1" name="NodeName" type="xsd:string"/>
+        </Configuration>
+        <OverrideableParameters>
+          <OverrideableParameter ID="IntervalSeconds" Selector="$Config/IntervalSeconds$" ParameterType="int"/>
+          <OverrideableParameter ID="SyncTime" Selector="$Config/SyncTime$" ParameterType="string"/>
+          <OverrideableParameter ID="Debug" Selector="$Config/Debug$" ParameterType="bool"/>
+        </OverrideableParameters>
+        <ModuleImplementation Isolation="Any">
+          <Composite>
+            <MemberModules>
+              <DataSource ID="Script" TypeID="AP.F5.LTM.DataSource.NodeConnections.Powershell">
+                <IntervalSeconds>$Config/IntervalSeconds$</IntervalSeconds>
+                <SyncTime>$Config/SyncTime$</SyncTime>
+                <Debug>$Config/Debug$</Debug>
+                <DeviceAddresses>$Config/DeviceAddresses$</DeviceAddresses>
+                <DevicePorts>$Config/DevicePorts$</DevicePorts>
+                <DeviceCommunities>$Config/DeviceCommunities$</DeviceCommunities>
+              </DataSource>
+              <ConditionDetection ID="FilterNodeName" TypeID="System!System.ExpressionFilter">
+                <Expression>
+                  <SimpleExpression>
+                    <ValueExpression>
+                      <XPathQuery Type="String">Property[@Name='NodeName']</XPathQuery>
+                    </ValueExpression>
+                    <Operator>Equal</Operator>
+                    <ValueExpression>
+                      <Value Type="String">$Config/NodeName$</Value>
+                    </ValueExpression>
+                  </SimpleExpression>
+                </Expression>
+              </ConditionDetection>
+              <ConditionDetection ID="PerfMapper" TypeID="Perf!System.Performance.DataGenericMapper">
+                <ObjectName>Connections</ObjectName>
+                <CounterName>Current</CounterName>
+                <InstanceName></InstanceName>
+                <Value>$Data/Property[@Name="Connections"]$</Value>
+              </ConditionDetection>
+            </MemberModules>
+            <Composition>
+              <Node ID ="PerfMapper">
+                <Node ID="FilterNodeName">
+                  <Node ID="Script" />
+                </Node>
+              </Node>
+            </Composition>
+          </Composite>
+        </ModuleImplementation>
+        <OutputType>Perf!System.Performance.Data</OutputType>
+      </DataSourceModuleType>
+
+      <!-- AP.F5.LTM.DataSource.NodeAvailabilityState.Powershell -->
+      <!-- Calls AP.F5.LTM.Probe.NodeAvailabilityState.Powershell wraps it with a scheduler -->
+      <DataSourceModuleType ID="AP.F5.LTM.DataSource.NodeAvailabilityState.Powershell" Accessibility="Public" Batching="false">
+        <Configuration>
+          <IncludeSchemaTypes>
+            <SchemaType>Windows!Microsoft.Windows.PowerShellSchema</SchemaType>
+          </IncludeSchemaTypes>
+          <xsd:element minOccurs="1" name="IntervalSeconds" type="xsd:integer"/>
+          <xsd:element minOccurs="1" name="SyncTime" type="xsd:string"/>
+          <xsd:element minOccurs="1" name="Debug" type="xsd:boolean"/>
+          <xsd:element minOccurs="1" name="DeviceAddresses" type="xsd:string"/>
+          <xsd:element minOccurs="1" name="DevicePorts" type="xsd:string"/>
+          <xsd:element minOccurs="1" name="DeviceCommunities" type="xsd:string"/>
+        </Configuration>
+        <OverrideableParameters>
+          <OverrideableParameter ID="IntervalSeconds" Selector="$Config/IntervalSeconds$" ParameterType="int"/>
+          <OverrideableParameter ID="SyncTime" Selector="$Config/SyncTime$" ParameterType="string"/>
+          <OverrideableParameter ID="Debug" Selector="$Config/Debug$" ParameterType="bool"/>
+        </OverrideableParameters>
+        <ModuleImplementation Isolation="Any">
+          <Composite>
+            <MemberModules>
+              <DataSource ID="Scheduler" TypeID="System!System.SimpleScheduler">
+                <IntervalSeconds>$Config/IntervalSeconds$</IntervalSeconds>
+                <SyncTime>$Config/SyncTime$</SyncTime>
+              </DataSource>
+              <ProbeAction ID="PSScript" TypeID="AP.F5.LTM.Probe.NodeAvailabilityState.Powershell">
+                <Debug>$Config/Debug$</Debug>
+                <DeviceAddresses>$Config/DeviceAddresses$</DeviceAddresses>
+                <DevicePorts>$Config/DevicePorts$</DevicePorts>
+                <DeviceCommunities>$Config/DeviceCommunities$</DeviceCommunities>
+              </ProbeAction>
+            </MemberModules>
+            <Composition>
+              <Node ID="PSScript">
+                <Node ID="Scheduler" />
+              </Node>
+            </Composition>
+          </Composite>
+        </ModuleImplementation>
+        <OutputType>System!System.PropertyBagData</OutputType>
+      </DataSourceModuleType>
+
+      <!-- AP.F5.LTM.DataSource.NodeEnabledState.Powershell -->
+      <!-- Calls AP.F5.LTM.Probe.NodeEnabledState.Powershell wraps it with a scheduler -->
+      <DataSourceModuleType ID="AP.F5.LTM.DataSource.NodeEnabledState.Powershell" Accessibility="Public" Batching="false">
+        <Configuration>
+          <IncludeSchemaTypes>
+            <SchemaType>Windows!Microsoft.Windows.PowerShellSchema</SchemaType>
+          </IncludeSchemaTypes>
+          <xsd:element minOccurs="1" name="IntervalSeconds" type="xsd:integer"/>
+          <xsd:element minOccurs="1" name="SyncTime" type="xsd:string"/>
+          <xsd:element minOccurs="1" name="Debug" type="xsd:boolean"/>
+          <xsd:element minOccurs="1" name="DeviceAddresses" type="xsd:string"/>
+          <xsd:element minOccurs="1" name="DevicePorts" type="xsd:string"/>
+          <xsd:element minOccurs="1" name="DeviceCommunities" type="xsd:string"/>
+        </Configuration>
+        <OverrideableParameters>
+          <OverrideableParameter ID="IntervalSeconds" Selector="$Config/IntervalSeconds$" ParameterType="int"/>
+          <OverrideableParameter ID="SyncTime" Selector="$Config/SyncTime$" ParameterType="string"/>
+          <OverrideableParameter ID="Debug" Selector="$Config/Debug$" ParameterType="bool"/>
+        </OverrideableParameters>
+        <ModuleImplementation Isolation="Any">
+          <Composite>
+            <MemberModules>
+              <DataSource ID="Scheduler" TypeID="System!System.SimpleScheduler">
+                <IntervalSeconds>$Config/IntervalSeconds$</IntervalSeconds>
+                <SyncTime>$Config/SyncTime$</SyncTime>
+              </DataSource>
+              <ProbeAction ID="PSScript" TypeID="AP.F5.LTM.Probe.NodeEnabledState.Powershell">
+                <Debug>$Config/Debug$</Debug>
+                <DeviceAddresses>$Config/DeviceAddresses$</DeviceAddresses>
+                <DevicePorts>$Config/DevicePorts$</DevicePorts>
+                <DeviceCommunities>$Config/DeviceCommunities$</DeviceCommunities>
+              </ProbeAction>
+            </MemberModules>
+            <Composition>
+              <Node ID="PSScript">
+                <Node ID="Scheduler" />
+              </Node>
+            </Composition>
+          </Composite>
+        </ModuleImplementation>
+        <OutputType>System!System.PropertyBagData</OutputType>
+      </DataSourceModuleType>
+
+      <!-- AP.F5.LTM.DataSource.NodeConnections.Powershell -->
+      <!-- Calls AP.F5.LTM.Probe.NodeConnections.Powershell wraps it with a scheduler -->
+      <DataSourceModuleType ID="AP.F5.LTM.DataSource.NodeConnections.Powershell" Accessibility="Public" Batching="false">
+        <Configuration>
+          <IncludeSchemaTypes>
+            <SchemaType>Windows!Microsoft.Windows.PowerShellSchema</SchemaType>
+          </IncludeSchemaTypes>
+          <xsd:element minOccurs="1" name="IntervalSeconds" type="xsd:integer"/>
+          <xsd:element minOccurs="1" name="SyncTime" type="xsd:string"/>
+          <xsd:element minOccurs="1" name="Debug" type="xsd:boolean"/>
+          <xsd:element minOccurs="1" name="DeviceAddresses" type="xsd:string"/>
+          <xsd:element minOccurs="1" name="DevicePorts" type="xsd:string"/>
+          <xsd:element minOccurs="1" name="DeviceCommunities" type="xsd:string"/>
+        </Configuration>
+        <OverrideableParameters>
+          <OverrideableParameter ID="IntervalSeconds" Selector="$Config/IntervalSeconds$" ParameterType="int"/>
+          <OverrideableParameter ID="SyncTime" Selector="$Config/SyncTime$" ParameterType="string"/>
+          <OverrideableParameter ID="Debug" Selector="$Config/Debug$" ParameterType="bool"/>
+        </OverrideableParameters>
+        <ModuleImplementation Isolation="Any">
+          <Composite>
+            <MemberModules>
+              <DataSource ID="Scheduler" TypeID="System!System.SimpleScheduler">
+                <IntervalSeconds>$Config/IntervalSeconds$</IntervalSeconds>
+                <SyncTime>$Config/SyncTime$</SyncTime>
+              </DataSource>
+              <ProbeAction ID="PSScript" TypeID="AP.F5.LTM.Probe.NodeConnections.Powershell">
+                <Debug>$Config/Debug$</Debug>
+                <DeviceAddresses>$Config/DeviceAddresses$</DeviceAddresses>
+                <DevicePorts>$Config/DevicePorts$</DevicePorts>
+                <DeviceCommunities>$Config/DeviceCommunities$</DeviceCommunities>
+              </ProbeAction>
+            </MemberModules>
+            <Composition>
+              <Node ID="PSScript">
+                <Node ID="Scheduler" />
+              </Node>
+            </Composition>
+          </Composite>
+        </ModuleImplementation>
+        <OutputType>System!System.PropertyBagData</OutputType>
+      </DataSourceModuleType>
+
+      <!-- AP.F5.LTM.Probe.NodeAvailabilityState.Powershell -->
+      <!-- Runs script to Return All Nodes (Name & AvailabilityState) in property bags -->
+      <ProbeActionModuleType ID="AP.F5.LTM.Probe.NodeAvailabilityState.Powershell" Accessibility="Public" Batching="false">
+        <Configuration>
+          <IncludeSchemaTypes>
+            <SchemaType>Windows!Microsoft.Windows.PowerShellSchema</SchemaType>
+          </IncludeSchemaTypes>
+          <xsd:element minOccurs="1" name="Debug" type="xsd:boolean"/>
+          <xsd:element minOccurs="1" name="DeviceAddresses" type="xsd:string"/>
+          <xsd:element minOccurs="1" name="DevicePorts" type="xsd:string"/>
+          <xsd:element minOccurs="1" name="DeviceCommunities" type="xsd:string"/>
+        </Configuration>
+        <OverrideableParameters>
+          <OverrideableParameter ID="Debug" Selector="$Config/Debug$" ParameterType="bool"/>
+        </OverrideableParameters>
+        <ModuleImplementation Isolation="Any">
+          <Composite>
+            <MemberModules>
+              <ProbeAction ID="PSScript" TypeID="Windows!Microsoft.Windows.PowerShellPropertyBagTriggerOnlyProbe">
+                <ScriptName>Get-NodeAvailabilityState.ps1</ScriptName>
+                <ScriptBody>$IncludeFileContent/Scripts/Monitors/Get-NodeAvailabilityState.ps1$</ScriptBody>
+                <SnapIns />
+                <Parameters>
+                  <Parameter>
+                    <Name>DeviceAddresses</Name>
+                    <Value>$Config/DeviceAddresses$</Value>
+                  </Parameter>
+                  <Parameter>
+                    <Name>DevicePorts</Name>
+                    <Value>$Config/DevicePorts$</Value>
+                  </Parameter>
+                  <Parameter>
+                    <Name>DeviceCommunities</Name>
+                    <Value>$Config/DeviceCommunities$</Value>
+                  </Parameter>
+                  <Parameter>
+                    <Name>debug</Name>
+                    <Value>$Config/Debug$</Value>
+                  </Parameter>
+                  <Parameter>
+                    <Name>SharpSnmpLocation</Name>
+                    <Value>$FileResource[Name="AP.F5.LTM.SharpSnmpLib"]/Path$</Value>
+                  </Parameter>
+                </Parameters>
+                <TimeoutSeconds>60</TimeoutSeconds>
+              </ProbeAction>
+            </MemberModules>
+            <Composition>
+              <Node ID="PSScript" />
+            </Composition>
+          </Composite>
+        </ModuleImplementation>
+        <OutputType>System!System.PropertyBagData</OutputType>
+        <TriggerOnly>true</TriggerOnly>
+      </ProbeActionModuleType>
+
+      <!-- AP.F5.LTM.Probe.NodeEnabledState.Powershell -->
+      <!-- Runs script to Return All Nodes (Name & EnabledState) in property bags -->
+      <ProbeActionModuleType ID="AP.F5.LTM.Probe.NodeEnabledState.Powershell" Accessibility="Public" Batching="false">
+        <Configuration>
+          <IncludeSchemaTypes>
+            <SchemaType>Windows!Microsoft.Windows.PowerShellSchema</SchemaType>
+          </IncludeSchemaTypes>
+          <xsd:element minOccurs="1" name="Debug" type="xsd:boolean"/>
+          <xsd:element minOccurs="1" name="DeviceAddresses" type="xsd:string"/>
+          <xsd:element minOccurs="1" name="DevicePorts" type="xsd:string"/>
+          <xsd:element minOccurs="1" name="DeviceCommunities" type="xsd:string"/>
+        </Configuration>
+        <OverrideableParameters>
+          <OverrideableParameter ID="Debug" Selector="$Config/Debug$" ParameterType="bool"/>
+        </OverrideableParameters>
+        <ModuleImplementation Isolation="Any">
+          <Composite>
+            <MemberModules>
+              <ProbeAction ID="PSScript" TypeID="Windows!Microsoft.Windows.PowerShellPropertyBagTriggerOnlyProbe">
+                <ScriptName>Get-NodeEnabledState.ps1</ScriptName>
+                <ScriptBody>$IncludeFileContent/Scripts/Monitors/Get-NodeEnabledState.ps1$</ScriptBody>
+                <SnapIns />
+                <Parameters>
+                  <Parameter>
+                    <Name>DeviceAddresses</Name>
+                    <Value>$Config/DeviceAddresses$</Value>
+                  </Parameter>
+                  <Parameter>
+                    <Name>DevicePorts</Name>
+                    <Value>$Config/DevicePorts$</Value>
+                  </Parameter>
+                  <Parameter>
+                    <Name>DeviceCommunities</Name>
+                    <Value>$Config/DeviceCommunities$</Value>
+                  </Parameter>
+                  <Parameter>
+                    <Name>debug</Name>
+                    <Value>$Config/Debug$</Value>
+                  </Parameter>
+                  <Parameter>
+                    <Name>SharpSnmpLocation</Name>
+                    <Value>$FileResource[Name="AP.F5.LTM.SharpSnmpLib"]/Path$</Value>
+                  </Parameter>
+                </Parameters>
+                <TimeoutSeconds>60</TimeoutSeconds>
+              </ProbeAction>
+            </MemberModules>
+            <Composition>
+              <Node ID="PSScript" />
+            </Composition>
+          </Composite>
+        </ModuleImplementation>
+        <OutputType>System!System.PropertyBagData</OutputType>
+        <TriggerOnly>true</TriggerOnly>
+      </ProbeActionModuleType>
+
+      <!-- AP.F5.LTM.Probe.NodeConnections.Powershell -->
+      <!-- Runs Script to Return All Nodes (NodeName, NodeName & Connections) in property bags -->
+      <ProbeActionModuleType ID="AP.F5.LTM.Probe.NodeConnections.Powershell" Accessibility="Public" Batching="false">
+        <Configuration>
+          <IncludeSchemaTypes>
+            <SchemaType>Windows!Microsoft.Windows.PowerShellSchema</SchemaType>
+          </IncludeSchemaTypes>
+          <xsd:element minOccurs="1" name="Debug" type="xsd:boolean"/>
+          <xsd:element minOccurs="1" name="DeviceAddresses" type="xsd:string"/>
+          <xsd:element minOccurs="1" name="DevicePorts" type="xsd:string"/>
+          <xsd:element minOccurs="1" name="DeviceCommunities" type="xsd:string"/>
+        </Configuration>
+        <OverrideableParameters>
+          <OverrideableParameter ID="Debug" Selector="$Config/Debug$" ParameterType="bool"/>
+        </OverrideableParameters>
+        <ModuleImplementation Isolation="Any">
+          <Composite>
+            <MemberModules>
+              <ProbeAction ID="PSScript" TypeID="Windows!Microsoft.Windows.PowerShellPropertyBagTriggerOnlyProbe">
+                <ScriptName>Get-NodeConnections.ps1</ScriptName>
+                <ScriptBody>$IncludeFileContent/Scripts/Rules/Get-NodeConnections.ps1$</ScriptBody>
+                <SnapIns />
+                <Parameters>
+                  <Parameter>
+                    <Name>DeviceAddresses</Name>
+                    <Value>$Config/DeviceAddresses$</Value>
+                  </Parameter>
+                  <Parameter>
+                    <Name>DevicePorts</Name>
+                    <Value>$Config/DevicePorts$</Value>
+                  </Parameter>
+                  <Parameter>
+                    <Name>DeviceCommunities</Name>
+                    <Value>$Config/DeviceCommunities$</Value>
+                  </Parameter>
+                  <Parameter>
+                    <Name>debug</Name>
+                    <Value>$Config/Debug$</Value>
+                  </Parameter>
+                  <Parameter>
+                    <Name>SharpSnmpLocation</Name>
+                    <Value>$FileResource[Name="AP.F5.LTM.SharpSnmpLib"]/Path$</Value>
+                  </Parameter>
+                </Parameters>
+                <TimeoutSeconds>60</TimeoutSeconds>
+              </ProbeAction>
+            </MemberModules>
+            <Composition>
+              <Node ID="PSScript" />
+            </Composition>
+          </Composite>
+        </ModuleImplementation>
+        <OutputType>System!System.PropertyBagData</OutputType>
+        <TriggerOnly>true</TriggerOnly>
+      </ProbeActionModuleType>
+
+
+    </ModuleTypes>
+
+    <MonitorTypes>
+
+      <!-- AP.F5.LTM.Monitor.NodeAvailabilityState.Powershell -->
+      <UnitMonitorType ID="AP.F5.LTM.Monitor.NodeAvailabilityState.Powershell" Accessibility="Public">
+        <MonitorTypeStates>
+          <MonitorTypeState ID="NodeOkay" NoDetection="false"/>
+          <MonitorTypeState ID="NodeWarning" NoDetection="false"/>
+          <MonitorTypeState ID="NodeCritical" NoDetection="false"/>
+        </MonitorTypeStates>
+        <Configuration>
+          <xsd:element minOccurs="1" name="IntervalSeconds" type="xsd:integer"/>
+          <xsd:element minOccurs="1" name="SyncTime" type="xsd:string"/>
+          <xsd:element minOccurs="1" name="Debug" type="xsd:boolean"/>
+          <xsd:element minOccurs="1" name="DeviceAddresses" type="xsd:string"/>
+          <xsd:element minOccurs="1" name="DevicePorts" type="xsd:string"/>
+          <xsd:element minOccurs="1" name="DeviceCommunities" type="xsd:string"/>
+          <xsd:element minOccurs="1" name="NodeName" type="xsd:string"/>
+        </Configuration>
+        <OverrideableParameters>
+          <OverrideableParameter ID="IntervalSeconds" Selector="$Config/IntervalSeconds$" ParameterType="int"/>
+          <OverrideableParameter ID="SyncTime" Selector="$Config/SyncTime$" ParameterType="string"/>
+          <OverrideableParameter ID="Debug" Selector="$Config/Debug$" ParameterType="bool"/>
+        </OverrideableParameters>
+        <MonitorImplementation>
+          <MemberModules>
+            <DataSource ID="DS" TypeID="AP.F5.LTM.DataSource.NodeAvailabilityState.Filtered">
+              <IntervalSeconds>$Config/IntervalSeconds$</IntervalSeconds>
+              <SyncTime>$Config/SyncTime$</SyncTime>
+              <Debug>$Config/Debug$</Debug>
+              <DeviceAddresses>$Config/DeviceAddresses$</DeviceAddresses>
+              <DevicePorts>$Config/DevicePorts$</DevicePorts>
+              <DeviceCommunities>$Config/DeviceCommunities$</DeviceCommunities>
+              <NodeName>$Config/NodeName$</NodeName>
+            </DataSource>
+            <ProbeAction ID="Probe" TypeID="AP.F5.LTM.Probe.NodeAvailabilityState.Powershell">
+              <Debug>$Config/Debug$</Debug>
+              <DeviceAddresses>$Config/DeviceAddresses$</DeviceAddresses>
+              <DevicePorts>$Config/DeviceAddresses$</DevicePorts>
+              <DeviceCommunities>$Config/DeviceAddresses$</DeviceCommunities>
+            </ProbeAction>
+            <ConditionDetection ID="NodeOkayFilter" TypeID="System!System.ExpressionFilter">
+              <Expression>
+                <SimpleExpression>
+                  <ValueExpression>
+                    <XPathQuery Type="Integer">Property[@Name='AvailabilityState']</XPathQuery>
+                  </ValueExpression>
+                  <Operator>Equal</Operator>
+                  <ValueExpression>
+                    <!-- Green - Available in Some Capacity -->
+                    <Value Type="Integer">1</Value>
+                  </ValueExpression>
+                </SimpleExpression>
+              </Expression>
+            </ConditionDetection>
+            <ConditionDetection ID="NodeWarningFilter" TypeID="System!System.ExpressionFilter">
+              <Expression>
+                <Or>
+                  <Expression>
+                    <SimpleExpression>
+                      <ValueExpression>
+                        <XPathQuery Type="Integer">Property[@Name='AvailabilityState']</XPathQuery>
+                      </ValueExpression>
+                      <Operator>Equal</Operator>
+                      <ValueExpression>
+                        <!-- Yellow - Not Currently Available -->
+                        <Value Type="Integer">2</Value>
+                      </ValueExpression>
+                    </SimpleExpression>
+                  </Expression>
+                  <Expression>
+                    <SimpleExpression>
+                      <ValueExpression>
+                        <XPathQuery Type="Integer">Property[@Name='AvailabilityState']</XPathQuery>
+                      </ValueExpression>
+                      <Operator>Equal</Operator>
+                      <ValueExpression>
+                        <!-- Blue - Availability is Unknown -->
+                        <Value Type="Integer">4</Value>
+                      </ValueExpression>
+                    </SimpleExpression>
+                  </Expression>
+                </Or>
+              </Expression>
+            </ConditionDetection>
+            <ConditionDetection ID="NodeCriticalFilter" TypeID="System!System.ExpressionFilter">
+              <Expression>
+                <Or>
+                  <Expression>
+                    <SimpleExpression>
+                      <ValueExpression>
+                        <XPathQuery Type="Integer">Property[@Name='AvailabilityState']</XPathQuery>
+                      </ValueExpression>
+                      <Operator>Equal</Operator>
+                      <ValueExpression>
+                        <!-- None - Error -->
+                        <Value Type="Integer">0</Value>
+                      </ValueExpression>
+                    </SimpleExpression>
+                  </Expression>
+                  <Expression>
+                    <SimpleExpression>
+                      <ValueExpression>
+                        <XPathQuery Type="Integer">Property[@Name='AvailabilityState']</XPathQuery>
+                      </ValueExpression>
+                      <Operator>Equal</Operator>
+                      <ValueExpression>
+                        <!-- Red - Not Available -->
+                        <Value Type="Integer">3</Value>
+                      </ValueExpression>
+                    </SimpleExpression>
+                  </Expression>
+                  <Expression>
+                    <SimpleExpression>
+                      <ValueExpression>
+                        <XPathQuery Type="Integer">Property[@Name='AvailabilityState']</XPathQuery>
+                      </ValueExpression>
+                      <Operator>Equal</Operator>
+                      <ValueExpression>
+                        <!-- Gray - Unlicenced -->
+                        <Value Type="Integer">5</Value>
+                      </ValueExpression>
+                    </SimpleExpression>
+                  </Expression>
+                </Or>
+              </Expression>
+            </ConditionDetection>
+          </MemberModules>
+          <RegularDetections>
+            <RegularDetection MonitorTypeStateID="NodeOkay">
+              <Node ID="NodeOkayFilter">
+                <Node ID="DS" />
+              </Node>
+            </RegularDetection>
+            <RegularDetection MonitorTypeStateID="NodeWarning">
+              <Node ID="NodeWarningFilter">
+                <Node ID="DS" />
+              </Node>
+            </RegularDetection>
+            <RegularDetection MonitorTypeStateID="NodeCritical">
+              <Node ID="NodeCriticalFilter">
+                <Node ID="DS" />
+              </Node>
+            </RegularDetection>
+          </RegularDetections>
+        </MonitorImplementation>
+      </UnitMonitorType>
+
+      <!-- AP.F5.LTM.Monitor.NodeEnabledState.Powershell -->
+      <UnitMonitorType ID="AP.F5.LTM.Monitor.NodeEnabledState.Powershell" Accessibility="Public">
+        <MonitorTypeStates>
+          <MonitorTypeState ID="NodeEnabled" NoDetection="false"/>
+          <MonitorTypeState ID="NodeDisabled" NoDetection="false"/>
+        </MonitorTypeStates>
+        <Configuration>
+          <xsd:element minOccurs="1" name="IntervalSeconds" type="xsd:integer"/>
+          <xsd:element minOccurs="1" name="SyncTime" type="xsd:string"/>
+          <xsd:element minOccurs="1" name="Debug" type="xsd:boolean"/>
+          <xsd:element minOccurs="1" name="DeviceAddresses" type="xsd:string"/>
+          <xsd:element minOccurs="1" name="DevicePorts" type="xsd:string"/>
+          <xsd:element minOccurs="1" name="DeviceCommunities" type="xsd:string"/>
+          <xsd:element minOccurs="1" name="NodeName" type="xsd:string"/>
+        </Configuration>
+        <OverrideableParameters>
+          <OverrideableParameter ID="IntervalSeconds" Selector="$Config/IntervalSeconds$" ParameterType="int"/>
+          <OverrideableParameter ID="SyncTime" Selector="$Config/SyncTime$" ParameterType="string"/>
+          <OverrideableParameter ID="Debug" Selector="$Config/Debug$" ParameterType="bool"/>
+        </OverrideableParameters>
+        <MonitorImplementation>
+          <MemberModules>
+            <DataSource ID="DS" TypeID="AP.F5.LTM.DataSource.NodeEnabledState.Filtered">
+              <IntervalSeconds>$Config/IntervalSeconds$</IntervalSeconds>
+              <SyncTime>$Config/SyncTime$</SyncTime>
+              <Debug>$Config/Debug$</Debug>
+              <DeviceAddresses>$Config/DeviceAddresses$</DeviceAddresses>
+              <DevicePorts>$Config/DevicePorts$</DevicePorts>
+              <DeviceCommunities>$Config/DeviceCommunities$</DeviceCommunities>
+              <NodeName>$Config/NodeName$</NodeName>
+            </DataSource>
+            <ProbeAction ID="Probe" TypeID="AP.F5.LTM.Probe.NodeEnabledState.Powershell">
+              <Debug>$Config/Debug$</Debug>
+              <DeviceAddresses>$Config/DeviceAddresses$</DeviceAddresses>
+              <DevicePorts>$Config/DeviceAddresses$</DevicePorts>
+              <DeviceCommunities>$Config/DeviceAddresses$</DeviceCommunities>
+            </ProbeAction>
+            <ConditionDetection ID="NodeEnabledFilter" TypeID="System!System.ExpressionFilter">
+              <Expression>
+                <SimpleExpression>
+                  <ValueExpression>
+                    <XPathQuery Type="Integer">Property[@Name='EnabledState']</XPathQuery>
+                  </ValueExpression>
+                  <Operator>LessEqual</Operator>
+                  <ValueExpression>
+                    <Value Type="Integer">1</Value>
+                  </ValueExpression>
+                </SimpleExpression>
+              </Expression>
+            </ConditionDetection>
+            <ConditionDetection ID="NodeDisabledFilter" TypeID="System!System.ExpressionFilter">
+              <Expression>
+                <SimpleExpression>
+                  <ValueExpression>
+                    <XPathQuery Type="Integer">Property[@Name='EnabledState']</XPathQuery>
+                  </ValueExpression>
+                  <Operator>Greater</Operator>
+                  <ValueExpression>
+                    <Value Type="Integer">1</Value>
+                  </ValueExpression>
+                </SimpleExpression>
+              </Expression>
+            </ConditionDetection>
+          </MemberModules>
+          <RegularDetections>
+            <RegularDetection MonitorTypeStateID="NodeEnabled">
+              <Node ID="NodeEnabledFilter">
+                <Node ID="DS" />
+              </Node>
+            </RegularDetection>
+            <RegularDetection MonitorTypeStateID="NodeDisabled">
+              <Node ID="NodeDisabledFilter">
+                <Node ID="DS" />
+              </Node>
+            </RegularDetection>
+          </RegularDetections>
+        </MonitorImplementation>
+      </UnitMonitorType>
+
+    </MonitorTypes>
+  </TypeDefinitions>
+
+  <LanguagePacks>
+    <LanguagePack ID="ENU" IsDefault="true">
+      <DisplayStrings>
+
+        <!-- AP.F5.LTM.DataSource.NodeAvailabilityState.Filtered -->
+        <DisplayString ElementID="AP.F5.LTM.DataSource.NodeAvailabilityState.Filtered">
+          <Name>Node AvailabilityState Filtered Data Source</Name>
+          <Description>Filters Property Bags by NodeName/NodeName to return the one property bag we want.</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.DataSource.NodeAvailabilityState.Filtered" SubElementID="IntervalSeconds">
+          <Name>Interval Seconds</Name>
+          <Description>Frequency in seconds that module is run.</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.DataSource.NodeAvailabilityState.Filtered" SubElementID="SyncTime">
+          <Name>Synchronisation Time</Name>
+          <Description>Offset that this module is started from.</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.DataSource.NodeAvailabilityState.Filtered" SubElementID="Debug">
+          <Name>Debug</Name>
+          <Description>Debug Flag, if true then additional info is posted to event log.</Description>
+        </DisplayString>
+
+        <!-- AP.F5.LTM.DataSource.NodeEnabledState.Filtered -->
+        <DisplayString ElementID="AP.F5.LTM.DataSource.NodeEnabledState.Filtered">
+          <Name>Node EnabledState Filtered Data Source</Name>
+          <Description>Filters Property Bags by NodeName/NodeName to return the one property bag we want.</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.DataSource.NodeEnabledState.Filtered" SubElementID="IntervalSeconds">
+          <Name>Interval Seconds</Name>
+          <Description>Frequency in seconds that module is run.</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.DataSource.NodeEnabledState.Filtered" SubElementID="SyncTime">
+          <Name>Synchronisation Time</Name>
+          <Description>Offset that this module is started from.</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.DataSource.NodeEnabledState.Filtered" SubElementID="Debug">
+          <Name>Debug</Name>
+          <Description>Debug Flag, if true then additional info is posted to event log.</Description>
+        </DisplayString>
+
+        <!-- AP.F5.LTM.DataSource.NodeAvailabilityState.Powershell -->
+        <DisplayString ElementID="AP.F5.LTM.DataSource.NodeAvailabilityState.Powershell">
+          <Name>Node AvailabilityState Powershell Data Source</Name>
+          <Description>Gets all Node AvailabilityState as Property Bags</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.DataSource.NodeAvailabilityState.Powershell" SubElementID="IntervalSeconds">
+          <Name>Interval Seconds</Name>
+          <Description>Frequency in seconds that module is run.</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.DataSource.NodeAvailabilityState.Powershell" SubElementID="SyncTime">
+          <Name>Synchronisation Time</Name>
+          <Description>Offset that this module is started from.</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.DataSource.NodeAvailabilityState.Powershell" SubElementID="Debug">
+          <Name>Debug</Name>
+          <Description>Debug Flag, if true then additional info is posted to event log.</Description>
+        </DisplayString>
+
+        <!-- AP.F5.LTM.DataSource.NodeEnabledState.Powershell -->
+        <DisplayString ElementID="AP.F5.LTM.DataSource.NodeEnabledState.Powershell">
+          <Name>Node EnabledState Powershell Data Source</Name>
+          <Description>Gets all Node EnabledState as Property Bags</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.DataSource.NodeEnabledState.Powershell" SubElementID="IntervalSeconds">
+          <Name>Interval Seconds</Name>
+          <Description>Frequency in seconds that module is run.</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.DataSource.NodeEnabledState.Powershell" SubElementID="SyncTime">
+          <Name>Synchronisation Time</Name>
+          <Description>Offset that this module is started from.</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.DataSource.NodeEnabledState.Powershell" SubElementID="Debug">
+          <Name>Debug</Name>
+          <Description>Debug Flag, if true then additional info is posted to event log.</Description>
+        </DisplayString>
+
+        <!-- AP.F5.LTM.DataSource.NodeConnections.Filtered -->
+        <DisplayString ElementID="AP.F5.LTM.DataSource.Perf.NodeConnections.Filtered">
+          <Name>Node Connections Filtered Data Source</Name>
+          <Description>Filters Property Bags by NodeName/NodeName to return the one property bag we want.</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.DataSource.Perf.NodeConnections.Filtered" SubElementID="IntervalSeconds">
+          <Name>Interval Seconds</Name>
+          <Description>Frequency in seconds that module is run.</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.DataSource.Perf.NodeConnections.Filtered" SubElementID="SyncTime">
+          <Name>Synchronisation Time</Name>
+          <Description>Offset that this module is started from.</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.DataSource.Perf.NodeConnections.Filtered" SubElementID="Debug">
+          <Name>Debug</Name>
+          <Description>Debug Flag, if true then additional info is posted to event log.</Description>
+        </DisplayString>
+
+        <!-- AP.F5.LTM.DataSource.NodeConnections.Powershell -->
+        <DisplayString ElementID="AP.F5.LTM.DataSource.NodeConnections.Powershell">
+          <Name>Node Connections Powershell Data Source</Name>
+          <Description>Gets all Node Connections as Property Bags</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.DataSource.NodeConnections.Powershell" SubElementID="IntervalSeconds">
+          <Name>Interval Seconds</Name>
+          <Description>Frequency in seconds that module is run.</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.DataSource.NodeConnections.Powershell" SubElementID="SyncTime">
+          <Name>Synchronisation Time</Name>
+          <Description>Offset that this module is started from.</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.DataSource.NodeConnections.Powershell" SubElementID="Debug">
+          <Name>Debug</Name>
+          <Description>Debug Flag, if true then additional info is posted to event log.</Description>
+        </DisplayString>
+
+        <!-- AP.F5.LTM.Probe.NodeAvailabilityState.Powershell -->
+        <DisplayString ElementID="AP.F5.LTM.Probe.NodeAvailabilityState.Powershell">
+          <Name>Node AvailabilityState Powershell Probe</Name>
+          <Description>Gets all Node AvailabilityState as Property Bags</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.Probe.NodeAvailabilityState.Powershell" SubElementID="Debug">
+          <Name>Debug</Name>
+          <Description>Debug Flag, if true then additional info is posted to event log.</Description>
+        </DisplayString>
+
+        <!-- AP.F5.LTM.Probe.NodeEnabledState.Powershell -->
+        <DisplayString ElementID="AP.F5.LTM.Probe.NodeEnabledState.Powershell">
+          <Name>Node EnabledState Powershell Probe</Name>
+          <Description>Gets all Node EnabledState as Property Bags</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.Probe.NodeEnabledState.Powershell" SubElementID="Debug">
+          <Name>Debug</Name>
+          <Description>Debug Flag, if true then additional info is posted to event log.</Description>
+        </DisplayString>
+
+        <!-- AP.F5.LTM.Probe.NodeConnections.Powershell -->
+        <DisplayString ElementID="AP.F5.LTM.Probe.NodeConnections.Powershell">
+          <Name>Node Connections Powershell Probe</Name>
+          <Description>Gets all Node Connections as Property Bags</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.Probe.NodeConnections.Powershell" SubElementID="Debug">
+          <Name>Debug</Name>
+          <Description>Debug Flag, if true then additional info is posted to event log.</Description>
+        </DisplayString>
+
+        <!-- AP.F5.LTM.Monitor.NodeAvailabilityState.Powershell -->
+        <DisplayString ElementID="AP.F5.LTM.Monitor.NodeAvailabilityState.Powershell">
+          <Name>Node AvailabilityState Monitor Data Source</Name>
+          <Description>Gets Node AvailabilityState via Powershell/SNMP (Cookdown compliant)</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.Monitor.NodeAvailabilityState.Powershell" SubElementID="IntervalSeconds">
+          <Name>Interval Seconds</Name>
+          <Description>Frequency in seconds that module is run.</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.Monitor.NodeAvailabilityState.Powershell" SubElementID="SyncTime">
+          <Name>Synchronisation Time</Name>
+          <Description>Offset that this module is started from.</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.Monitor.NodeAvailabilityState.Powershell" SubElementID="Debug">
+          <Name>Debug</Name>
+          <Description>Debug Flag, if true then additional info is posted to event log.</Description>
+        </DisplayString>
+
+        <!-- AP.F5.LTM.Monitor.NodeEnabledState.Powershell -->
+        <DisplayString ElementID="AP.F5.LTM.Monitor.NodeEnabledState.Powershell">
+          <Name>Node EnabledState Monitor Data Source</Name>
+          <Description>Gets Node EnabledState via Powershell/SNMP (Cookdown compliant)</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.Monitor.NodeEnabledState.Powershell" SubElementID="IntervalSeconds">
+          <Name>Interval Seconds</Name>
+          <Description>Frequency in seconds that module is run.</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.Monitor.NodeEnabledState.Powershell" SubElementID="SyncTime">
+          <Name>Synchronisation Time</Name>
+          <Description>Offset that this module is started from.</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.Monitor.NodeEnabledState.Powershell" SubElementID="Debug">
+          <Name>Debug</Name>
+          <Description>Debug Flag, if true then additional info is posted to event log.</Description>
+        </DisplayString>
+        
+      </DisplayStrings>
+
+
+      <KnowledgeArticles>
+
+        <!-- AP.F5.LTM.Monitor.Node.AvailabilityState -->
+        <KnowledgeArticle ElementID="AP.F5.LTM.Monitor.Node.AvailabilityState" Visible="true">
+          <MamlContent>
+            <section xmlns="http://schemas.microsoft.com/maml/2004/10">
+              <title>Summary</title>
+              <para>
+                Monitors F5 Node Availability State, Uses a Powershell Script and SNMP to collect all Node Availability States for a SyncFailoverGroup, Supports Cookdown!
+              </para>
+            </section>
+            <section xmlns="http://schemas.microsoft.com/maml/2004/10">
+              <title>Thresholds</title>
+              <list>
+                <listItem>
+                  <para>Healthy : Node is Available (State 1)</para>                
+                </listItem>
+                <listItem>
+                  <para>Warning : Unknown or Temporarily unavailable (State 2 or 4)</para>
+                </listItem>
+                <listItem>
+                  <para>Critical : Error, Unavailable or Unlicenced (State 0, 3 or 5)</para>
+                </listItem>
+              </list>
+            </section>
+            <section xmlns="http://schemas.microsoft.com/maml/2004/10">
+              <title>SNMP Information</title>
+              <para>SNMP OIDs Used;</para>
+              <list>
+                <listItem>
+                  <para>.1.3.6.1.4.1.3375.2.2.4.3.2.1.7 - bigipTrafficMgmt.bigipLocalTM.ltmNodes.ltmNodeAddrStatus.ltmNodeAddrStatusTable.ltmNodeAddrStatusEntry.ltmNodeAddrStatusName</para>
+                </listItem>
+                <listItem>
+                  <para>.1.3.6.1.4.1.3375.2.2.4.3.2.1.3 - bigipTrafficMgmt.bigipLocalTM.ltmNodes.ltmNodeAddrStatus.ltmNodeAddrStatusTable.ltmNodeAddrStatusEntry.ltmNodeAddrStatusAvailState</para>
+                </listItem>
+              </list>
+            </section>
+          </MamlContent>
+        </KnowledgeArticle>
+
+        <!-- AP.F5.LTM.Monitor.Node.EnabledState -->
+        <KnowledgeArticle ElementID="AP.F5.LTM.Monitor.Node.EnabledState" Visible="true">
+          <MamlContent>
+            <section xmlns="http://schemas.microsoft.com/maml/2004/10">
+              <title>Summary</title>
+              <para>
+                Monitors F5 Node Enabled State, Uses a Powershell Script and SNMP to collect all Node Enabled States for a SyncFailoverGroup, Supports Cookdown!
+              </para>
+            </section>
+            <section xmlns="http://schemas.microsoft.com/maml/2004/10">
+              <title>Thresholds</title>
+              <list>
+                <listItem>
+                  <para>NodeEnabled : Node is Enabled (State 1)</para>
+                </listItem>
+                <listItem>
+                  <para>NodeDisabled : Node is NOT Enabled (State 0, 2 or 3)</para>
+                </listItem>
+              </list>
+            </section>
+            <section xmlns="http://schemas.microsoft.com/maml/2004/10">
+              <title>SNMP Information</title>
+              <para>SNMP OIDs Used;</para>
+              <list>
+                <listItem>
+                  <para>.1.3.6.1.4.1.3375.2.2.4.3.2.1.7 - bigipTrafficMgmt.bigipLocalTM.ltmNodes.ltmNodeAddrStatus.ltmNodeAddrStatusTable.ltmNodeAddrStatusEntry.ltmNodeAddrStatusName</para>
+                </listItem>
+                <listItem>
+                  <para>.1.3.6.1.4.1.3375.2.2.4.3.2.1.4 - bigipTrafficMgmt.bigipLocalTM.ltmNodes.ltmNodeAddrStatus.ltmNodeAddrStatusTable.ltmNodeAddrStatusEntry.ltmNodeAddrStatusEnabledState</para>
+                </listItem>
+              </list>
+            </section>
+          </MamlContent>
+        </KnowledgeArticle>
+
+        <!-- AP.F5.LTM.Perf.Node.Connections -->
+        <KnowledgeArticle ElementID="AP.F5.LTM.Perf.Node.Connections" Visible="true">
+          <MamlContent>
+            <section xmlns="http://schemas.microsoft.com/maml/2004/10">
+              <title>Summary</title>
+              <para>
+                F5 Node Current Connections Performance Collection, Uses a Powershell Script and SNMP to collect Current Connection data for all Nodes in a SyncFailoverGroup, Supports Cookdown!
+              </para>
+            </section>
+            <section xmlns="http://schemas.microsoft.com/maml/2004/10">
+              <title>SNMP Information</title>
+              <para>SNMP OIDs Used;</para>
+              <list>
+                <listItem>
+                  <para>.1.3.6.1.4.1.3375.2.2.4.2.3.1.20 - bigipTrafficMgmt.bigipLocalTM.ltmNodes.ltmNodeAddrStat.ltmNodeAddrStatTable.ltmNodeAddrStatEntry.ltmNodeAddrStatNodeName</para>
+                </listItem>
+                <listItem>
+                  <para>.1.3.6.1.4.1.3375.2.2.4.2.3.1.9 - bigipTrafficMgmt.bigipLocalTM.ltmNodes.ltmNodeAddrStat.ltmNodeAddrStatTable.ltmNodeAddrStatEntry.ltmNodeAddrStatServerCurConns</para>
+                </listItem>
+              </list>
+            </section>
+          </MamlContent>
+        </KnowledgeArticle>
+        
+      </KnowledgeArticles>
+    </LanguagePack>
+  </LanguagePacks>
+
+</ManagementPackFragment>

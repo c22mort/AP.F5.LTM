@@ -1,0 +1,70 @@
+﻿<ManagementPackFragment SchemaVersion="2.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <TypeDefinitions>
+    <EntityTypes>
+      <ClassTypes>
+
+        <!-- AP.F5.LTM.Node -->
+        <ClassType ID="AP.F5.LTM.Node" Base="System!System.LogicalEntity" Accessibility="Public" Abstract="false" Hosted="true" Singleton="false">         
+          <Property ID="Name" Key="false" Type="string" />
+          <Property ID="FullName" Key="true" Type="string" />
+          <Property ID="Address" Key="false" Type="string" />
+          <Property ID="Description" Key="false" Type="string" />
+          <Property ID="Partition" Key="false" Type="string" />
+          <Property ID="MonitorRules" Key="false" Type="string" />
+        </ClassType>
+      
+      </ClassTypes>
+      <RelationshipTypes>
+
+        <!-- Node -> PoolMember Containment Relationship -->
+        <RelationshipType ID="AP.F5.LTM.NodeContainsPoolMember" Base="System!System.Containment" Abstract="false" Accessibility="Public">
+          <Source ID="Source" Type="AP.F5.LTM.Node"/>
+          <Target ID="Target" Type="AP.F5.LTM.PoolMember"/>
+        </RelationshipType>
+
+      </RelationshipTypes>
+    </EntityTypes>
+  </TypeDefinitions>
+  <LanguagePacks>
+    <LanguagePack ID="ENU" IsDefault="true">
+      <DisplayStrings>
+
+        <!-- AP.F5.LTM.Node -->
+        <DisplayString ElementID="AP.F5.LTM.Node">
+          <Name>F5 Node</Name>
+          <Description>F5 Node Class</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.Node" SubElementID="Name">
+          <Name>Name</Name>
+          <Description>Name of F5 Node</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.Node" SubElementID="FullName">
+          <Name>FullName</Name>
+          <Description>Full Name of F5 Node (including Partition)</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.Node" SubElementID="Address">
+          <Name>Address</Name>
+          <Description>IP Address of F5 Node</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.Node" SubElementID="Description">
+          <Name>Description</Name>
+          <Description>Description of F5 Node</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.Node" SubElementID="Partition">
+          <Name>Partition</Name>
+          <Description>Partition containing this F5 Node</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.Node" SubElementID="MonitorRules">
+          <Name>MonitorRules</Name>
+          <Description>Monitor Rules of F5 Node</Description>
+        </DisplayString>
+
+        <!-- Node -> PoolMember Containment Relationship -->
+        <DisplayString ElementID="AP.F5.LTM.NodeContainsPoolMember">
+          <Name>Node Contains PoolMembers</Name>
+          <Description>Defines the containment relationship between Nodes and PoolMembers</Description>
+        </DisplayString>
+      </DisplayStrings>
+    </LanguagePack>
+  </LanguagePacks>
+</ManagementPackFragment>

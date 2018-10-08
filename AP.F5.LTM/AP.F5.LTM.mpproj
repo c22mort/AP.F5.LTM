@@ -5,7 +5,7 @@
     <RootNamespace>AP.F5.LTM</RootNamespace>
     <Name>AP.F5.LTM</Name>
     <ManagementPackName>AP.F5.LTM</ManagementPackName>
-    <Version>1.0.0.0</Version>
+    <Version>18.10.1.0</Version>
     <MpFrameworkVersion>v7.0.2</MpFrameworkVersion>
     <MpFrameworkProfile>OM</MpFrameworkProfile>
     <ProductVersion>1.1.0.0</ProductVersion>
@@ -13,11 +13,11 @@
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
     <OutputPath>bin\Debug\</OutputPath>
-    <GenerateSealed>false</GenerateSealed>
-    <Company>MyCompany</Company>
-    <Copyright>Copyright (c) MyCompany. All rights reserved.</Copyright>
-    <DelaySigning>false</DelaySigning>
-    <AssemblyOriginatorKeyFile />
+    <GenerateSealed>True</GenerateSealed>
+    <Company>AP Managment Packs</Company>
+    <Copyright>Copyright (c) AP Managment Packs. All rights reserved.</Copyright>
+    <DelaySigning>False</DelaySigning>
+    <AssemblyOriginatorKeyFile>C:\VSAE-2012R2\AP.F5.LTM\key.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
     <DebugSymbols>false</DebugSymbols>
@@ -29,6 +29,17 @@
     <AssemblyOriginatorKeyFile />
   </PropertyGroup>
   <ItemGroup>
+    <ManagementPackReference Include="AP.F5.Base">
+      <HintPath>C:\VSAE-2012R2\AP.F5.Base\AP.F5.Base\bin\Debug\AP.F5.Base.mp</HintPath>
+      <Alias>APF5</Alias>
+      <MinVersion>18.10.1.78</MinVersion>
+      <PackageToBundle>False</PackageToBundle>
+    </ManagementPackReference>
+    <ManagementPackReference Include="Microsoft.SystemCenter.DataWarehouse.Library">
+      <HintPath>C:\Program Files (x86)\System Center Visual Studio Authoring Extensions\References\OM2012R2\Microsoft.SystemCenter.DataWarehouse.Library.mp</HintPath>
+      <Alias>MSDL</Alias>
+      <MinVersion>7.1.10226.0</MinVersion>
+    </ManagementPackReference>
     <ManagementPackReference Include="Microsoft.SystemCenter.Library">
       <Alias>SC</Alias>
       <PackageToBundle>false</PackageToBundle>
@@ -49,6 +60,136 @@
       <Alias>Visualization</Alias>
       <PackageToBundle>false</PackageToBundle>
     </ManagementPackReference>
+    <ManagementPackReference Include="System.Performance.Library">
+      <HintPath>C:\Program Files (x86)\System Center Visual Studio Authoring Extensions\References\OM2012R2\System.Performance.Library.mp</HintPath>
+      <Alias>Perf</Alias>
+      <MinVersion>7.0.8433.0</MinVersion>
+    </ManagementPackReference>
+    <ManagementPackReference Include="System.Snmp.Library">
+      <HintPath>C:\Program Files (x86)\System Center Visual Studio Authoring Extensions\References\OM2012R2\System.Snmp.Library.mp</HintPath>
+      <Alias>SNMP</Alias>
+      <MinVersion>7.0.8433.0</MinVersion>
+      <PackageToBundle>False</PackageToBundle>
+    </ManagementPackReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Classes" />
+    <Folder Include="DataSources" />
+    <Folder Include="Monitors" />
+    <Folder Include="Presentation" />
+    <Folder Include="Resources" />
+    <Folder Include="Rules" />
+    <Folder Include="Scripts" />
+    <Folder Include="Scripts\Monitors" />
+    <Folder Include="Scripts\Rules" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Classes\Certificate.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Classes\Node.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Classes\Partition.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Classes\Pool.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Classes\PoolMember.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Classes\ProfileClientSSL.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Classes\ProfileServerSSL.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Classes\SyncFailoverGroup.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Classes\TrafficGroup.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Classes\VirtualServer.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataSources\DataSource.Monitor.CertificateExpiration.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataSources\DataSource.Monitor.ServerSslProfile.Status.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataSources\DataSource.Monitor.TrafficGroup.Status.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataSources\DataSourceModules.Node.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataSources\DataSourceModules.Pool.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataSources\DataSourceModules.PoolMember.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataSources\DataSourceModules.VirtualServer.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ManagementPack.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Monitors\DependancyMonitors.mptg.mpx">
+      <SubType>Code</SubType>
+      <DependentUpon>Monitors\DependancyMonitors.mptg</DependentUpon>
+    </Compile>
+    <Compile Include="Monitors\UnitMonitors.mptg.mpx">
+      <SubType>Code</SubType>
+      <DependentUpon>Monitors\UnitMonitors.mptg</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\FileResources.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Rules\PerformanceRules.mptg.mpx">
+      <SubType>Code</SubType>
+      <DependentUpon>Rules\PerformanceRules.mptg</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\ViewsAndFolders.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Monitors\DependancyMonitors.mptg">
+      <SubType>Content</SubType>
+      <Generator>FragmentGenerator</Generator>
+    </Content>
+    <Content Include="Monitors\UnitMonitors.mptg">
+      <SubType>Content</SubType>
+      <Generator>FragmentGenerator</Generator>
+    </Content>
+    <Content Include="Rules\PerformanceRules.mptg">
+      <SubType>Content</SubType>
+      <Generator>FragmentGenerator</Generator>
+    </Content>
+    <EmbeddedResource Include="SharpSnmpLib.dll">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Scripts\Monitors\Get-NodeAvailabilityState.ps1" />
+    <EmbeddedResource Include="Scripts\Monitors\Get-NodeEnabledState.ps1" />
+    <EmbeddedResource Include="Scripts\Monitors\Get-PoolAvailabilityState.ps1" />
+    <EmbeddedResource Include="Scripts\Monitors\Get-PoolEnabledState.ps1" />
+    <EmbeddedResource Include="Scripts\Monitors\Get-PoolMemberAvailabilityState.ps1" />
+    <EmbeddedResource Include="Scripts\Monitors\Get-PoolMemberEnabledState.ps1" />
+    <EmbeddedResource Include="Scripts\Monitors\Get-ServerProfileSslStatus.ps1" />
+    <EmbeddedResource Include="Scripts\Monitors\Get-TrafficGroupStatus.ps1" />
+    <EmbeddedResource Include="Scripts\Monitors\Get-VirtualServerAvailabilityState.ps1" />
+    <EmbeddedResource Include="Scripts\Monitors\Get-VirtualServerEnabledState.ps1" />
+    <EmbeddedResource Include="Scripts\Rules\Get-NodeConnections.ps1" />
+    <EmbeddedResource Include="Scripts\Rules\Get-PoolConnections.ps1" />
+    <EmbeddedResource Include="Scripts\Rules\Get-PoolMemberConnections.ps1" />
+    <EmbeddedResource Include="Scripts\Rules\Get-VirtualServerAverageConnectionDuration.ps1" />
+    <EmbeddedResource Include="Scripts\Rules\Get-VirtualServerConnections.ps1" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VSAC\Microsoft.SystemCenter.OperationsManager.targets" />
 </Project>

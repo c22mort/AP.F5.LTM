@@ -1,0 +1,75 @@
+﻿<ManagementPackFragment SchemaVersion="2.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <TypeDefinitions>
+    <EntityTypes>
+      <ClassTypes>
+        
+        <!-- AP.F5.LTM.Pool -->
+        <ClassType ID="AP.F5.LTM.Pool" Base="System!System.LogicalEntity" Accessibility="Public" Abstract="false" Hosted="true" Singleton="false">         
+          <Property ID="FullName" Key="true" Type="string" />
+          <Property ID="Name" Key="false" Type="string" />
+          <Property ID="Partition" Key="false" Type="string" />
+          <Property ID="Description" Key="false" Type="string" />
+          <Property ID="MonitorRule" Key="false" Type="string" />
+          <Property ID="TotalMembers" Key="false" Type="int"/>
+          <Property ID="ActiveMembers" Key="false" Type="int"/>
+        </ClassType>
+      
+      </ClassTypes>
+      <RelationshipTypes>
+
+        <!-- Pool -> PoolMember Hosting Relationship-->
+        <RelationshipType ID="AP.F5.LTM.PoolHostsPoolMembers" Accessibility="Public" Abstract="false" Base="System!System.Hosting">
+          <Source ID="Source" Type="AP.F5.LTM.Pool" />
+          <Target ID="Target" Type="AP.F5.LTM.PoolMember" />
+        </RelationshipType>
+      </RelationshipTypes>
+      
+    </EntityTypes>
+  </TypeDefinitions>
+  <LanguagePacks>
+    <LanguagePack ID="ENU" IsDefault="true">
+      <DisplayStrings>
+
+        <!-- AP.F5.LTM.Pool -->
+        <DisplayString ElementID="AP.F5.LTM.Pool">
+          <Name>F5 Pool</Name>
+          <Description>F5 Pool Class</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.Pool" SubElementID="FullName">
+          <Name>Full Name</Name>
+          <Description>Full Name of F5 Pool</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.Pool" SubElementID="Name">
+          <Name>Name</Name>
+          <Description>Short Name of F5 Pool</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.Pool" SubElementID="Partition">
+          <Name>Partition</Name>
+          <Description>Partition of F5 Pool</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.Pool" SubElementID="Description">
+          <Name>Description</Name>
+          <Description>Description of F5 Pool</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.Pool" SubElementID="MonitorRule">
+          <Name>Monitor Rule</Name>
+          <Description>Montior Rule of F5 Pool</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.Pool" SubElementID="TotalMembers">
+          <Name>Total Members</Name>
+          <Description>Total Members</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.Pool" SubElementID="ActiveMembers">
+          <Name>Active Members</Name>
+          <Description>Active Members</Description>
+        </DisplayString>
+
+        <!-- AP.F5.LTM.PoolHostsPoolMembers -->
+        <DisplayString ElementID="AP.F5.LTM.PoolHostsPoolMembers">
+          <Name>Pool Hosts PoolMembers</Name>
+          <Description>Defines the hosting relationship between Pools and Pool Members</Description>
+        </DisplayString>
+      </DisplayStrings>
+    </LanguagePack>
+  </LanguagePacks>
+</ManagementPackFragment>

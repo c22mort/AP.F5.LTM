@@ -1,0 +1,497 @@
+<TemplateGroup>
+  <Instances>
+    <Instance ID="Instance41e7786bdd57493ebc9d6ff47376cb1a" Type="Microsoft.SystemCenter.Authoring.CodeGeneration.Monitoring.UnitMonitor" Version="1.0.0.0">
+      <UnitMonitorConfig xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <MonitorType>AP.F5.LTM.DataSource.Monitor.CertificateExpiration</MonitorType>
+        <MonitorConfig>&lt;IntervalSeconds&gt;3600&lt;/IntervalSeconds&gt;&lt;SyncTime /&gt;&lt;OkayThreshold&gt;90&lt;/OkayThreshold&gt;&lt;CriticalThreshold&gt;30&lt;/CriticalThreshold&gt;</MonitorConfig>
+        <MonitorOperationalStates>
+          <OperationalState>
+            <OperationalStateId>ExpirationCritical</OperationalStateId>
+            <OperationalStateDisplayName>ExpirationCritical</OperationalStateDisplayName>
+            <MonitorTypeStateId>ExpirationCritical</MonitorTypeStateId>
+            <HealthState>Error</HealthState>
+          </OperationalState>
+          <OperationalState>
+            <OperationalStateId>ExpirationOkay</OperationalStateId>
+            <OperationalStateDisplayName>ExpirationOkay</OperationalStateDisplayName>
+            <MonitorTypeStateId>ExpirationOkay</MonitorTypeStateId>
+            <HealthState>Success</HealthState>
+          </OperationalState>
+          <OperationalState>
+            <OperationalStateId>ExpirationWarning</OperationalStateId>
+            <OperationalStateDisplayName>ExpirationWarning</OperationalStateDisplayName>
+            <MonitorTypeStateId>ExpirationWarning</MonitorTypeStateId>
+            <HealthState>Warning</HealthState>
+          </OperationalState>
+        </MonitorOperationalStates>
+        <ParentMonitor>Health!System.Health.AvailabilityState</ParentMonitor>
+        <Accessibility>Public</Accessibility>
+        <Id>Monitor.Certificate.Expiration.Status</Id>
+        <DisplayName>Monitor Certificate Expiration Status</DisplayName>
+        <Description>Monitors Certificate Expiration</Description>
+        <Target>AP.F5.LTM.Certificate</Target>
+        <Enabled>true</Enabled>
+        <Category>AvailabilityHealth</Category>
+        <Remotable>true</Remotable>
+        <Priority>Normal</Priority>
+        <AlertAutoResolve>true</AlertAutoResolve>
+        <AlertOnState>Warning</AlertOnState>
+        <AlertPriority>Normal</AlertPriority>
+        <AlertSeverity>MatchMonitorHealth</AlertSeverity>
+        <AlertName>F5 Certificate Expiration Alert</AlertName>
+        <AlertDescription>Certificate {0} on {1}, will expire in {2} Days!  
+
+Values;
+Certificate Name : $Target/Property[Type="AP.F5.LTM.Certificate"]/Name$, 
+Sync-FailoverGroup : $Target/Host/Host/Property[Type="AP.F5.LTM.SyncFailoverGroup"]/Name$, 
+Expiration Days : $Target/Property[Type="AP.F5.LTM.Certificate"]/ExpirationDays$ (If this is a negative Number then Certificate has already expired)
+</AlertDescription>
+        <ConfirmDelivery>false</ConfirmDelivery>
+      </UnitMonitorConfig>
+    </Instance>
+    <Instance ID="Instance0c7ff3a22d5b4ab1a13dbac0cfc7fc3e" Type="Microsoft.SystemCenter.Authoring.CodeGeneration.Monitoring.UnitMonitor" Version="1.0.0.0">
+      <UnitMonitorConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+        <MonitorType>AP.F5.LTM.Monitor.NodeAvailabilityState.Powershell</MonitorType>
+        <MonitorConfig>&lt;IntervalSeconds&gt;600&lt;/IntervalSeconds&gt;&lt;SyncTime&gt;00:04&lt;/SyncTime&gt;&lt;Debug&gt;false&lt;/Debug&gt;&lt;DeviceAddresses&gt;$Target/Host/Host/Property[Type="AP.F5.LTM.SyncFailoverGroup"]/Addresses$&lt;/DeviceAddresses&gt;&lt;DevicePorts&gt;$Target/Host/Host/Property[Type="AP.F5.LTM.SyncFailoverGroup"]/Ports$&lt;/DevicePorts&gt;&lt;DeviceCommunities&gt;$Target/Host/Host/Property[Type="AP.F5.LTM.SyncFailoverGroup"]/Communities$&lt;/DeviceCommunities&gt;&lt;NodeName&gt;$Target/Property[Type="AP.F5.LTM.Node"]/FullName$&lt;/NodeName&gt;</MonitorConfig>
+        <MonitorOperationalStates>
+          <OperationalState>
+            <OperationalStateId>NodeOkay</OperationalStateId>
+            <OperationalStateDisplayName>NodeOkay</OperationalStateDisplayName>
+            <MonitorTypeStateId>NodeOkay</MonitorTypeStateId>
+            <HealthState>Success</HealthState>
+          </OperationalState>
+          <OperationalState>
+            <OperationalStateId>NodeWarning</OperationalStateId>
+            <OperationalStateDisplayName>NodeWarning</OperationalStateDisplayName>
+            <MonitorTypeStateId>NodeWarning</MonitorTypeStateId>
+            <HealthState>Warning</HealthState>
+          </OperationalState>
+          <OperationalState>
+            <OperationalStateId>NodeCritical</OperationalStateId>
+            <OperationalStateDisplayName>NodeCritical</OperationalStateDisplayName>
+            <MonitorTypeStateId>NodeCritical</MonitorTypeStateId>
+            <HealthState>Error</HealthState>
+          </OperationalState>
+        </MonitorOperationalStates>
+        <ParentMonitor>Health!System.Health.AvailabilityState</ParentMonitor>
+        <Accessibility>Public</Accessibility>
+        <Id>Monitor.Node.AvailabilityState</Id>
+        <DisplayName>Node Availability State</DisplayName>
+        <Description>Monitors Node Availability State via SNMP and Powershell</Description>
+        <Target>AP.F5.LTM.Node</Target>
+        <Enabled>true</Enabled>
+        <Category>AvailabilityHealth</Category>
+        <Remotable>true</Remotable>
+        <Priority>Normal</Priority>
+        <AlertAutoResolve>true</AlertAutoResolve>
+        <AlertOnState>Warning</AlertOnState>
+        <AlertPriority>Normal</AlertPriority>
+        <AlertSeverity>MatchMonitorHealth</AlertSeverity>
+        <AlertName>F5 Node Availability State Change Alert</AlertName>
+        <AlertDescription>Node Name           : $Target/Property[Type="AP.F5.LTM.Node"]/Name$
+Sync-Failover Group : $Target/Host/Host/Property[Type="AP.F5.LTM.SyncFailoverGroup"]/Name$
+
+Has changed Availability State to $Data/Context/Property[@Name='AvailabilityState']$  (0=Error, 1=Available, 2=Not Currently Available, 3=Not AVailable, 4=Unknown, 5=Unlicenced)
+
+Given Reason is : $Data/Context/Property[@Name='DetailedReason']$
+</AlertDescription>
+        <ConfirmDelivery>false</ConfirmDelivery>
+      </UnitMonitorConfig>
+    </Instance>
+    <Instance ID="Instance1988e735c02945088025e02c397c362f" Type="Microsoft.SystemCenter.Authoring.CodeGeneration.Monitoring.UnitMonitor" Version="1.0.0.0">
+      <UnitMonitorConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+        <MonitorType>AP.F5.LTM.Monitor.NodeEnabledState.Powershell</MonitorType>
+        <MonitorConfig>&lt;IntervalSeconds&gt;600&lt;/IntervalSeconds&gt;&lt;SyncTime&gt;00:04&lt;/SyncTime&gt;&lt;Debug&gt;false&lt;/Debug&gt;&lt;DeviceAddresses&gt;$Target/Host/Host/Property[Type="AP.F5.LTM.SyncFailoverGroup"]/Addresses$&lt;/DeviceAddresses&gt;&lt;DevicePorts&gt;$Target/Host/Host/Property[Type="AP.F5.LTM.SyncFailoverGroup"]/Ports$&lt;/DevicePorts&gt;&lt;DeviceCommunities&gt;$Target/Host/Host/Property[Type="AP.F5.LTM.SyncFailoverGroup"]/Communities$&lt;/DeviceCommunities&gt;&lt;NodeName&gt;$Target/Property[Type="AP.F5.LTM.Node"]/FullName$&lt;/NodeName&gt;</MonitorConfig>
+        <MonitorOperationalStates>
+          <OperationalState>
+            <OperationalStateId>NodeEnabled</OperationalStateId>
+            <OperationalStateDisplayName>NodeEnabled</OperationalStateDisplayName>
+            <MonitorTypeStateId>NodeEnabled</MonitorTypeStateId>
+            <HealthState>Success</HealthState>
+          </OperationalState>
+          <OperationalState>
+            <OperationalStateId>NodeDisabled</OperationalStateId>
+            <OperationalStateDisplayName>NodeDisabled</OperationalStateDisplayName>
+            <MonitorTypeStateId>NodeDisabled</MonitorTypeStateId>
+            <HealthState>Warning</HealthState>
+          </OperationalState>
+        </MonitorOperationalStates>
+        <ParentMonitor>Health!System.Health.AvailabilityState</ParentMonitor>
+        <Accessibility>Public</Accessibility>
+        <Id>Monitor.Node.EnabledState</Id>
+        <DisplayName>Node Enabled State</DisplayName>
+        <Description>Monitors Node Enabled State via SNMP and Powershell</Description>
+        <Target>AP.F5.LTM.Node</Target>
+        <Enabled>true</Enabled>
+        <Category>AvailabilityHealth</Category>
+        <Remotable>true</Remotable>
+        <Priority>Normal</Priority>
+        <AlertAutoResolve>true</AlertAutoResolve>
+        <AlertOnState>Warning</AlertOnState>
+        <AlertPriority>Normal</AlertPriority>
+        <AlertSeverity>MatchMonitorHealth</AlertSeverity>
+        <AlertName>F5 Node Enabled State Change Alert</AlertName>
+        <AlertDescription>Node Name           : $Target/Property[Type="AP.F5.LTM.Node"]/Name$
+Sync-Failover Group : $Target/Host/Host/Property[Type="AP.F5.LTM.SyncFailoverGroup"]/Name$
+
+Has changed Enabled State to $Data/Context/Property[@Name='EnabledState']$  (0=Error, 1=Enabled, 2=Disabled, 3=Disabled by Parent)
+
+Given Reason is : $Data/Context/Property[@Name='DetailedReason']$</AlertDescription>
+        <ConfirmDelivery>false</ConfirmDelivery>
+      </UnitMonitorConfig>
+    </Instance>
+    <Instance ID="Instance9f98a54c7c5b4b22b93b41f64eaa0d96" Type="Microsoft.SystemCenter.Authoring.CodeGeneration.Monitoring.UnitMonitor" Version="1.0.0.0">
+      <UnitMonitorConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+        <MonitorType>AP.F5.LTM.Monitor.PoolAvailabilityState.Powershell</MonitorType>
+        <MonitorConfig>&lt;IntervalSeconds&gt;600&lt;/IntervalSeconds&gt;&lt;SyncTime&gt;00:02&lt;/SyncTime&gt;&lt;Debug&gt;false&lt;/Debug&gt;&lt;DeviceAddresses&gt;$Target/Host/Host/Property[Type="AP.F5.LTM.SyncFailoverGroup"]/Addresses$&lt;/DeviceAddresses&gt;&lt;DevicePorts&gt;$Target/Host/Host/Property[Type="AP.F5.LTM.SyncFailoverGroup"]/Ports$&lt;/DevicePorts&gt;&lt;DeviceCommunities&gt;$Target/Host/Host/Property[Type="AP.F5.LTM.SyncFailoverGroup"]/Communities$&lt;/DeviceCommunities&gt;&lt;PoolName&gt;$Target/Property[Type="AP.F5.LTM.Pool"]/FullName$&lt;/PoolName&gt;</MonitorConfig>
+        <MonitorOperationalStates>
+          <OperationalState>
+            <OperationalStateId>PoolOkay</OperationalStateId>
+            <OperationalStateDisplayName>PoolOkay</OperationalStateDisplayName>
+            <MonitorTypeStateId>PoolOkay</MonitorTypeStateId>
+            <HealthState>Success</HealthState>
+          </OperationalState>
+          <OperationalState>
+            <OperationalStateId>PoolWarning</OperationalStateId>
+            <OperationalStateDisplayName>PoolWarning</OperationalStateDisplayName>
+            <MonitorTypeStateId>PoolWarning</MonitorTypeStateId>
+            <HealthState>Warning</HealthState>
+          </OperationalState>
+          <OperationalState>
+            <OperationalStateId>PoolCritical</OperationalStateId>
+            <OperationalStateDisplayName>PoolCritical</OperationalStateDisplayName>
+            <MonitorTypeStateId>PoolCritical</MonitorTypeStateId>
+            <HealthState>Error</HealthState>
+          </OperationalState>
+        </MonitorOperationalStates>
+        <ParentMonitor>Health!System.Health.AvailabilityState</ParentMonitor>
+        <Accessibility>Public</Accessibility>
+        <Id>Monitor.Pool.AvailabilityState</Id>
+        <DisplayName>Pool Availability State</DisplayName>
+        <Description>Monitors Pool Availability State via SNMP and Powershell</Description>
+        <Target>AP.F5.LTM.Pool</Target>
+        <Enabled>true</Enabled>
+        <Category>AvailabilityHealth</Category>
+        <Remotable>true</Remotable>
+        <Priority>Normal</Priority>
+        <AlertAutoResolve>true</AlertAutoResolve>
+        <AlertOnState>Warning</AlertOnState>
+        <AlertPriority>Normal</AlertPriority>
+        <AlertSeverity>MatchMonitorHealth</AlertSeverity>
+        <AlertName>F5 Pool Availability State Change Alert</AlertName>
+        <AlertDescription>Pool                : $Target/Property[Type="AP.F5.LTM.Pool"]/Name$
+Sync-Failover Group : $Target/Host/Host/Property[Type="AP.F5.LTM.SyncFailoverGroup"]/Name$
+
+Has changed Availability State to $Data/Context/Property[@Name='AvailabilityState']$  (0=Error, 1=Available, 2=Not Currently Available, 3=Not AVailable, 4=Unknown, 5=Unlicenced)
+
+Given Reason is : $Data/Context/Property[@Name='DetailedReason']$
+</AlertDescription>
+        <ConfirmDelivery>false</ConfirmDelivery>
+      </UnitMonitorConfig>
+    </Instance>
+    <Instance ID="Instanceced94feed3094ac8b0e42b7a6180c6f5" Type="Microsoft.SystemCenter.Authoring.CodeGeneration.Monitoring.UnitMonitor" Version="1.0.0.0">
+      <UnitMonitorConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+        <MonitorType>AP.F5.LTM.Monitor.PoolEnabledState.Powershell</MonitorType>
+        <MonitorConfig>&lt;IntervalSeconds&gt;600&lt;/IntervalSeconds&gt;&lt;SyncTime&gt;00:02&lt;/SyncTime&gt;&lt;Debug&gt;false&lt;/Debug&gt;&lt;DeviceAddresses&gt;$Target/Host/Host/Property[Type="AP.F5.LTM.SyncFailoverGroup"]/Addresses$&lt;/DeviceAddresses&gt;&lt;DevicePorts&gt;$Target/Host/Host/Property[Type="AP.F5.LTM.SyncFailoverGroup"]/Ports$&lt;/DevicePorts&gt;&lt;DeviceCommunities&gt;$Target/Host/Host/Property[Type="AP.F5.LTM.SyncFailoverGroup"]/Communities$&lt;/DeviceCommunities&gt;&lt;PoolName&gt;$Target/Property[Type="AP.F5.LTM.Pool"]/FullName$&lt;/PoolName&gt;</MonitorConfig>
+        <MonitorOperationalStates>
+          <OperationalState>
+            <OperationalStateId>PoolEnabled</OperationalStateId>
+            <OperationalStateDisplayName>PoolEnabled</OperationalStateDisplayName>
+            <MonitorTypeStateId>PoolEnabled</MonitorTypeStateId>
+            <HealthState>Success</HealthState>
+          </OperationalState>
+          <OperationalState>
+            <OperationalStateId>PoolDisabled</OperationalStateId>
+            <OperationalStateDisplayName>PoolDisabled</OperationalStateDisplayName>
+            <MonitorTypeStateId>PoolDisabled</MonitorTypeStateId>
+            <HealthState>Warning</HealthState>
+          </OperationalState>
+        </MonitorOperationalStates>
+        <ParentMonitor>Health!System.Health.AvailabilityState</ParentMonitor>
+        <Accessibility>Public</Accessibility>
+        <Id>Monitor.Pool.EnabledState</Id>
+        <DisplayName>Pool Enabled State</DisplayName>
+        <Description>Monitors Pool Enabled State via SNMP and Powershell</Description>
+        <Target>AP.F5.LTM.Pool</Target>
+        <Enabled>true</Enabled>
+        <Category>AvailabilityHealth</Category>
+        <Remotable>true</Remotable>
+        <Priority>Normal</Priority>
+        <AlertAutoResolve>true</AlertAutoResolve>
+        <AlertOnState>Warning</AlertOnState>
+        <AlertPriority>Normal</AlertPriority>
+        <AlertSeverity>MatchMonitorHealth</AlertSeverity>
+        <AlertName>F5 Pool Enabled State Change Alert</AlertName>
+        <AlertDescription>Pool                : $Target/Property[Type="AP.F5.LTM.Pool"]/Name$
+Sync-Failover Group : $Target/Host/Host/Property[Type="AP.F5.LTM.SyncFailoverGroup"]/Name$
+
+Has changed Enabled State to $Data/Context/Property[@Name='EnabledState']$  (0=Error, 1=Enabled, 2=Disabled, 3=Disabled by Parent)
+
+Given Reason is : $Data/Context/Property[@Name='EnabledState']$</AlertDescription>
+        <ConfirmDelivery>false</ConfirmDelivery>
+      </UnitMonitorConfig>
+    </Instance>
+    <Instance ID="Instancec380f864b9be44518f1ff63070539894" Type="Microsoft.SystemCenter.Authoring.CodeGeneration.Monitoring.UnitMonitor" Version="1.0.0.0">
+      <UnitMonitorConfig xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <MonitorType>AP.F5.LTM.Monitor.PoolMemberAvailabilityState.Powershell</MonitorType>
+        <MonitorConfig>&lt;IntervalSeconds&gt;600&lt;/IntervalSeconds&gt;&lt;SyncTime&gt;00:03&lt;/SyncTime&gt;&lt;Debug&gt;false&lt;/Debug&gt;&lt;DeviceAddresses&gt;$Target/Host/Host/Host/Property[Type="AP.F5.LTM.SyncFailoverGroup"]/Addresses$&lt;/DeviceAddresses&gt;&lt;DevicePorts&gt;$Target/Host/Host/Host/Property[Type="AP.F5.LTM.SyncFailoverGroup"]/Ports$&lt;/DevicePorts&gt;&lt;DeviceCommunities&gt;$Target/Host/Host/Host/Property[Type="AP.F5.LTM.SyncFailoverGroup"]/Communities$&lt;/DeviceCommunities&gt;&lt;PoolMemberName&gt;$Target/Property[Type="AP.F5.LTM.PoolMember"]/FullName$&lt;/PoolMemberName&gt;&lt;PoolName&gt;$Target/Property[Type="AP.F5.LTM.PoolMember"]/PoolName$&lt;/PoolName&gt;</MonitorConfig>
+        <MonitorOperationalStates>
+          <OperationalState>
+            <OperationalStateId>PoolMemberOkay</OperationalStateId>
+            <OperationalStateDisplayName>PoolMemberOkay</OperationalStateDisplayName>
+            <MonitorTypeStateId>PoolMemberOkay</MonitorTypeStateId>
+            <HealthState>Success</HealthState>
+          </OperationalState>
+          <OperationalState>
+            <OperationalStateId>PoolMemberWarning</OperationalStateId>
+            <OperationalStateDisplayName>PoolMemberWarning</OperationalStateDisplayName>
+            <MonitorTypeStateId>PoolMemberWarning</MonitorTypeStateId>
+            <HealthState>Warning</HealthState>
+          </OperationalState>
+          <OperationalState>
+            <OperationalStateId>PoolMemberCritical</OperationalStateId>
+            <OperationalStateDisplayName>PoolMemberCritical</OperationalStateDisplayName>
+            <MonitorTypeStateId>PoolMemberCritical</MonitorTypeStateId>
+            <HealthState>Error</HealthState>
+          </OperationalState>
+        </MonitorOperationalStates>
+        <ParentMonitor>Health!System.Health.AvailabilityState</ParentMonitor>
+        <Accessibility>Public</Accessibility>
+        <Id>Monitor.PoolMember.AvailabilityState</Id>
+        <DisplayName>Pool Member Availability State</DisplayName>
+        <Description>Monitors Pool Member Availability State via SNMP and Powershell</Description>
+        <Target>AP.F5.LTM.PoolMember</Target>
+        <Enabled>true</Enabled>
+        <Category>AvailabilityHealth</Category>
+        <Remotable>true</Remotable>
+        <Priority>Normal</Priority>
+        <AlertAutoResolve>true</AlertAutoResolve>
+        <AlertOnState>Warning</AlertOnState>
+        <AlertPriority>Normal</AlertPriority>
+        <AlertSeverity>MatchMonitorHealth</AlertSeverity>
+        <AlertName>F5 PoolMember Availability State Change Alert</AlertName>
+        <AlertDescription>PoolMember $Target/Property[Type="AP.F5.LTM.PoolMember"]/Name$ in pool $Target/Host/Property[Type="AP.F5.LTM.Pool"]/Name$. Sync-Failover Group $Target/Host/Host/Host/Property[Type="AP.F5.LTM.SyncFailoverGroup"]/Name$
+
+Has changed Availabiliy State to $Data/Context/Property[@Name='AvailabilityState']$ (0=Error, 1=Available, 2=Not Currently Available, 3=Not AVailable, 4=Unknown, 5=Unlicenced) 
+
+Given Reason is : $Data/Context/Property[@Name='DetailedReason']$
+</AlertDescription>
+        <ConfirmDelivery>false</ConfirmDelivery>
+      </UnitMonitorConfig>
+    </Instance>
+    <Instance ID="Instance9672103b887d4b7ca3d4d205b4300094" Type="Microsoft.SystemCenter.Authoring.CodeGeneration.Monitoring.UnitMonitor" Version="1.0.0.0">
+      <UnitMonitorConfig xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <MonitorType>AP.F5.LTM.Monitor.PoolMemberEnabledState.Powershell</MonitorType>
+        <MonitorConfig>&lt;IntervalSeconds&gt;600&lt;/IntervalSeconds&gt;&lt;SyncTime&gt;00:03&lt;/SyncTime&gt;&lt;Debug&gt;false&lt;/Debug&gt;&lt;DeviceAddresses&gt;$Target/Host/Host/Host/Property[Type="AP.F5.LTM.SyncFailoverGroup"]/Addresses$&lt;/DeviceAddresses&gt;&lt;DevicePorts&gt;$Target/Host/Host/Host/Property[Type="AP.F5.LTM.SyncFailoverGroup"]/Ports$&lt;/DevicePorts&gt;&lt;DeviceCommunities&gt;$Target/Host/Host/Host/Property[Type="AP.F5.LTM.SyncFailoverGroup"]/Communities$&lt;/DeviceCommunities&gt;&lt;PoolMemberName&gt;$Target/Property[Type="AP.F5.LTM.PoolMember"]/FullName$&lt;/PoolMemberName&gt;&lt;PoolName&gt;$Target/Property[Type="AP.F5.LTM.PoolMember"]/PoolName$&lt;/PoolName&gt;</MonitorConfig>
+        <MonitorOperationalStates>
+          <OperationalState>
+            <OperationalStateId>PoolMemberEnabled</OperationalStateId>
+            <OperationalStateDisplayName>PoolMemberEnabled</OperationalStateDisplayName>
+            <MonitorTypeStateId>PoolMemberEnabled</MonitorTypeStateId>
+            <HealthState>Success</HealthState>
+          </OperationalState>
+          <OperationalState>
+            <OperationalStateId>PoolMemberDisabled</OperationalStateId>
+            <OperationalStateDisplayName>PoolMemberDisabled</OperationalStateDisplayName>
+            <MonitorTypeStateId>PoolMemberDisabled</MonitorTypeStateId>
+            <HealthState>Warning</HealthState>
+          </OperationalState>
+        </MonitorOperationalStates>
+        <ParentMonitor>Health!System.Health.AvailabilityState</ParentMonitor>
+        <Accessibility>Public</Accessibility>
+        <Id>Monitor.PoolMember.EnabledState</Id>
+        <DisplayName>Pool Member Enabled State</DisplayName>
+        <Description>Monitors Pool Member Enabled State via SNMP and Powershell</Description>
+        <Target>AP.F5.LTM.PoolMember</Target>
+        <Enabled>true</Enabled>
+        <Category>AvailabilityHealth</Category>
+        <Remotable>true</Remotable>
+        <Priority>Normal</Priority>
+        <AlertAutoResolve>true</AlertAutoResolve>
+        <AlertOnState>Warning</AlertOnState>
+        <AlertPriority>Normal</AlertPriority>
+        <AlertSeverity>MatchMonitorHealth</AlertSeverity>
+        <AlertName>F5 Pool Member Enabled State Change Alert</AlertName>
+        <AlertDescription>PoolMember         : $Target/Property[Type="AP.F5.LTM.PoolMember"]/Name$
+Pool               : $Target/Host/Property[Type="AP.F5.LTM.Pool"]/Name$
+Sync-Failover Group: $Target/Host/Host/Host/Property[Type="AP.F5.LTM.SyncFailoverGroup"]/Name$
+
+Has changed Enabled State to $Data/Context/Property[@Name='EnabledState']$  (0=Error, 1=Enabled, 2=Disabled, 3=Disabled by Parent)
+
+Given Reason is : $Data/Context/Property[@Name='DetailedReason']$
+</AlertDescription>
+        <ConfirmDelivery>false</ConfirmDelivery>
+      </UnitMonitorConfig>
+    </Instance>
+    <Instance ID="Instancecca35749606b465183306cfe8bf964be" Type="Microsoft.SystemCenter.Authoring.CodeGeneration.Monitoring.UnitMonitor" Version="1.0.0.0">
+      <UnitMonitorConfig xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <MonitorType>AP.F5.LTM.DataSource.Monitor.ServerSslProfile.Status</MonitorType>
+        <MonitorConfig>&lt;IntervalSeconds&gt;3600&lt;/IntervalSeconds&gt;&lt;SyncTime&gt;00:05&lt;/SyncTime&gt;&lt;Debug&gt;false&lt;/Debug&gt;</MonitorConfig>
+        <MonitorOperationalStates>
+          <OperationalState>
+            <OperationalStateId>ProfileHealthy</OperationalStateId>
+            <OperationalStateDisplayName>ProfileHealthy</OperationalStateDisplayName>
+            <MonitorTypeStateId>ProfileHealthy</MonitorTypeStateId>
+            <HealthState>Success</HealthState>
+          </OperationalState>
+          <OperationalState>
+            <OperationalStateId>ProfileCritical</OperationalStateId>
+            <OperationalStateDisplayName>ProfileCritical</OperationalStateDisplayName>
+            <MonitorTypeStateId>ProfileCritical</MonitorTypeStateId>
+            <HealthState>Error</HealthState>
+          </OperationalState>
+        </MonitorOperationalStates>
+        <ParentMonitor>Health!System.Health.AvailabilityState</ParentMonitor>
+        <Accessibility>Public</Accessibility>
+        <Id>Monitor.ProfileServerSSL.Status</Id>
+        <DisplayName>Monitor ProfileServerSSL Status</DisplayName>
+        <Description> Sets status  for ProfileServerSSL to healthy when there is no certificate (therefore no roll-up)</Description>
+        <Target>AP.F5.LTM.ProfileServerSSL</Target>
+        <Enabled>true</Enabled>
+        <Category>AvailabilityHealth</Category>
+        <Remotable>true</Remotable>
+        <Priority>Normal</Priority>
+        <AlertAutoResolve>true</AlertAutoResolve>
+        <AlertOnState>None</AlertOnState>
+        <AlertPriority>Normal</AlertPriority>
+        <AlertSeverity>MatchMonitorHealth</AlertSeverity>
+        <ConfirmDelivery>false</ConfirmDelivery>
+      </UnitMonitorConfig>
+    </Instance>
+    <Instance ID="Instancecd372478565f406694615a0e632d09e6" Type="Microsoft.SystemCenter.Authoring.CodeGeneration.Monitoring.UnitMonitor" Version="1.0.0.0">
+      <UnitMonitorConfig xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <MonitorType>AP.F5.LTM.DataSource.Monitor.TrafficGroup.Status</MonitorType>
+        <MonitorConfig>&lt;IntervalSeconds&gt;600&lt;/IntervalSeconds&gt;</MonitorConfig>
+        <MonitorOperationalStates>
+          <OperationalState>
+            <OperationalStateId>TrafficGroupActive</OperationalStateId>
+            <OperationalStateDisplayName>TrafficGroupActive</OperationalStateDisplayName>
+            <MonitorTypeStateId>TrafficGroupActive</MonitorTypeStateId>
+            <HealthState>Success</HealthState>
+          </OperationalState>
+          <OperationalState>
+            <OperationalStateId>TrafficGroupOffline</OperationalStateId>
+            <OperationalStateDisplayName>TrafficGroupOffline</OperationalStateDisplayName>
+            <MonitorTypeStateId>TrafficGroupOffline</MonitorTypeStateId>
+            <HealthState>Error</HealthState>
+          </OperationalState>
+          <OperationalState>
+            <OperationalStateId>TrafficGroupStandby</OperationalStateId>
+            <OperationalStateDisplayName>TrafficGroupStandby</OperationalStateDisplayName>
+            <MonitorTypeStateId>TrafficGroupStandby</MonitorTypeStateId>
+            <HealthState>Warning</HealthState>
+          </OperationalState>
+        </MonitorOperationalStates>
+        <ParentMonitor>Health!System.Health.AvailabilityState</ParentMonitor>
+        <Accessibility>Public</Accessibility>
+        <Id>Monitor.TrafficGroup.Status</Id>
+        <DisplayName>Monitor TrafficGroup Status</DisplayName>
+        <Description>Monitors TrafficGroup Status via SNMP</Description>
+        <Target>AP.F5.LTM.TrafficGroup</Target>
+        <Enabled>true</Enabled>
+        <Category>AvailabilityHealth</Category>
+        <Remotable>true</Remotable>
+        <Priority>Normal</Priority>
+        <AlertAutoResolve>true</AlertAutoResolve>
+        <AlertOnState>Warning</AlertOnState>
+        <AlertPriority>Low</AlertPriority>
+        <AlertSeverity>MatchMonitorHealth</AlertSeverity>
+        <AlertName>F5 Traffic Group State Change Alert</AlertName>
+        <AlertDescription>Traffic Group : $Target/Property[Type="AP.F5.LTM.TrafficGroup"]/Name$
+
+Has changed Enabled State to $Data/Context/Property[@Name='Value']$  ( unknown=0, offline=1, forcedOffline=2, standby=3, active=4 )</AlertDescription>
+        <ConfirmDelivery>false</ConfirmDelivery>
+      </UnitMonitorConfig>
+    </Instance>
+    <Instance ID="Instance7f0dd6f601cc44fcb681e3534e123396" Type="Microsoft.SystemCenter.Authoring.CodeGeneration.Monitoring.UnitMonitor" Version="1.0.0.0">
+      <UnitMonitorConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+        <MonitorType>AP.F5.LTM.Monitor.VirtualServerAvailabilityState.Powershell</MonitorType>
+        <MonitorConfig>&lt;IntervalSeconds&gt;600&lt;/IntervalSeconds&gt;&lt;SyncTime&gt;00:01&lt;/SyncTime&gt;&lt;Debug&gt;false&lt;/Debug&gt;&lt;DeviceAddresses&gt;$Target/Host/Host/Property[Type="AP.F5.LTM.SyncFailoverGroup"]/Addresses$&lt;/DeviceAddresses&gt;&lt;DevicePorts&gt;$Target/Host/Host/Property[Type="AP.F5.LTM.SyncFailoverGroup"]/Ports$&lt;/DevicePorts&gt;&lt;DeviceCommunities&gt;$Target/Host/Host/Property[Type="AP.F5.LTM.SyncFailoverGroup"]/Communities$&lt;/DeviceCommunities&gt;&lt;VirtualServerName&gt;$Target/Property[Type="AP.F5.LTM.VirtualServer"]/FullName$&lt;/VirtualServerName&gt;</MonitorConfig>
+        <MonitorOperationalStates>
+          <OperationalState>
+            <OperationalStateId>VirtualServerOkay</OperationalStateId>
+            <OperationalStateDisplayName>VirtualServerOkay</OperationalStateDisplayName>
+            <MonitorTypeStateId>VirtualServerOkay</MonitorTypeStateId>
+            <HealthState>Success</HealthState>
+          </OperationalState>
+          <OperationalState>
+            <OperationalStateId>VirtualServerWarning</OperationalStateId>
+            <OperationalStateDisplayName>VirtualServerWarning</OperationalStateDisplayName>
+            <MonitorTypeStateId>VirtualServerWarning</MonitorTypeStateId>
+            <HealthState>Warning</HealthState>
+          </OperationalState>
+          <OperationalState>
+            <OperationalStateId>VirtualServerCritical</OperationalStateId>
+            <OperationalStateDisplayName>VirtualServerCritical</OperationalStateDisplayName>
+            <MonitorTypeStateId>VirtualServerCritical</MonitorTypeStateId>
+            <HealthState>Error</HealthState>
+          </OperationalState>
+        </MonitorOperationalStates>
+        <ParentMonitor>Health!System.Health.AvailabilityState</ParentMonitor>
+        <Accessibility>Public</Accessibility>
+        <Id>Monitor.VirtualServer.AvailabilityState</Id>
+        <DisplayName>VirtualServer Availability State</DisplayName>
+        <Description>Monitors VirtualServer Availability State via SNMP and Powershell</Description>
+        <Target>AP.F5.LTM.VirtualServer</Target>
+        <Enabled>true</Enabled>
+        <Category>AvailabilityHealth</Category>
+        <Remotable>true</Remotable>
+        <Priority>Normal</Priority>
+        <AlertAutoResolve>true</AlertAutoResolve>
+        <AlertOnState>Warning</AlertOnState>
+        <AlertPriority>Normal</AlertPriority>
+        <AlertSeverity>MatchMonitorHealth</AlertSeverity>
+        <AlertName>F5 Virtual Server Availability State Change Alert</AlertName>
+        <AlertDescription>Virtual Server Name : $Target/Property[Type="AP.F5.LTM.VirtualServer"]/Name$, 
+Sync-Failover Group : $Target/Host/Host/Property[Type="AP.F5.LTM.SyncFailoverGroup"]/Name$
+
+Has changed Availability State to $Data/Context/Property[@Name='AvailabilityState']$  (0=Error, 1=Available, 2=Not Currently Available, 3=Not AVailable, 4=Unknown, 5=Unlicenced)
+
+Given Reason is : $Data/Context/Property[@Name='DetailedReason']$</AlertDescription>
+        <ConfirmDelivery>false</ConfirmDelivery>
+      </UnitMonitorConfig>
+    </Instance>
+    <Instance ID="Instance32b30b751b9e436aa133317bb0febfab" Type="Microsoft.SystemCenter.Authoring.CodeGeneration.Monitoring.UnitMonitor" Version="1.0.0.0">
+      <UnitMonitorConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+        <MonitorType>AP.F5.LTM.Monitor.VirtualServerEnabledState.Powershell</MonitorType>
+        <MonitorConfig>&lt;IntervalSeconds&gt;600&lt;/IntervalSeconds&gt;&lt;SyncTime&gt;00:01&lt;/SyncTime&gt;&lt;Debug&gt;false&lt;/Debug&gt;&lt;DeviceAddresses&gt;$Target/Host/Host/Property[Type="AP.F5.LTM.SyncFailoverGroup"]/Addresses$&lt;/DeviceAddresses&gt;&lt;DevicePorts&gt;$Target/Host/Host/Property[Type="AP.F5.LTM.SyncFailoverGroup"]/Ports$&lt;/DevicePorts&gt;&lt;DeviceCommunities&gt;$Target/Host/Host/Property[Type="AP.F5.LTM.SyncFailoverGroup"]/Communities$&lt;/DeviceCommunities&gt;&lt;VirtualServerName&gt;$Target/Property[Type="AP.F5.LTM.VirtualServer"]/FullName$&lt;/VirtualServerName&gt;</MonitorConfig>
+        <MonitorOperationalStates>
+          <OperationalState>
+            <OperationalStateId>VirtualServerEnabled</OperationalStateId>
+            <OperationalStateDisplayName>VirtualServerEnabled</OperationalStateDisplayName>
+            <MonitorTypeStateId>VirtualServerEnabled</MonitorTypeStateId>
+            <HealthState>Success</HealthState>
+          </OperationalState>
+          <OperationalState>
+            <OperationalStateId>VirtualServerDisabled</OperationalStateId>
+            <OperationalStateDisplayName>VirtualServerDisabled</OperationalStateDisplayName>
+            <MonitorTypeStateId>VirtualServerDisabled</MonitorTypeStateId>
+            <HealthState>Warning</HealthState>
+          </OperationalState>
+        </MonitorOperationalStates>
+        <ParentMonitor>Health!System.Health.AvailabilityState</ParentMonitor>
+        <Accessibility>Public</Accessibility>
+        <Id>Monitor.VirtualServer.EnabledState</Id>
+        <DisplayName>VirtualServer Enabled State</DisplayName>
+        <Description>Monitors VirtualServer Enabled State via SNMP and Powershell</Description>
+        <Target>AP.F5.LTM.VirtualServer</Target>
+        <Enabled>true</Enabled>
+        <Category>AvailabilityHealth</Category>
+        <Remotable>true</Remotable>
+        <Priority>Normal</Priority>
+        <AlertAutoResolve>true</AlertAutoResolve>
+        <AlertOnState>Warning</AlertOnState>
+        <AlertPriority>Normal</AlertPriority>
+        <AlertSeverity>MatchMonitorHealth</AlertSeverity>
+        <AlertName>F5 Virtual Server Enabled State Change Alert</AlertName>
+        <AlertDescription>Virtual Server Name : $Target/Property[Type="AP.F5.LTM.VirtualServer"]/Name$, 
+Sync-Failover Group : $Target/Host/Host/Property[Type="AP.F5.LTM.SyncFailoverGroup"]/Name$
+
+Has changed Enabled State to $Data/Context/Property[@Name='EnabledState']$ (0=Error, 1=Enabled, 2=Disabled, 3=Disabled by Parent)
+
+Given Reason is : $Data/Context/Property[@Name='DetailedReason']$   </AlertDescription>
+        <ConfirmDelivery>false</ConfirmDelivery>
+      </UnitMonitorConfig>
+    </Instance>
+  </Instances>
+</TemplateGroup>

@@ -1,0 +1,208 @@
+<TemplateGroup>
+  <Instances>
+    <Instance ID="Instance30bbb391a8b14de9a4ceec22bc94afab" Type="Microsoft.SystemCenter.Authoring.CodeGeneration.Monitoring.DependencyMonitor" Version="1.0.0.0">
+      <DependencyMonitorConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+        <Algorithm>
+          <Algorithm>WorstOf</Algorithm>
+        </Algorithm>
+        <MemberMonitor>AP.F5.LTM.Monitor.TrafficGroup.Status</MemberMonitor>
+        <MemberInMaintenance>Ignore</MemberInMaintenance>
+        <MemberUnavailable>Ignore</MemberUnavailable>
+        <RelationshipType>AP.F5.LTM.SyncFailoverGroupHostsTrafficGroups</RelationshipType>
+        <ParentMonitor>Health!System.Health.AvailabilityState</ParentMonitor>
+        <Accessibility>Public</Accessibility>
+        <Id>SyncFailoverGroup.TrafficGroup.RollUp.Monitor</Id>
+        <DisplayName>SyncFailoverGroup &lt;- TrafficGroup Roll-up Monitor</DisplayName>
+        <Description>Rolls up Traffic Group Status to SyncFailover Group Status</Description>
+        <Target>AP.F5.LTM.SyncFailoverGroup</Target>
+        <Enabled>true</Enabled>
+        <Category>AvailabilityHealth</Category>
+        <Remotable>true</Remotable>
+        <Priority>Normal</Priority>
+        <AlertAutoResolve>true</AlertAutoResolve>
+        <AlertOnState>None</AlertOnState>
+        <AlertPriority>Normal</AlertPriority>
+        <AlertSeverity>MatchMonitorHealth</AlertSeverity>
+      </DependencyMonitorConfig>
+    </Instance>
+    <Instance ID="Instance0d97df2bb32745b38728cdbf75ad8fc9" Type="Microsoft.SystemCenter.Authoring.CodeGeneration.Monitoring.DependencyMonitor" Version="1.0.0.0">
+      <DependencyMonitorConfig xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <Algorithm>
+          <Algorithm>WorstOf</Algorithm>
+        </Algorithm>
+        <MemberMonitor>AP.F5.LTM.Monitor.Certificate.Expiration.Status</MemberMonitor>
+        <MemberInMaintenance>Ignore</MemberInMaintenance>
+        <MemberUnavailable>Ignore</MemberUnavailable>
+        <RelationshipType>AP.F5.LTM.ProfileServerSSL.ContainsCertificates</RelationshipType>
+        <ParentMonitor>Health!System.Health.AvailabilityState</ParentMonitor>
+        <Accessibility>Public</Accessibility>
+        <Id>ProfileServerSSL.Certificate.Expiration.RollUp.Monitor</Id>
+        <DisplayName>ProfileServerSSL &lt;- Certificate Expiration RollUp Monitor</DisplayName>
+        <Description>Rolls-up Certificate Expiration Monitor to Server SSL Profile</Description>
+        <Target>AP.F5.LTM.ProfileServerSSL</Target>
+        <Enabled>true</Enabled>
+        <Category>AvailabilityHealth</Category>
+        <Remotable>true</Remotable>
+        <Priority>Normal</Priority>
+        <AlertAutoResolve>true</AlertAutoResolve>
+        <AlertOnState>None</AlertOnState>
+        <AlertPriority>Normal</AlertPriority>
+        <AlertSeverity>MatchMonitorHealth</AlertSeverity>
+      </DependencyMonitorConfig>
+    </Instance>
+    <Instance ID="Instance12b5546b8fc840cd91260fea803a748b" Type="Microsoft.SystemCenter.Authoring.CodeGeneration.Monitoring.DependencyMonitor" Version="1.0.0.0">
+      <DependencyMonitorConfig xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <Algorithm>
+          <Algorithm>WorstOf</Algorithm>
+        </Algorithm>
+        <MemberMonitor>AP.F5.LTM.Monitor.Certificate.Expiration.Status</MemberMonitor>
+        <MemberInMaintenance>Ignore</MemberInMaintenance>
+        <MemberUnavailable>Ignore</MemberUnavailable>
+        <RelationshipType>AP.F5.LTM.ProfileClientSSL.ContainsCertificates</RelationshipType>
+        <ParentMonitor>Health!System.Health.AvailabilityState</ParentMonitor>
+        <Accessibility>Public</Accessibility>
+        <Id>ProfileClientSSL.Certificate.Expiration.RollUp.Monitor</Id>
+        <DisplayName>ProfileClientSSL &lt;- Certificate Expiration RollUp Monitor</DisplayName>
+        <Description>Rolls-up Certificate Expiration Monitor to Client SSL Profile</Description>
+        <Target>AP.F5.LTM.ProfileClientSSL</Target>
+        <Enabled>true</Enabled>
+        <Category>AvailabilityHealth</Category>
+        <Remotable>true</Remotable>
+        <Priority>Normal</Priority>
+        <AlertAutoResolve>true</AlertAutoResolve>
+        <AlertOnState>None</AlertOnState>
+        <AlertPriority>Normal</AlertPriority>
+        <AlertSeverity>MatchMonitorHealth</AlertSeverity>
+      </DependencyMonitorConfig>
+    </Instance>
+    <Instance ID="Instance716052b86c5a468c89a9527fa7a0fce8" Type="Microsoft.SystemCenter.Authoring.CodeGeneration.Monitoring.DependencyMonitor" Version="1.0.0.0">
+      <DependencyMonitorConfig xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <Algorithm>
+          <Algorithm>WorstOf</Algorithm>
+        </Algorithm>
+        <MemberMonitor>AP.F5.LTM.Monitor.PoolMember.AvailabilityState</MemberMonitor>
+        <MemberInMaintenance>Ignore</MemberInMaintenance>
+        <MemberUnavailable>Ignore</MemberUnavailable>
+        <RelationshipType>AP.F5.LTM.PoolHostsPoolMembers</RelationshipType>
+        <ParentMonitor>Health!System.Health.AvailabilityState</ParentMonitor>
+        <Accessibility>Public</Accessibility>
+        <Id>Pool.PoolMember.Status.RollUp.Monitor</Id>
+        <DisplayName>Pool &lt;- Pool Member Roll-up Monitor</DisplayName>
+        <Description>Rolls up PoolMember health status to Pool health status</Description>
+        <Target>AP.F5.LTM.Pool</Target>
+        <Enabled>true</Enabled>
+        <Category>AvailabilityHealth</Category>
+        <Remotable>true</Remotable>
+        <Priority>Normal</Priority>
+        <AlertAutoResolve>true</AlertAutoResolve>
+        <AlertOnState>None</AlertOnState>
+        <AlertPriority>Normal</AlertPriority>
+        <AlertSeverity>MatchMonitorHealth</AlertSeverity>
+      </DependencyMonitorConfig>
+    </Instance>
+    <Instance ID="Instance3688c1a64e6c4da6ab65e52c9e2c7907" Type="Microsoft.SystemCenter.Authoring.CodeGeneration.Monitoring.DependencyMonitor" Version="1.0.0.0">
+      <DependencyMonitorConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+        <Algorithm>
+          <Algorithm>WorstOf</Algorithm>
+          <AlgorithmParameter>40</AlgorithmParameter>
+        </Algorithm>
+        <MemberMonitor>AP.F5.LTM.Monitor.VirtualServer.AvailabilityState</MemberMonitor>
+        <MemberInMaintenance>Ignore</MemberInMaintenance>
+        <MemberUnavailable>Ignore</MemberUnavailable>
+        <RelationshipType>AP.F5.LTM.PartitionHostsVirtualServers</RelationshipType>
+        <ParentMonitor>Health!System.Health.AvailabilityState</ParentMonitor>
+        <Accessibility>Public</Accessibility>
+        <Id>Partition.VirtualServer.RollUp.Monitor</Id>
+        <DisplayName>Partition &lt;- Virtual Server Roll-up Monitor</DisplayName>
+        <Description>Rolls up Virtual Server Availability to Partition Availability</Description>
+        <Target>AP.F5.LTM.Partition</Target>
+        <Enabled>true</Enabled>
+        <Category>AvailabilityHealth</Category>
+        <Remotable>true</Remotable>
+        <Priority>Normal</Priority>
+        <AlertAutoResolve>true</AlertAutoResolve>
+        <AlertOnState>None</AlertOnState>
+        <AlertPriority>Normal</AlertPriority>
+        <AlertSeverity>MatchMonitorHealth</AlertSeverity>
+      </DependencyMonitorConfig>
+    </Instance>
+    <Instance ID="Instance35b3156a19224d82981260b8f056aad5" Type="Microsoft.SystemCenter.Authoring.CodeGeneration.Monitoring.DependencyMonitor" Version="1.0.0.0">
+      <DependencyMonitorConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+        <Algorithm>
+          <Algorithm>WorstOf</Algorithm>
+          <AlgorithmParameter>40</AlgorithmParameter>
+        </Algorithm>
+        <MemberMonitor>AP.F5.LTM.Monitor.Pool.AvailabilityState</MemberMonitor>
+        <MemberInMaintenance>Ignore</MemberInMaintenance>
+        <MemberUnavailable>Ignore</MemberUnavailable>
+        <RelationshipType>AP.F5.LTM.PartitionHostsPools</RelationshipType>
+        <ParentMonitor>Health!System.Health.AvailabilityState</ParentMonitor>
+        <Accessibility>Public</Accessibility>
+        <Id>Partition.Pool.RollUp.Monitor</Id>
+        <DisplayName>Partition &lt;- Pool Roll-up Monitor</DisplayName>
+        <Description>Rolls up Pool Availability to Partition Availability</Description>
+        <Target>AP.F5.LTM.Partition</Target>
+        <Enabled>true</Enabled>
+        <Category>AvailabilityHealth</Category>
+        <Remotable>true</Remotable>
+        <Priority>Normal</Priority>
+        <AlertAutoResolve>true</AlertAutoResolve>
+        <AlertOnState>None</AlertOnState>
+        <AlertPriority>Normal</AlertPriority>
+        <AlertSeverity>MatchMonitorHealth</AlertSeverity>
+      </DependencyMonitorConfig>
+    </Instance>
+    <Instance ID="Instance89a1e2ae810344e6aaa0742c68098c1f" Type="Microsoft.SystemCenter.Authoring.CodeGeneration.Monitoring.DependencyMonitor" Version="1.0.0.0">
+      <DependencyMonitorConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+        <Algorithm>
+          <Algorithm>WorstOf</Algorithm>
+          <AlgorithmParameter>40</AlgorithmParameter>
+        </Algorithm>
+        <MemberMonitor>AP.F5.LTM.Monitor.Node.AvailabilityState</MemberMonitor>
+        <MemberInMaintenance>Ignore</MemberInMaintenance>
+        <MemberUnavailable>Ignore</MemberUnavailable>
+        <RelationshipType>AP.F5.LTM.PartitionHostsNodes</RelationshipType>
+        <ParentMonitor>Health!System.Health.AvailabilityState</ParentMonitor>
+        <Accessibility>Public</Accessibility>
+        <Id>Partition.Node.RollUp.Monitor</Id>
+        <DisplayName>Partition &lt;- Node Roll-up Monitor</DisplayName>
+        <Description>Rolls up Node Availability to Partition Availability</Description>
+        <Target>AP.F5.LTM.Partition</Target>
+        <Enabled>true</Enabled>
+        <Category>AvailabilityHealth</Category>
+        <Remotable>true</Remotable>
+        <Priority>Normal</Priority>
+        <AlertAutoResolve>true</AlertAutoResolve>
+        <AlertOnState>None</AlertOnState>
+        <AlertPriority>Normal</AlertPriority>
+        <AlertSeverity>MatchMonitorHealth</AlertSeverity>
+      </DependencyMonitorConfig>
+    </Instance>
+    <Instance ID="Instanceb347e445989643778e5132acd066d916" Type="Microsoft.SystemCenter.Authoring.CodeGeneration.Monitoring.DependencyMonitor" Version="1.0.0.0">
+      <DependencyMonitorConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+        <Algorithm>
+          <Algorithm>WorstOf</Algorithm>
+          <AlgorithmParameter>40</AlgorithmParameter>
+        </Algorithm>
+        <MemberMonitor>AP.F5.LTM.Monitor.Certificate.Expiration.Status</MemberMonitor>
+        <MemberInMaintenance>Ignore</MemberInMaintenance>
+        <MemberUnavailable>Ignore</MemberUnavailable>
+        <RelationshipType>AP.F5.LTM.PartitionHostsCertificates</RelationshipType>
+        <ParentMonitor>Health!System.Health.AvailabilityState</ParentMonitor>
+        <Accessibility>Public</Accessibility>
+        <Id>Partition.Certificate.RollUp.Monitor</Id>
+        <DisplayName>Partition &lt;- Certificate Roll-up Monitor</DisplayName>
+        <Description>Rolls up Certificate Availability to Partition Availability</Description>
+        <Target>AP.F5.LTM.Partition</Target>
+        <Enabled>true</Enabled>
+        <Category>AvailabilityHealth</Category>
+        <Remotable>true</Remotable>
+        <Priority>Normal</Priority>
+        <AlertAutoResolve>true</AlertAutoResolve>
+        <AlertOnState>None</AlertOnState>
+        <AlertPriority>Normal</AlertPriority>
+        <AlertSeverity>MatchMonitorHealth</AlertSeverity>
+      </DependencyMonitorConfig>
+    </Instance>
+  </Instances>
+</TemplateGroup>

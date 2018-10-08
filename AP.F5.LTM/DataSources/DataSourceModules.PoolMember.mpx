@@ -1,0 +1,1041 @@
+﻿<ManagementPackFragment SchemaVersion="2.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <TypeDefinitions>
+    <ModuleTypes>
+
+
+      <!-- AP.F5.LTM.DataSource.PoolMemberAvailabilityState.Filtered -->
+      <!-- Calls AP.F5.LTM.DataSource.PoolMemberAvailabilityState.Powershell, Filters results by PoolMember Name -->
+      <DataSourceModuleType ID="AP.F5.LTM.DataSource.PoolMemberAvailabilityState.Filtered" Accessibility="Public" Batching="false">
+        <Configuration>
+          <IncludeSchemaTypes>
+            <SchemaType>Windows!Microsoft.Windows.PowerShellSchema</SchemaType>
+          </IncludeSchemaTypes>
+          <xsd:element minOccurs="1" name="IntervalSeconds" type="xsd:integer"/>
+          <xsd:element minOccurs="1" name="SyncTime" type="xsd:string"/>
+          <xsd:element minOccurs="1" name="Debug" type="xsd:boolean"/>
+          <xsd:element minOccurs="1" name="DeviceAddresses" type="xsd:string"/>
+          <xsd:element minOccurs="1" name="DevicePorts" type="xsd:string"/>
+          <xsd:element minOccurs="1" name="DeviceCommunities" type="xsd:string"/>
+          <xsd:element minOccurs="1" name="PoolMemberName" type="xsd:string"/>
+          <xsd:element minOccurs="1" name="PoolName" type="xsd:string"/>
+        </Configuration>
+        <OverrideableParameters>
+          <OverrideableParameter ID="IntervalSeconds" Selector="$Config/IntervalSeconds$" ParameterType="int"/>
+          <OverrideableParameter ID="SyncTime" Selector="$Config/SyncTime$" ParameterType="string"/>
+          <OverrideableParameter ID="Debug" Selector="$Config/Debug$" ParameterType="bool"/>
+        </OverrideableParameters>
+        <ModuleImplementation Isolation="Any">
+          <Composite>
+            <MemberModules>
+              <DataSource ID="Script" TypeID="AP.F5.LTM.DataSource.PoolMemberAvailabilityState.Powershell">
+                <IntervalSeconds>$Config/IntervalSeconds$</IntervalSeconds>
+                <SyncTime>$Config/SyncTime$</SyncTime>
+                <Debug>$Config/Debug$</Debug>
+                <DeviceAddresses>$Config/DeviceAddresses$</DeviceAddresses>
+                <DevicePorts>$Config/DevicePorts$</DevicePorts>
+                <DeviceCommunities>$Config/DeviceCommunities$</DeviceCommunities>
+              </DataSource>
+              <ConditionDetection ID="FilterPoolMemberName" TypeID="System!System.ExpressionFilter">
+                <Expression>
+                  <And>
+                    <Expression>
+                      <SimpleExpression>
+                        <ValueExpression>
+                          <XPathQuery Type="String">Property[@Name='PoolMemberName']</XPathQuery>
+                        </ValueExpression>
+                        <Operator>Equal</Operator>
+                        <ValueExpression>
+                          <Value Type="String">$Config/PoolMemberName$</Value>
+                        </ValueExpression>
+                      </SimpleExpression>
+                    </Expression>
+                    <Expression>
+                      <SimpleExpression>
+                        <ValueExpression>
+                          <XPathQuery Type="String">Property[@Name='PoolName']</XPathQuery>
+                        </ValueExpression>
+                        <Operator>Equal</Operator>
+                        <ValueExpression>
+                          <Value Type="String">$Config/PoolName$</Value>
+                        </ValueExpression>
+                      </SimpleExpression>
+                    </Expression>
+                  </And>
+                </Expression>
+              </ConditionDetection>            
+            </MemberModules>
+            <Composition>
+              <Node ID="FilterPoolMemberName">
+                <Node ID="Script" />
+              </Node>
+            </Composition>
+          </Composite>
+        </ModuleImplementation>
+        <OutputType>System!System.PropertyBagData</OutputType>
+      </DataSourceModuleType>
+
+      <!-- AP.F5.LTM.DataSource.PoolMemberEnabledState.Filtered -->
+      <!-- Calls AP.F5.LTM.DataSource.PoolMemberEnabledState.Powershell, Filters results by PoolMember Name -->
+      <DataSourceModuleType ID="AP.F5.LTM.DataSource.PoolMemberEnabledState.Filtered" Accessibility="Public" Batching="false">
+        <Configuration>
+          <IncludeSchemaTypes>
+            <SchemaType>Windows!Microsoft.Windows.PowerShellSchema</SchemaType>
+          </IncludeSchemaTypes>
+          <xsd:element minOccurs="1" name="IntervalSeconds" type="xsd:integer"/>
+          <xsd:element minOccurs="1" name="SyncTime" type="xsd:string"/>
+          <xsd:element minOccurs="1" name="Debug" type="xsd:boolean"/>
+          <xsd:element minOccurs="1" name="DeviceAddresses" type="xsd:string"/>
+          <xsd:element minOccurs="1" name="DevicePorts" type="xsd:string"/>
+          <xsd:element minOccurs="1" name="DeviceCommunities" type="xsd:string"/>
+          <xsd:element minOccurs="1" name="PoolMemberName" type="xsd:string"/>
+          <xsd:element minOccurs="1" name="PoolName" type="xsd:string"/>
+        </Configuration>
+        <OverrideableParameters>
+          <OverrideableParameter ID="IntervalSeconds" Selector="$Config/IntervalSeconds$" ParameterType="int"/>
+          <OverrideableParameter ID="SyncTime" Selector="$Config/SyncTime$" ParameterType="string"/>
+          <OverrideableParameter ID="Debug" Selector="$Config/Debug$" ParameterType="bool"/>
+        </OverrideableParameters>
+        <ModuleImplementation Isolation="Any">
+          <Composite>
+            <MemberModules>
+              <DataSource ID="Script" TypeID="AP.F5.LTM.DataSource.PoolMemberEnabledState.Powershell">
+                <IntervalSeconds>$Config/IntervalSeconds$</IntervalSeconds>
+                <SyncTime>$Config/SyncTime$</SyncTime>
+                <Debug>$Config/Debug$</Debug>
+                <DeviceAddresses>$Config/DeviceAddresses$</DeviceAddresses>
+                <DevicePorts>$Config/DevicePorts$</DevicePorts>
+                <DeviceCommunities>$Config/DeviceCommunities$</DeviceCommunities>
+              </DataSource>
+              <ConditionDetection ID="FilterPoolMemberName" TypeID="System!System.ExpressionFilter">
+                <Expression>
+                  <And>
+                    <Expression>
+                      <SimpleExpression>
+                        <ValueExpression>
+                          <XPathQuery Type="String">Property[@Name='PoolMemberName']</XPathQuery>
+                        </ValueExpression>
+                        <Operator>Equal</Operator>
+                        <ValueExpression>
+                          <Value Type="String">$Config/PoolMemberName$</Value>
+                        </ValueExpression>
+                      </SimpleExpression>
+                    </Expression>
+                    <Expression>
+                      <SimpleExpression>
+                        <ValueExpression>
+                          <XPathQuery Type="String">Property[@Name='PoolName']</XPathQuery>
+                        </ValueExpression>
+                        <Operator>Equal</Operator>
+                        <ValueExpression>
+                          <Value Type="String">$Config/PoolName$</Value>
+                        </ValueExpression>
+                      </SimpleExpression>
+                    </Expression>
+                  </And>
+                </Expression>
+              </ConditionDetection>
+            </MemberModules>
+            <Composition>
+              <Node ID="FilterPoolMemberName">
+                <Node ID="Script" />
+              </Node>
+            </Composition>
+          </Composite>
+        </ModuleImplementation>
+        <OutputType>System!System.PropertyBagData</OutputType>
+      </DataSourceModuleType>
+
+      <!-- AP.F5.LTM.DataSource.PoolMemberConnections.Filtered -->
+      <!-- Calls AP.F5.LTM.DataSource.PoolMemberConnections.Powershell, Filters results by PoolMember Name -->
+      <!-- Returned As Performance Data -->
+      <DataSourceModuleType ID="AP.F5.LTM.DataSource.Perf.PoolMemberConnections.Filtered" Accessibility="Public" Batching="false">
+        <Configuration>
+          <IncludeSchemaTypes>
+            <SchemaType>Windows!Microsoft.Windows.PowerShellSchema</SchemaType>
+          </IncludeSchemaTypes>
+          <xsd:element minOccurs="1" name="IntervalSeconds" type="xsd:integer"/>
+          <xsd:element minOccurs="1" name="SyncTime" type="xsd:string"/>
+          <xsd:element minOccurs="1" name="Debug" type="xsd:boolean"/>
+          <xsd:element minOccurs="1" name="DeviceAddresses" type="xsd:string"/>
+          <xsd:element minOccurs="1" name="DevicePorts" type="xsd:string"/>
+          <xsd:element minOccurs="1" name="DeviceCommunities" type="xsd:string"/>
+          <xsd:element minOccurs="1" name="PoolMemberName" type="xsd:string"/>
+          <xsd:element minOccurs="1" name="PoolName" type="xsd:string"/>
+        </Configuration>
+        <OverrideableParameters>
+          <OverrideableParameter ID="IntervalSeconds" Selector="$Config/IntervalSeconds$" ParameterType="int"/>
+          <OverrideableParameter ID="SyncTime" Selector="$Config/SyncTime$" ParameterType="string"/>
+          <OverrideableParameter ID="Debug" Selector="$Config/Debug$" ParameterType="bool"/>
+        </OverrideableParameters>
+        <ModuleImplementation Isolation="Any">
+          <Composite>
+            <MemberModules>
+              <DataSource ID="Script" TypeID="AP.F5.LTM.DataSource.PoolMemberConnections.Powershell">
+                <IntervalSeconds>$Config/IntervalSeconds$</IntervalSeconds>
+                <SyncTime>$Config/SyncTime$</SyncTime>
+                <Debug>$Config/Debug$</Debug>
+                <DeviceAddresses>$Config/DeviceAddresses$</DeviceAddresses>
+                <DevicePorts>$Config/DevicePorts$</DevicePorts>
+                <DeviceCommunities>$Config/DeviceCommunities$</DeviceCommunities>
+              </DataSource>
+              <ConditionDetection ID="FilterPoolMemberName" TypeID="System!System.ExpressionFilter">
+                <Expression>
+                  <And>
+                    <Expression>
+                      <SimpleExpression>
+                        <ValueExpression>
+                          <XPathQuery Type="String">Property[@Name='PoolMemberName']</XPathQuery>
+                        </ValueExpression>
+                        <Operator>Equal</Operator>
+                        <ValueExpression>
+                          <Value Type="String">$Config/PoolMemberName$</Value>
+                        </ValueExpression>
+                      </SimpleExpression>
+                    </Expression>
+                    <Expression>
+                      <SimpleExpression>
+                        <ValueExpression>
+                          <XPathQuery Type="String">Property[@Name='PoolName']</XPathQuery>
+                        </ValueExpression>
+                        <Operator>Equal</Operator>
+                        <ValueExpression>
+                          <Value Type="String">$Config/PoolName$</Value>
+                        </ValueExpression>
+                      </SimpleExpression>
+                    </Expression>
+                  </And>
+                </Expression>
+              </ConditionDetection>
+              <ConditionDetection ID="PerfMapper" TypeID="Perf!System.Performance.DataGenericMapper">
+                <ObjectName>Connections</ObjectName>
+                <CounterName>Current</CounterName>
+                <InstanceName></InstanceName>
+                <Value>$Data/Property[@Name="Connections"]$</Value>
+              </ConditionDetection>
+            </MemberModules>
+            <Composition>
+              <Node ID ="PerfMapper">
+                <Node ID="FilterPoolMemberName">
+                  <Node ID="Script" />
+                </Node>
+              </Node>
+            </Composition>
+          </Composite>
+        </ModuleImplementation>
+        <OutputType>Perf!System.Performance.Data</OutputType>
+      </DataSourceModuleType>
+
+      <!-- AP.F5.LTM.DataSource.PoolMemberAvailabilityState.Powershell -->
+      <!-- Calls AP.F5.LTM.Probe.PoolMemberAvailabilityState.Powershell wraps it with a scheduler -->
+      <DataSourceModuleType ID="AP.F5.LTM.DataSource.PoolMemberAvailabilityState.Powershell" Accessibility="Public" Batching="false">
+        <Configuration>
+          <IncludeSchemaTypes>
+            <SchemaType>Windows!Microsoft.Windows.PowerShellSchema</SchemaType>
+          </IncludeSchemaTypes>
+          <xsd:element minOccurs="1" name="IntervalSeconds" type="xsd:integer"/>
+          <xsd:element minOccurs="1" name="SyncTime" type="xsd:string"/>
+          <xsd:element minOccurs="1" name="Debug" type="xsd:boolean"/>
+          <xsd:element minOccurs="1" name="DeviceAddresses" type="xsd:string"/>
+          <xsd:element minOccurs="1" name="DevicePorts" type="xsd:string"/>
+          <xsd:element minOccurs="1" name="DeviceCommunities" type="xsd:string"/>
+        </Configuration>
+        <OverrideableParameters>
+          <OverrideableParameter ID="IntervalSeconds" Selector="$Config/IntervalSeconds$" ParameterType="int"/>
+          <OverrideableParameter ID="SyncTime" Selector="$Config/SyncTime$" ParameterType="string"/>
+          <OverrideableParameter ID="Debug" Selector="$Config/Debug$" ParameterType="bool"/>
+        </OverrideableParameters>
+        <ModuleImplementation Isolation="Any">
+          <Composite>
+            <MemberModules>
+              <DataSource ID="Scheduler" TypeID="System!System.SimpleScheduler">
+                <IntervalSeconds>$Config/IntervalSeconds$</IntervalSeconds>
+                <SyncTime>$Config/SyncTime$</SyncTime>
+              </DataSource>
+              <ProbeAction ID="PSScript" TypeID="AP.F5.LTM.Probe.PoolMemberAvailabilityState.Powershell">
+                <Debug>$Config/Debug$</Debug>
+                <DeviceAddresses>$Config/DeviceAddresses$</DeviceAddresses>
+                <DevicePorts>$Config/DevicePorts$</DevicePorts>
+                <DeviceCommunities>$Config/DeviceCommunities$</DeviceCommunities>
+              </ProbeAction>
+            </MemberModules>
+            <Composition>
+              <Node ID="PSScript">
+                <Node ID="Scheduler" />
+              </Node>
+            </Composition>
+          </Composite>
+        </ModuleImplementation>
+        <OutputType>System!System.PropertyBagData</OutputType>
+      </DataSourceModuleType>
+      
+      <!-- AP.F5.LTM.DataSource.PoolMemberEnabledState.Powershell -->
+      <!-- Calls AP.F5.LTM.Probe.PoolMemberEnabledState.Powershell wraps it with a scheduler -->
+      <DataSourceModuleType ID="AP.F5.LTM.DataSource.PoolMemberEnabledState.Powershell" Accessibility="Public" Batching="false">
+        <Configuration>
+          <IncludeSchemaTypes>
+            <SchemaType>Windows!Microsoft.Windows.PowerShellSchema</SchemaType>
+          </IncludeSchemaTypes>
+          <xsd:element minOccurs="1" name="IntervalSeconds" type="xsd:integer"/>
+          <xsd:element minOccurs="1" name="SyncTime" type="xsd:string"/>
+          <xsd:element minOccurs="1" name="Debug" type="xsd:boolean"/>
+          <xsd:element minOccurs="1" name="DeviceAddresses" type="xsd:string"/>
+          <xsd:element minOccurs="1" name="DevicePorts" type="xsd:string"/>
+          <xsd:element minOccurs="1" name="DeviceCommunities" type="xsd:string"/>
+        </Configuration>
+        <OverrideableParameters>
+          <OverrideableParameter ID="IntervalSeconds" Selector="$Config/IntervalSeconds$" ParameterType="int"/>
+          <OverrideableParameter ID="SyncTime" Selector="$Config/SyncTime$" ParameterType="string"/>
+          <OverrideableParameter ID="Debug" Selector="$Config/Debug$" ParameterType="bool"/>
+        </OverrideableParameters>
+        <ModuleImplementation Isolation="Any">
+          <Composite>
+            <MemberModules>
+              <DataSource ID="Scheduler" TypeID="System!System.SimpleScheduler">
+                <IntervalSeconds>$Config/IntervalSeconds$</IntervalSeconds>
+                <SyncTime>$Config/SyncTime$</SyncTime>
+              </DataSource>
+              <ProbeAction ID="PSScript" TypeID="AP.F5.LTM.Probe.PoolMemberEnabledState.Powershell">
+                <Debug>$Config/Debug$</Debug>
+                <DeviceAddresses>$Config/DeviceAddresses$</DeviceAddresses>
+                <DevicePorts>$Config/DevicePorts$</DevicePorts>
+                <DeviceCommunities>$Config/DeviceCommunities$</DeviceCommunities>
+              </ProbeAction>
+            </MemberModules>
+            <Composition>
+              <Node ID="PSScript">
+                <Node ID="Scheduler" />
+              </Node>
+            </Composition>
+          </Composite>
+        </ModuleImplementation>
+        <OutputType>System!System.PropertyBagData</OutputType>
+      </DataSourceModuleType>
+
+      <!-- AP.F5.LTM.DataSource.PoolMemberConnections.Powershell -->
+      <!-- Calls AP.F5.LTM.Probe.PoolMemberConnections.Powershell wraps it with a scheduler -->
+      <DataSourceModuleType ID="AP.F5.LTM.DataSource.PoolMemberConnections.Powershell" Accessibility="Public" Batching="false">
+        <Configuration>
+          <IncludeSchemaTypes>
+            <SchemaType>Windows!Microsoft.Windows.PowerShellSchema</SchemaType>
+          </IncludeSchemaTypes>
+          <xsd:element minOccurs="1" name="IntervalSeconds" type="xsd:integer"/>
+          <xsd:element minOccurs="1" name="SyncTime" type="xsd:string"/>
+          <xsd:element minOccurs="1" name="Debug" type="xsd:boolean"/>
+          <xsd:element minOccurs="1" name="DeviceAddresses" type="xsd:string"/>
+          <xsd:element minOccurs="1" name="DevicePorts" type="xsd:string"/>
+          <xsd:element minOccurs="1" name="DeviceCommunities" type="xsd:string"/>
+        </Configuration>
+        <OverrideableParameters>
+          <OverrideableParameter ID="IntervalSeconds" Selector="$Config/IntervalSeconds$" ParameterType="int"/>
+          <OverrideableParameter ID="SyncTime" Selector="$Config/SyncTime$" ParameterType="string"/>
+          <OverrideableParameter ID="Debug" Selector="$Config/Debug$" ParameterType="bool"/>
+        </OverrideableParameters>
+        <ModuleImplementation Isolation="Any">
+          <Composite>
+            <MemberModules>
+              <DataSource ID="Scheduler" TypeID="System!System.SimpleScheduler">
+                <IntervalSeconds>$Config/IntervalSeconds$</IntervalSeconds>
+                <SyncTime>$Config/SyncTime$</SyncTime>
+              </DataSource>
+              <ProbeAction ID="PSScript" TypeID="AP.F5.LTM.Probe.PoolMemberConnections.Powershell">
+                <Debug>$Config/Debug$</Debug>
+                <DeviceAddresses>$Config/DeviceAddresses$</DeviceAddresses>
+                <DevicePorts>$Config/DevicePorts$</DevicePorts>
+                <DeviceCommunities>$Config/DeviceCommunities$</DeviceCommunities>
+              </ProbeAction>
+            </MemberModules>
+            <Composition>
+              <Node ID="PSScript">
+                <Node ID="Scheduler" />
+              </Node>
+            </Composition>
+          </Composite>
+        </ModuleImplementation>
+        <OutputType>System!System.PropertyBagData</OutputType>
+      </DataSourceModuleType>
+
+      <!-- AP.F5.LTM.Probe.PoolMemberAvailabilityState.Powershell -->
+      <!-- Runs script to Return All PoolMembers (Name & AvailabilityState) in property bags -->
+      <ProbeActionModuleType ID="AP.F5.LTM.Probe.PoolMemberAvailabilityState.Powershell" Accessibility="Public" Batching="false">
+        <Configuration>
+          <IncludeSchemaTypes>
+            <SchemaType>Windows!Microsoft.Windows.PowerShellSchema</SchemaType>
+          </IncludeSchemaTypes>
+          <xsd:element minOccurs="1" name="Debug" type="xsd:boolean"/>
+          <xsd:element minOccurs="1" name="DeviceAddresses" type="xsd:string"/>
+          <xsd:element minOccurs="1" name="DevicePorts" type="xsd:string"/>
+          <xsd:element minOccurs="1" name="DeviceCommunities" type="xsd:string"/>
+        </Configuration>
+        <OverrideableParameters>
+          <OverrideableParameter ID="Debug" Selector="$Config/Debug$" ParameterType="bool"/>
+        </OverrideableParameters>
+        <ModuleImplementation Isolation="Any">
+          <Composite>
+            <MemberModules>
+              <ProbeAction ID="PSScript" TypeID="Windows!Microsoft.Windows.PowerShellPropertyBagTriggerOnlyProbe">
+                <ScriptName>Get-PoolMemberAvailabilityState.ps1</ScriptName>
+                <ScriptBody>$IncludeFileContent/Scripts/Monitors/Get-PoolMemberAvailabilityState.ps1$</ScriptBody>
+                <SnapIns />
+                <Parameters>
+                  <Parameter>
+                    <Name>DeviceAddresses</Name>
+                    <Value>$Config/DeviceAddresses$</Value>
+                  </Parameter>
+                  <Parameter>
+                    <Name>DevicePorts</Name>
+                    <Value>$Config/DevicePorts$</Value>
+                  </Parameter>
+                  <Parameter>
+                    <Name>DeviceCommunities</Name>
+                    <Value>$Config/DeviceCommunities$</Value>
+                  </Parameter>
+                  <Parameter>
+                    <Name>debug</Name>
+                    <Value>$Config/Debug$</Value>
+                  </Parameter>
+                  <Parameter>
+                    <Name>SharpSnmpLocation</Name>
+                    <Value>$FileResource[Name="AP.F5.LTM.SharpSnmpLib"]/Path$</Value>
+                  </Parameter>
+                </Parameters>
+                <TimeoutSeconds>60</TimeoutSeconds>
+              </ProbeAction>
+            </MemberModules>
+            <Composition>
+              <Node ID="PSScript" />
+            </Composition>
+          </Composite>
+        </ModuleImplementation>
+        <OutputType>System!System.PropertyBagData</OutputType>
+        <TriggerOnly>true</TriggerOnly>
+      </ProbeActionModuleType>
+
+      <!-- AP.F5.LTM.Probe.PoolMemberEnabledState.Powershell -->
+      <!-- Runs script to Return All PoolMembers (Name & EnabledState) in property bags -->
+      <ProbeActionModuleType ID="AP.F5.LTM.Probe.PoolMemberEnabledState.Powershell" Accessibility="Public" Batching="false">
+        <Configuration>
+          <IncludeSchemaTypes>
+            <SchemaType>Windows!Microsoft.Windows.PowerShellSchema</SchemaType>
+          </IncludeSchemaTypes>
+          <xsd:element minOccurs="1" name="Debug" type="xsd:boolean"/>
+          <xsd:element minOccurs="1" name="DeviceAddresses" type="xsd:string"/>
+          <xsd:element minOccurs="1" name="DevicePorts" type="xsd:string"/>
+          <xsd:element minOccurs="1" name="DeviceCommunities" type="xsd:string"/>
+        </Configuration>
+        <OverrideableParameters>
+          <OverrideableParameter ID="Debug" Selector="$Config/Debug$" ParameterType="bool"/>
+        </OverrideableParameters>
+        <ModuleImplementation Isolation="Any">
+          <Composite>
+            <MemberModules>
+              <ProbeAction ID="PSScript" TypeID="Windows!Microsoft.Windows.PowerShellPropertyBagTriggerOnlyProbe">
+                <ScriptName>Get-PoolMemberEnabledState.ps1</ScriptName>
+                <ScriptBody>$IncludeFileContent/Scripts/Monitors/Get-PoolMemberEnabledState.ps1$</ScriptBody>
+                <SnapIns />
+                <Parameters>
+                  <Parameter>
+                    <Name>DeviceAddresses</Name>
+                    <Value>$Config/DeviceAddresses$</Value>
+                  </Parameter>
+                  <Parameter>
+                    <Name>DevicePorts</Name>
+                    <Value>$Config/DevicePorts$</Value>
+                  </Parameter>
+                  <Parameter>
+                    <Name>DeviceCommunities</Name>
+                    <Value>$Config/DeviceCommunities$</Value>
+                  </Parameter>
+                  <Parameter>
+                    <Name>debug</Name>
+                    <Value>$Config/Debug$</Value>
+                  </Parameter>
+                  <Parameter>
+                    <Name>SharpSnmpLocation</Name>
+                    <Value>$FileResource[Name="AP.F5.LTM.SharpSnmpLib"]/Path$</Value>
+                  </Parameter>
+                </Parameters>
+                <TimeoutSeconds>60</TimeoutSeconds>
+              </ProbeAction>
+            </MemberModules>
+            <Composition>
+              <Node ID="PSScript" />
+            </Composition>
+          </Composite>
+        </ModuleImplementation>
+        <OutputType>System!System.PropertyBagData</OutputType>
+        <TriggerOnly>true</TriggerOnly>
+      </ProbeActionModuleType>
+
+      <!-- AP.F5.LTM.Probe.PoolMemberConnections.Powershell -->
+      <!-- Runs Script to Return All PoolMembers (PoolName, PoolMemberName & Connections) in property bags -->
+      <ProbeActionModuleType ID="AP.F5.LTM.Probe.PoolMemberConnections.Powershell" Accessibility="Public" Batching="false">
+        <Configuration>
+          <IncludeSchemaTypes>
+            <SchemaType>Windows!Microsoft.Windows.PowerShellSchema</SchemaType>
+          </IncludeSchemaTypes>
+          <xsd:element minOccurs="1" name="Debug" type="xsd:boolean"/>
+          <xsd:element minOccurs="1" name="DeviceAddresses" type="xsd:string"/>
+          <xsd:element minOccurs="1" name="DevicePorts" type="xsd:string"/>
+          <xsd:element minOccurs="1" name="DeviceCommunities" type="xsd:string"/>
+        </Configuration>
+        <OverrideableParameters>
+          <OverrideableParameter ID="Debug" Selector="$Config/Debug$" ParameterType="bool"/>
+        </OverrideableParameters>
+        <ModuleImplementation Isolation="Any">
+          <Composite>
+            <MemberModules>
+              <ProbeAction ID="PSScript" TypeID="Windows!Microsoft.Windows.PowerShellPropertyBagTriggerOnlyProbe">
+                <ScriptName>Get-PoolMemberConnections.ps1</ScriptName>
+                <ScriptBody>$IncludeFileContent/Scripts/Rules/Get-PoolMemberConnections.ps1$</ScriptBody>
+                <SnapIns />
+                <Parameters>
+                  <Parameter>
+                    <Name>DeviceAddresses</Name>
+                    <Value>$Config/DeviceAddresses$</Value>
+                  </Parameter>
+                  <Parameter>
+                    <Name>DevicePorts</Name>
+                    <Value>$Config/DevicePorts$</Value>
+                  </Parameter>
+                  <Parameter>
+                    <Name>DeviceCommunities</Name>
+                    <Value>$Config/DeviceCommunities$</Value>
+                  </Parameter>
+                  <Parameter>
+                    <Name>debug</Name>
+                    <Value>$Config/Debug$</Value>
+                  </Parameter>
+                  <Parameter>
+                    <Name>SharpSnmpLocation</Name>
+                    <Value>$FileResource[Name="AP.F5.LTM.SharpSnmpLib"]/Path$</Value>
+                  </Parameter>
+                </Parameters>
+                <TimeoutSeconds>60</TimeoutSeconds>
+              </ProbeAction>
+            </MemberModules>
+            <Composition>
+              <Node ID="PSScript" />
+            </Composition>
+          </Composite>
+        </ModuleImplementation>
+        <OutputType>System!System.PropertyBagData</OutputType>
+        <TriggerOnly>true</TriggerOnly>
+      </ProbeActionModuleType>
+
+
+    </ModuleTypes>
+
+    <MonitorTypes>
+
+      <!-- AP.F5.LTM.Monitor.PoolMemberAvailabilityState.Powershell -->
+      <UnitMonitorType ID="AP.F5.LTM.Monitor.PoolMemberAvailabilityState.Powershell" Accessibility="Public">
+        <MonitorTypeStates>
+          <MonitorTypeState ID="PoolMemberOkay" NoDetection="false"/>
+          <MonitorTypeState ID="PoolMemberWarning" NoDetection="false"/>
+          <MonitorTypeState ID="PoolMemberCritical" NoDetection="false"/>
+        </MonitorTypeStates>
+        <Configuration>
+          <xsd:element minOccurs="1" name="IntervalSeconds" type="xsd:integer"/>
+          <xsd:element minOccurs="1" name="SyncTime" type="xsd:string"/>
+          <xsd:element minOccurs="1" name="Debug" type="xsd:boolean"/>
+          <xsd:element minOccurs="1" name="DeviceAddresses" type="xsd:string"/>
+          <xsd:element minOccurs="1" name="DevicePorts" type="xsd:string"/>
+          <xsd:element minOccurs="1" name="DeviceCommunities" type="xsd:string"/>
+          <xsd:element minOccurs="1" name="PoolMemberName" type="xsd:string"/>
+          <xsd:element minOccurs="1" name="PoolName" type="xsd:string"/>
+        </Configuration>
+        <OverrideableParameters>
+          <OverrideableParameter ID="IntervalSeconds" Selector="$Config/IntervalSeconds$" ParameterType="int"/>
+          <OverrideableParameter ID="SyncTime" Selector="$Config/SyncTime$" ParameterType="string"/>
+          <OverrideableParameter ID="Debug" Selector="$Config/Debug$" ParameterType="bool"/>
+        </OverrideableParameters>
+        <MonitorImplementation>
+          <MemberModules>
+            <DataSource ID="DS" TypeID="AP.F5.LTM.DataSource.PoolMemberAvailabilityState.Filtered">
+              <IntervalSeconds>$Config/IntervalSeconds$</IntervalSeconds>
+              <SyncTime>$Config/SyncTime$</SyncTime>
+              <Debug>$Config/Debug$</Debug>
+              <DeviceAddresses>$Config/DeviceAddresses$</DeviceAddresses>
+              <DevicePorts>$Config/DevicePorts$</DevicePorts>
+              <DeviceCommunities>$Config/DeviceCommunities$</DeviceCommunities>
+              <PoolMemberName>$Config/PoolMemberName$</PoolMemberName>
+              <PoolName>$Config/PoolName$</PoolName>
+            </DataSource>
+            <ProbeAction ID="Probe" TypeID="AP.F5.LTM.Probe.PoolMemberAvailabilityState.Powershell">
+              <Debug>$Config/Debug$</Debug>
+              <DeviceAddresses>$Config/DeviceAddresses$</DeviceAddresses>
+              <DevicePorts>$Config/DeviceAddresses$</DevicePorts>
+              <DeviceCommunities>$Config/DeviceAddresses$</DeviceCommunities>
+            </ProbeAction>
+            <ConditionDetection ID="MemberOkayFilter" TypeID="System!System.ExpressionFilter">
+              <Expression>
+                <SimpleExpression>
+                  <ValueExpression>
+                    <XPathQuery Type="Integer">Property[@Name='AvailabilityState']</XPathQuery>
+                  </ValueExpression>
+                  <Operator>Equal</Operator>
+                  <ValueExpression>
+                    <!-- Green - Available in Some Capacity -->
+                    <Value Type="Integer">1</Value>
+                  </ValueExpression>
+                </SimpleExpression>
+              </Expression>
+            </ConditionDetection>
+            <ConditionDetection ID="MemberWarningFilter" TypeID="System!System.ExpressionFilter">
+              <Expression>
+                <Or>
+                  <Expression>
+                    <SimpleExpression>
+                      <ValueExpression>
+                        <XPathQuery Type="Integer">Property[@Name='AvailabilityState']</XPathQuery>
+                      </ValueExpression>
+                      <Operator>Equal</Operator>
+                      <ValueExpression>
+                        <!-- Yellow - Not Currently Available -->
+                        <Value Type="Integer">2</Value>
+                      </ValueExpression>
+                    </SimpleExpression>
+                  </Expression>
+                  <Expression>
+                    <SimpleExpression>
+                      <ValueExpression>
+                        <XPathQuery Type="Integer">Property[@Name='AvailabilityState']</XPathQuery>
+                      </ValueExpression>
+                      <Operator>Equal</Operator>
+                      <ValueExpression>
+                        <!-- Blue - Availability is Unknown -->
+                        <Value Type="Integer">4</Value>
+                      </ValueExpression>
+                    </SimpleExpression>
+                  </Expression>
+                </Or>
+              </Expression>
+            </ConditionDetection>
+            <ConditionDetection ID="MemberCriticalFilter" TypeID="System!System.ExpressionFilter">
+              <Expression>
+                <Or>
+                  <Expression>
+                    <SimpleExpression>
+                      <ValueExpression>
+                        <XPathQuery Type="Integer">Property[@Name='AvailabilityState']</XPathQuery>
+                      </ValueExpression>
+                      <Operator>Equal</Operator>
+                      <ValueExpression>
+                        <!-- None - Error -->
+                        <Value Type="Integer">0</Value>
+                      </ValueExpression>
+                    </SimpleExpression>
+                  </Expression>
+                  <Expression>
+                    <SimpleExpression>
+                      <ValueExpression>
+                        <XPathQuery Type="Integer">Property[@Name='AvailabilityState']</XPathQuery>
+                      </ValueExpression>
+                      <Operator>Equal</Operator>
+                      <ValueExpression>
+                        <!-- Red - Not Available -->
+                        <Value Type="Integer">3</Value>
+                      </ValueExpression>
+                    </SimpleExpression>
+                  </Expression>
+                </Or>
+              </Expression>
+            </ConditionDetection>
+          </MemberModules>
+          <RegularDetections>
+            <RegularDetection MonitorTypeStateID="PoolMemberOkay">
+              <Node ID="MemberOkayFilter">
+                <Node ID="DS" />
+              </Node>
+            </RegularDetection>
+            <RegularDetection MonitorTypeStateID="PoolMemberWarning">
+              <Node ID="MemberWarningFilter">
+                <Node ID="DS" />
+              </Node>
+            </RegularDetection>
+            <RegularDetection MonitorTypeStateID="PoolMemberCritical">
+              <Node ID="MemberCriticalFilter">
+                <Node ID="DS" />
+              </Node>
+            </RegularDetection>
+          </RegularDetections>
+        </MonitorImplementation>        
+      </UnitMonitorType>
+
+      <!-- AP.F5.LTM.Monitor.PoolMemberEnabledState.Powershell -->
+      <UnitMonitorType ID="AP.F5.LTM.Monitor.PoolMemberEnabledState.Powershell" Accessibility="Public">
+        <MonitorTypeStates>
+          <MonitorTypeState ID="PoolMemberEnabled" NoDetection="false"/>
+          <MonitorTypeState ID="PoolMemberDisabled" NoDetection="false"/>
+        </MonitorTypeStates>
+        <Configuration>
+          <xsd:element minOccurs="1" name="IntervalSeconds" type="xsd:integer"/>
+          <xsd:element minOccurs="1" name="SyncTime" type="xsd:string"/>
+          <xsd:element minOccurs="1" name="Debug" type="xsd:boolean"/>
+          <xsd:element minOccurs="1" name="DeviceAddresses" type="xsd:string"/>
+          <xsd:element minOccurs="1" name="DevicePorts" type="xsd:string"/>
+          <xsd:element minOccurs="1" name="DeviceCommunities" type="xsd:string"/>
+          <xsd:element minOccurs="1" name="PoolMemberName" type="xsd:string"/>
+          <xsd:element minOccurs="1" name="PoolName" type="xsd:string"/>
+        </Configuration>
+        <OverrideableParameters>
+          <OverrideableParameter ID="IntervalSeconds" Selector="$Config/IntervalSeconds$" ParameterType="int"/>
+          <OverrideableParameter ID="SyncTime" Selector="$Config/SyncTime$" ParameterType="string"/>
+          <OverrideableParameter ID="Debug" Selector="$Config/Debug$" ParameterType="bool"/>
+        </OverrideableParameters>
+        <MonitorImplementation>
+          <MemberModules>
+            <DataSource ID="DS" TypeID="AP.F5.LTM.DataSource.PoolMemberEnabledState.Filtered">
+              <IntervalSeconds>$Config/IntervalSeconds$</IntervalSeconds>
+              <SyncTime>$Config/SyncTime$</SyncTime>
+              <Debug>$Config/Debug$</Debug>
+              <DeviceAddresses>$Config/DeviceAddresses$</DeviceAddresses>
+              <DevicePorts>$Config/DevicePorts$</DevicePorts>
+              <DeviceCommunities>$Config/DeviceCommunities$</DeviceCommunities>
+              <PoolMemberName>$Config/PoolMemberName$</PoolMemberName>
+              <PoolName>$Config/PoolName$</PoolName>
+            </DataSource>
+            <ProbeAction ID="Probe" TypeID="AP.F5.LTM.Probe.PoolMemberEnabledState.Powershell">
+              <Debug>$Config/Debug$</Debug>
+              <DeviceAddresses>$Config/DeviceAddresses$</DeviceAddresses>
+              <DevicePorts>$Config/DeviceAddresses$</DevicePorts>
+              <DeviceCommunities>$Config/DeviceAddresses$</DeviceCommunities>
+            </ProbeAction>
+            <ConditionDetection ID="MemberEnabledFilter" TypeID="System!System.ExpressionFilter">
+              <Expression>
+                <SimpleExpression>
+                  <ValueExpression>
+                    <XPathQuery Type="Integer">Property[@Name='EnabledState']</XPathQuery>
+                  </ValueExpression>
+                  <Operator>LessEqual</Operator>
+                  <ValueExpression>
+                    <Value Type="Integer">1</Value>
+                  </ValueExpression>
+                </SimpleExpression>
+              </Expression>
+            </ConditionDetection>
+            <ConditionDetection ID="MemberDisabledFilter" TypeID="System!System.ExpressionFilter">
+              <Expression>
+                <SimpleExpression>
+                  <ValueExpression>
+                    <XPathQuery Type="Integer">Property[@Name='EnabledState']</XPathQuery>
+                  </ValueExpression>
+                  <Operator>Greater</Operator>
+                  <ValueExpression>
+                    <Value Type="Integer">1</Value>
+                  </ValueExpression>
+                </SimpleExpression>
+              </Expression>
+            </ConditionDetection>
+          </MemberModules>
+          <RegularDetections>
+            <RegularDetection MonitorTypeStateID="PoolMemberEnabled">
+              <Node ID="MemberEnabledFilter">
+                <Node ID="DS" />
+              </Node>
+            </RegularDetection>
+            <RegularDetection MonitorTypeStateID="PoolMemberDisabled">
+              <Node ID="MemberDisabledFilter">
+                <Node ID="DS" />
+              </Node>
+            </RegularDetection>
+          </RegularDetections>
+        </MonitorImplementation>
+      </UnitMonitorType>
+
+    </MonitorTypes>
+  </TypeDefinitions>
+
+  <LanguagePacks>
+    <LanguagePack ID="ENU" IsDefault="true">
+      <DisplayStrings>
+ 
+        <!-- AP.F5.LTM.DataSource.PoolMemberAvailabilityState.Filtered -->
+        <DisplayString ElementID="AP.F5.LTM.DataSource.PoolMemberAvailabilityState.Filtered">
+          <Name>Pool Member Availability State Filtered Data Source</Name>
+          <Description>Filters Property Bags by PoolName/PoolMemberName to return the one property bag we want.</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.DataSource.PoolMemberAvailabilityState.Filtered" SubElementID="IntervalSeconds">
+          <Name>Interval Seconds</Name>
+          <Description>Frequency in seconds that module is run.</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.DataSource.PoolMemberAvailabilityState.Filtered" SubElementID="SyncTime">
+          <Name>Synchronisation Time</Name>
+          <Description>Offset that this module is started from.</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.DataSource.PoolMemberAvailabilityState.Filtered" SubElementID="Debug">
+          <Name>Debug</Name>
+          <Description>Debug Flag, if true then additional info is posted to event log.</Description>
+        </DisplayString>
+
+        <!-- AP.F5.LTM.DataSource.PoolMemberEnabledState.Filtered -->
+        <DisplayString ElementID="AP.F5.LTM.DataSource.PoolMemberEnabledState.Filtered">
+          <Name>Pool Member Enabled State Filtered Data Source</Name>
+          <Description>Filters Property Bags by PoolName/PoolMemberName to return the one property bag we want.</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.DataSource.PoolMemberEnabledState.Filtered" SubElementID="IntervalSeconds">
+          <Name>Interval Seconds</Name>
+          <Description>Frequency in seconds that module is run.</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.DataSource.PoolMemberEnabledState.Filtered" SubElementID="SyncTime">
+          <Name>Synchronisation Time</Name>
+          <Description>Offset that this module is started from.</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.DataSource.PoolMemberEnabledState.Filtered" SubElementID="Debug">
+          <Name>Debug</Name>
+          <Description>Debug Flag, if true then additional info is posted to event log.</Description>
+        </DisplayString>
+
+        <!-- AP.F5.LTM.DataSource.PoolMemberAvailabilityState.Powershell -->
+        <DisplayString ElementID="AP.F5.LTM.DataSource.PoolMemberAvailabilityState.Powershell">
+          <Name>Pool Member Availability State Powershell Data Source</Name>
+          <Description>Gets all Pool Member AvailabilityState as Property Bags</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.DataSource.PoolMemberAvailabilityState.Powershell" SubElementID="IntervalSeconds">
+          <Name>Interval Seconds</Name>
+          <Description>Frequency in seconds that module is run.</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.DataSource.PoolMemberAvailabilityState.Powershell" SubElementID="SyncTime">
+          <Name>Synchronisation Time</Name>
+          <Description>Offset that this module is started from.</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.DataSource.PoolMemberAvailabilityState.Powershell" SubElementID="Debug">
+          <Name>Debug</Name>
+          <Description>Debug Flag, if true then additional info is posted to event log.</Description>
+        </DisplayString>
+
+        <!-- AP.F5.LTM.DataSource.PoolMemberEnabledState.Powershell -->
+        <DisplayString ElementID="AP.F5.LTM.DataSource.PoolMemberEnabledState.Powershell">
+          <Name>Pool Member Enabled State Powershell Data Source</Name>
+          <Description>Gets all Pool Member EnabledState as Property Bags</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.DataSource.PoolMemberEnabledState.Powershell" SubElementID="IntervalSeconds">
+          <Name>Interval Seconds</Name>
+          <Description>Frequency in seconds that module is run.</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.DataSource.PoolMemberEnabledState.Powershell" SubElementID="SyncTime">
+          <Name>Synchronisation Time</Name>
+          <Description>Offset that this module is started from.</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.DataSource.PoolMemberEnabledState.Powershell" SubElementID="Debug">
+          <Name>Debug</Name>
+          <Description>Debug Flag, if true then additional info is posted to event log.</Description>
+        </DisplayString>
+
+        <!-- AP.F5.LTM.DataSource.PoolMemberConnections.Filtered -->
+        <DisplayString ElementID="AP.F5.LTM.DataSource.Perf.PoolMemberConnections.Filtered">
+          <Name>Pool Member Connections Filtered Data Source</Name>
+          <Description>Filters Property Bags by PoolName/PoolMemberName to return the one property bag we want.</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.DataSource.Perf.PoolMemberConnections.Filtered" SubElementID="IntervalSeconds">
+          <Name>Interval Seconds</Name>
+          <Description>Frequency in seconds that module is run.</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.DataSource.Perf.PoolMemberConnections.Filtered" SubElementID="SyncTime">
+          <Name>Synchronisation Time</Name>
+          <Description>Offset that this module is started from.</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.DataSource.Perf.PoolMemberConnections.Filtered" SubElementID="Debug">
+          <Name>Debug</Name>
+          <Description>Debug Flag, if true then additional info is posted to event log.</Description>
+        </DisplayString>
+
+        <!-- AP.F5.LTM.DataSource.PoolMemberConnections.Powershell -->
+        <DisplayString ElementID="AP.F5.LTM.DataSource.PoolMemberConnections.Powershell">
+          <Name>Pool Member Connections Powershell Data Source</Name>
+          <Description>Gets all Pool Member Connections as Property Bags</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.DataSource.PoolMemberConnections.Powershell" SubElementID="IntervalSeconds">
+          <Name>Interval Seconds</Name>
+          <Description>Frequency in seconds that module is run.</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.DataSource.PoolMemberConnections.Powershell" SubElementID="SyncTime">
+          <Name>Synchronisation Time</Name>
+          <Description>Offset that this module is started from.</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.DataSource.PoolMemberConnections.Powershell" SubElementID="Debug">
+          <Name>Debug</Name>
+          <Description>Debug Flag, if true then additional info is posted to event log.</Description>
+        </DisplayString>
+
+        <!-- AP.F5.LTM.Probe.PoolMemberAvailabilityState.Powershell -->
+        <DisplayString ElementID="AP.F5.LTM.Probe.PoolMemberAvailabilityState.Powershell">
+          <Name>Pool Member Availability State Powershell Probe</Name>
+          <Description>Gets all Pool Member AvailabilityState as Property Bags</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.Probe.PoolMemberAvailabilityState.Powershell" SubElementID="Debug">
+          <Name>Debug</Name>
+          <Description>Debug Flag, if true then additional info is posted to event log.</Description>
+        </DisplayString>
+
+        <!-- AP.F5.LTM.Probe.PoolMemberEnabledState.Powershell -->
+        <DisplayString ElementID="AP.F5.LTM.Probe.PoolMemberEnabledState.Powershell">
+          <Name>Pool Member Enabled State Powershell Probe</Name>
+          <Description>Gets all Pool Member EnabledState as Property Bags</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.Probe.PoolMemberEnabledState.Powershell" SubElementID="Debug">
+          <Name>Debug</Name>
+          <Description>Debug Flag, if true then additional info is posted to event log.</Description>
+        </DisplayString>
+       
+        <!-- AP.F5.LTM.Probe.PoolMemberConnections.Powershell -->
+        <DisplayString ElementID="AP.F5.LTM.Probe.PoolMemberConnections.Powershell">
+          <Name>Pool Member Connections Powershell Probe</Name>
+          <Description>Gets all Pool Member Connections as Property Bags</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.Probe.PoolMemberConnections.Powershell" SubElementID="Debug">
+          <Name>Debug</Name>
+          <Description>Debug Flag, if true then additional info is posted to event log.</Description>
+        </DisplayString>
+      
+        <!-- AP.F5.LTM.Monitor.PoolMemberAvailabilityState.Powershell -->
+        <DisplayString ElementID="AP.F5.LTM.Monitor.PoolMemberAvailabilityState.Powershell">
+          <Name>Pool Member Availability State Monitor Data Source</Name>
+          <Description>Gets Pool Member AvailabilityState via Powershell/SNMP (Cookdown compliant)</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.Monitor.PoolMemberAvailabilityState.Powershell" SubElementID="IntervalSeconds">
+          <Name>Interval Seconds</Name>
+          <Description>Frequency in seconds that module is run.</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.Monitor.PoolMemberAvailabilityState.Powershell" SubElementID="SyncTime">
+          <Name>Synchronisation Time</Name>
+          <Description>Offset that this module is started from.</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.Monitor.PoolMemberAvailabilityState.Powershell" SubElementID="Debug">
+          <Name>Debug</Name>
+          <Description>Debug Flag, if true then additional info is posted to event log.</Description>
+        </DisplayString>
+
+        <!-- AP.F5.LTM.Monitor.PoolMemberEnabledState.Powershell -->
+        <DisplayString ElementID="AP.F5.LTM.Monitor.PoolMemberEnabledState.Powershell">
+          <Name>Pool Member Enabled State Monitor Data Source</Name>
+          <Description>Gets Pool Member EnabledState via Powershell/SNMP (Cookdown compliant)</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.Monitor.PoolMemberEnabledState.Powershell" SubElementID="IntervalSeconds">
+          <Name>Interval Seconds</Name>
+          <Description>Frequency in seconds that module is run.</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.Monitor.PoolMemberEnabledState.Powershell" SubElementID="SyncTime">
+          <Name>Synchronisation Time</Name>
+          <Description>Offset that this module is started from.</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.Monitor.PoolMemberEnabledState.Powershell" SubElementID="Debug">
+          <Name>Debug</Name>
+          <Description>Debug Flag, if true then additional info is posted to event log.</Description>
+        </DisplayString>
+
+      </DisplayStrings>
+
+      <KnowledgeArticles>
+
+        <!-- AP.F5.LTM.Monitor.PoolMember.AvailabilityState -->
+        <KnowledgeArticle ElementID="AP.F5.LTM.Monitor.PoolMember.AvailabilityState" Visible="true">
+          <MamlContent>
+            <section xmlns="http://schemas.microsoft.com/maml/2004/10">
+              <title>Summary</title>
+              <para>
+                Monitors F5 PoolMember Availability State, Uses a Powershell Script and SNMP to collect all PoolMember Availability States for a SyncFailoverGroup, Supports Cookdown!
+              </para>
+            </section>
+            <section xmlns="http://schemas.microsoft.com/maml/2004/10">
+              <title>Thresholds</title>
+              <list>
+                <listItem>
+                  <para>Healthy : PoolMember is Available (State 1)</para>
+                </listItem>
+                <listItem>
+                  <para>Warning : Unknown or Temporarily unavailable (State 2 or 4)</para>
+                </listItem>
+                <listItem>
+                  <para>Critical : Error, Unavailable or Unlicenced (State 0, 3 or 5)</para>
+                </listItem>
+              </list>
+            </section>
+            <section xmlns="http://schemas.microsoft.com/maml/2004/10">
+              <title>SNMP Information</title>
+              <para>SNMP OIDs Used;</para>
+              <list>
+                <listItem>
+                  <para>.1.3.6.1.4.1.3375.2.2.5.6.2.1.1 - bigipTrafficMgmt.bigipLocalTM.ltmPools.ltmPoolMemberStatus.ltmPoolMbrStatusTable.ltmPoolMbrStatusEntry.ltmPoolMbrStatusPoolName</para>
+                </listItem>
+                <listItem>
+                  <para>.1.3.6.1.4.1.3375.2.2.5.6.2.1.9 - bigipTrafficMgmt.bigipLocalTM.ltmPools.ltmPoolMemberStatus.ltmPoolMbrStatusTable.ltmPoolMbrStatusEntry.ltmPoolMbrStatusNodeName</para>
+                </listItem>
+                <listItem>
+                  <para>.1.3.6.1.4.1.3375.2.2.5.6.2.1.5 - bigipTrafficMgmt.bigipLocalTM.ltmPools.ltmPoolMemberStatus.ltmPoolMbrStatusTable.ltmPoolMbrStatusEntry.ltmPoolMbrStatusAvailState</para>
+                </listItem>
+              </list>
+            </section>
+          </MamlContent>
+        </KnowledgeArticle>
+
+        <!-- AP.F5.LTM.Monitor.PoolMember.EnabledState -->
+        <KnowledgeArticle ElementID="AP.F5.LTM.Monitor.PoolMember.EnabledState" Visible="true">
+          <MamlContent>
+            <section xmlns="http://schemas.microsoft.com/maml/2004/10">
+              <title>Summary</title>
+              <para>
+                Monitors F5 PoolMember Enabled State, Uses a Powershell Script and SNMP to collect all PoolMember Enabled States for a SyncFailoverGroup, Supports Cookdown!
+              </para>
+            </section>
+            <section xmlns="http://schemas.microsoft.com/maml/2004/10">
+              <title>Thresholds</title>
+              <list>
+                <listItem>
+                  <para>PoolMemberEnabled : PoolMember is Enabled (State 1)</para>
+                </listItem>
+                <listItem>
+                  <para>PoolMemberDisabled : PoolMember is NOT Enabled (State 0, 2 or 3)</para>
+                </listItem>
+              </list>
+            </section>
+            <section xmlns="http://schemas.microsoft.com/maml/2004/10">
+              <title>SNMP Information</title>
+              <para>SNMP OIDs Used;</para>
+              <list>
+                <listItem>
+                  <para>.1.3.6.1.4.1.3375.2.2.5.6.2.1.1 - bigipTrafficMgmt.bigipLocalTM.ltmPools.ltmPoolMemberStatus.ltmPoolMbrStatusTable.ltmPoolMbrStatusEntry.ltmPoolMbrStatusPoolName</para>
+                </listItem>
+                <listItem>
+                  <para>.1.3.6.1.4.1.3375.2.2.5.6.2.1.9 - bigipTrafficMgmt.bigipLocalTM.ltmPools.ltmPoolMemberStatus.ltmPoolMbrStatusTable.ltmPoolMbrStatusEntry.ltmPoolMbrStatusNodeName</para>
+                </listItem>
+                <listItem>
+                  <para>.1.3.6.1.4.1.3375.2.2.5.6.2.1.6 - bigipTrafficMgmt.bigipLocalTM.ltmPools.ltmPoolMemberStatus.ltmPoolMbrStatusTable.ltmPoolMbrStatusEntry.ltmPoolMbrStatusEnabledState</para>
+                </listItem>
+              </list>
+            </section>
+          </MamlContent>
+        </KnowledgeArticle>
+
+        <!-- AP.F5.LTM.Perf.PoolMember.Connections -->
+        <KnowledgeArticle ElementID="AP.F5.LTM.Perf.PoolMember.Connections" Visible="true">
+          <MamlContent>
+            <section xmlns="http://schemas.microsoft.com/maml/2004/10">
+              <title>Summary</title>
+              <para>
+                F5 PoolMember Current Connections Performance Collection, Uses a Powershell Script and SNMP to collect Current Connection data for all PoolMembers in a SyncFailoverGroup, Supports Cookdown!
+              </para>
+            </section>
+            <section xmlns="http://schemas.microsoft.com/maml/2004/10">
+              <title>SNMP Information</title>
+              <para>SNMP OIDs Used;</para>
+              <list>
+                <listItem>
+                  <para>.1.3.6.1.4.1.3375.2.2.5.4.3.1.1 - bigipTrafficMgmt.bigipLocalTM.ltmPools.ltmPoolMemberStat.ltmPoolMemberStatTable.ltmPoolMemberStatEntry.ltmPoolMemberStatPoolName</para>
+                </listItem>
+                <listItem>
+                  <para>.1.3.6.1.4.1.3375.2.2.5.4.3.1.28 - bigipTrafficMgmt.bigipLocalTM.ltmPools.ltmPoolMemberStatus.ltmPoolMbrStatusTable.ltmPoolMbrStatusEntry.ltmPoolMemberStatNodeName</para>
+                </listItem>
+                <listItem>
+                  <para>.1.3.6.1.4.1.3375.2.2.5.4.3.1.11 - bigipTrafficMgmt.bigipLocalTM.ltmPools.ltmPoolMemberStatus.ltmPoolMbrStatusTable.ltmPoolMbrStatusEntry.ltmPoolMemberStatServerCurConns</para>
+                </listItem>
+              </list>
+            </section>
+          </MamlContent>
+        </KnowledgeArticle>
+      </KnowledgeArticles>
+
+    </LanguagePack>
+  </LanguagePacks>
+  
+</ManagementPackFragment>

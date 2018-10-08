@@ -1,0 +1,106 @@
+﻿<ManagementPackFragment SchemaVersion="2.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <TypeDefinitions>
+    <EntityTypes>
+      <ClassTypes>
+
+        <!-- AP.F5.LTM.Partition -->
+        <ClassType ID="AP.F5.LTM.Partition" Base="System!System.LogicalEntity" Accessibility="Public" Abstract="false" Hosted="true" Singleton="false">        
+          <Property ID="Name" Key="true" Type="string" />
+        </ClassType>
+      
+      </ClassTypes>
+      <RelationshipTypes>
+        
+        <!-- Partition -> VirtualServer Hosting Relationship-->
+        <RelationshipType ID="AP.F5.LTM.PartitionHostsVirtualServers" Accessibility="Public" Abstract="false" Base="System!System.Hosting">
+          <Source ID="Source" Type="AP.F5.LTM.Partition" />
+          <Target ID="Target" Type="AP.F5.LTM.VirtualServer" />
+        </RelationshipType>
+
+        <!-- Partition -> ProfileServerSSL Hosting Relationship -->
+        <RelationshipType ID="AP.F5.LTM.PartitionHostsProfileServerSSL" Base="System!System.Hosting" Abstract="false" Accessibility="Public">
+          <Source ID="Source" Type="AP.F5.LTM.Partition" />
+          <Target ID="Target" Type="AP.F5.LTM.ProfileServerSSL"/>
+        </RelationshipType>
+
+        <!-- Partition -> ProfileClientSSL Hosting Relationship -->
+        <RelationshipType ID="AP.F5.LTM.PartitionHostsProfileClientSSL" Base="System!System.Hosting" Abstract="false" Accessibility="Public">
+          <Source ID="Source" Type="AP.F5.LTM.Partition" />
+          <Target ID="Target" Type="AP.F5.LTM.ProfileClientSSL"/>
+        </RelationshipType>
+
+        <!-- Partition -> Certifiacate Hosting Relationship -->
+        <RelationshipType ID="AP.F5.LTM.PartitionHostsCertificates" Abstract="false" Accessibility="Public" Base="System!System.Hosting">
+          <Source ID="Source" Type="AP.F5.LTM.Partition"/>
+          <Target ID="Target" Type="AP.F5.LTM.Certificate"/>
+        </RelationshipType>
+
+        <!-- Partition -> Pool Hosting Relationship-->
+        <RelationshipType ID="AP.F5.LTM.PartitionHostsPools" Accessibility="Public" Abstract="false" Base="System!System.Hosting">
+          <Source ID="Source" Type="AP.F5.LTM.Partition" />
+          <Target ID="Target" Type="AP.F5.LTM.Pool" />
+        </RelationshipType>
+
+        <!-- Partition -> Node Hosting Relationship-->
+        <RelationshipType ID="AP.F5.LTM.PartitionHostsNodes" Accessibility="Public" Abstract="false" Base="System!System.Hosting">
+          <Source ID="Source" Type="AP.F5.LTM.Partition" />
+          <Target ID="Target" Type="AP.F5.LTM.Node" />
+        </RelationshipType>
+
+      </RelationshipTypes>
+    </EntityTypes>
+  </TypeDefinitions>
+  <LanguagePacks>
+    <LanguagePack ID="ENU" IsDefault="true">
+      <DisplayStrings>
+
+        <!-- AP.F5.LTM.Partition -->
+        <DisplayString ElementID="AP.F5.LTM.Partition">
+          <Name>F5 Partition</Name>
+          <Description>F5 Partition Class</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.Partition" SubElementID="Name">
+          <Name>Name</Name>
+          <Description>Name of F5 Partition</Description>
+        </DisplayString>
+
+        <!-- AP.F5.LTM.PartitionHostsVirtualServers -->
+        <DisplayString ElementID="AP.F5.LTM.PartitionHostsVirtualServers">
+          <Name>Partition Hosts VirtualServers</Name>
+          <Description>Defines the hosting relationship between Partitions and Virtual Servers</Description>
+        </DisplayString>
+
+        <!-- AP.F5.LTM.PartitionHostsProfileServerSSL -->
+        <DisplayString ElementID="AP.F5.LTM.PartitionHostsProfileServerSSL">
+          <Name>Partition Hosts ProfileServerSSL</Name>
+          <Description>Defines the hosting relationship between Partitions and ProfileServerSSL</Description>
+        </DisplayString>
+
+        <!-- AP.F5.LTM.PartitionHostsProfileClientSSL -->
+        <DisplayString ElementID="AP.F5.LTM.PartitionHostsProfileClientSSL">
+          <Name>Partition Hosts ProfileClientSSL</Name>
+          <Description>Defines the hosting relationship between Partitions and ProfileClientSSL</Description>
+        </DisplayString>
+
+        <!-- AP.F5.LTM.PartitionHostsCertificates -->
+        <DisplayString ElementID="AP.F5.LTM.PartitionHostsCertificates">
+          <Name>Partition Hosts Certificate</Name>
+          <Description>Defines the hosting relationship between Partitions and Certificate</Description>
+        </DisplayString>
+
+        <!-- AP.F5.LTM.PartitionHostsPools -->
+        <DisplayString ElementID="AP.F5.LTM.PartitionHostsPools">
+          <Name>Partition Hosts Pools</Name>
+          <Description>Defines the hosting relationship between Partitions and Pools</Description>
+        </DisplayString>
+
+        <!-- AP.F5.LTM.PartitionHostsNodes -->
+        <DisplayString ElementID="AP.F5.LTM.PartitionHostsNodes">
+          <Name>Partition Hosts Nodes</Name>
+          <Description>Defines the hosting relationship between Partitions and Nodes</Description>
+        </DisplayString>
+
+      </DisplayStrings>
+    </LanguagePack>
+  </LanguagePacks>
+</ManagementPackFragment>

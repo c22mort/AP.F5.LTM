@@ -1,0 +1,104 @@
+<TemplateGroup>
+  <Instances>
+    <Instance ID="Instance8125278cd2f94993b601a853c568c987" Type="Microsoft.SystemCenter.Authoring.CodeGeneration.Monitoring.PerformanceCollectionRule" Version="1.0.0.0">
+      <PerformanceCollectionRuleConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+        <Id>Perf.VirtualServer.Connections</Id>
+        <DisplayName>Virtual Server Connections</DisplayName>
+        <Description>Collect Virtual Server Connections via SNMP and Powershell</Description>
+        <Category>PerformanceCollection</Category>
+        <ConfirmDelivery>false</ConfirmDelivery>
+        <Target>AP.F5.LTM.VirtualServer</Target>
+        <Enabled>true</Enabled>
+        <Remotable>true</Remotable>
+        <Priority>Normal</Priority>
+        <DiscardLevel>100</DiscardLevel>
+        <ConditionDetectionId>CD</ConditionDetectionId>
+        <DataSourceId>DS</DataSourceId>
+        <DataSourceConfig>&lt;IntervalSeconds&gt;900&lt;/IntervalSeconds&gt;&lt;SyncTime&gt;00:06&lt;/SyncTime&gt;&lt;Debug&gt;false&lt;/Debug&gt;&lt;DeviceAddresses&gt;$Target/Host/Host/Property[Type="AP.F5.LTM.SyncFailoverGroup"]/Addresses$&lt;/DeviceAddresses&gt;&lt;DevicePorts&gt;$Target/Host/Host/Property[Type="AP.F5.LTM.SyncFailoverGroup"]/Ports$&lt;/DevicePorts&gt;&lt;DeviceCommunities&gt;$Target/Host/Host/Property[Type="AP.F5.LTM.SyncFailoverGroup"]/Communities$&lt;/DeviceCommunities&gt;&lt;VirtualServerName&gt;$Target/Property[Type="AP.F5.LTM.VirtualServer"]/FullName$&lt;/VirtualServerName&gt;</DataSourceConfig>
+        <DataSourceType>AP.F5.LTM.DataSource.VirtualServerConnections.Filtered</DataSourceType>
+        <CollectToDB>true</CollectToDB>
+        <CollectToDW>true</CollectToDW>
+      </PerformanceCollectionRuleConfig>
+    </Instance>
+    <Instance ID="Instancec5c241a6922c4074936a35b917ebac7b" Type="Microsoft.SystemCenter.Authoring.CodeGeneration.Monitoring.PerformanceCollectionRule" Version="1.0.0.0">
+      <PerformanceCollectionRuleConfig xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <Id>Perf.VirtualServer.AverageConnectionDuration</Id>
+        <DisplayName>Virtual Server Avg. Connection Duration</DisplayName>
+        <Description>Collect Virtual Server Average Connection Duration via SNMP and Powershell</Description>
+        <Category>PerformanceCollection</Category>
+        <ConfirmDelivery>false</ConfirmDelivery>
+        <Target>AP.F5.LTM.VirtualServer</Target>
+        <Enabled>true</Enabled>
+        <Remotable>true</Remotable>
+        <Priority>Normal</Priority>
+        <DiscardLevel>100</DiscardLevel>
+        <ConditionDetectionId>CD</ConditionDetectionId>
+        <DataSourceId>DS</DataSourceId>
+        <DataSourceConfig>&lt;IntervalSeconds&gt;900&lt;/IntervalSeconds&gt;&lt;SyncTime&gt;00:06&lt;/SyncTime&gt;&lt;Debug&gt;false&lt;/Debug&gt;&lt;DeviceAddresses&gt;$Target/Host/Host/Property[Type="AP.F5.LTM.SyncFailoverGroup"]/Addresses$&lt;/DeviceAddresses&gt;&lt;DevicePorts&gt;$Target/Host/Host/Property[Type="AP.F5.LTM.SyncFailoverGroup"]/Ports$&lt;/DevicePorts&gt;&lt;DeviceCommunities&gt;$Target/Host/Host/Property[Type="AP.F5.LTM.SyncFailoverGroup"]/Communities$&lt;/DeviceCommunities&gt;&lt;VirtualServerName&gt;$Target/Property[Type="AP.F5.LTM.VirtualServer"]/FullName$&lt;/VirtualServerName&gt;</DataSourceConfig>
+        <DataSourceType>AP.F5.LTM.DataSource.VirtualServerAverageConnectionDuration.Filtered</DataSourceType>
+        <CollectToDB>true</CollectToDB>
+        <CollectToDW>true</CollectToDW>
+      </PerformanceCollectionRuleConfig>
+    </Instance>
+    <Instance ID="Instanceacdbfa49a96545f29943f0a33e73e03e" Type="Microsoft.SystemCenter.Authoring.CodeGeneration.Monitoring.PerformanceCollectionRule" Version="1.0.0.0">
+      <PerformanceCollectionRuleConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+        <Id>Perf.PoolMember.Connections</Id>
+        <DisplayName>Pool Member Connections</DisplayName>
+        <Description>Collect Pool member Connections via SNMP and Powershell</Description>
+        <Category>PerformanceCollection</Category>
+        <ConfirmDelivery>false</ConfirmDelivery>
+        <Target>AP.F5.LTM.PoolMember</Target>
+        <Enabled>true</Enabled>
+        <Remotable>true</Remotable>
+        <Priority>Normal</Priority>
+        <DiscardLevel>100</DiscardLevel>
+        <ConditionDetectionId>CD</ConditionDetectionId>
+        <DataSourceId>DS</DataSourceId>
+        <DataSourceConfig>&lt;IntervalSeconds&gt;900&lt;/IntervalSeconds&gt;&lt;SyncTime&gt;00:08&lt;/SyncTime&gt;&lt;Debug&gt;false&lt;/Debug&gt;&lt;DeviceAddresses&gt;$Target/Host/Host/Host/Property[Type="AP.F5.LTM.SyncFailoverGroup"]/Addresses$&lt;/DeviceAddresses&gt;&lt;DevicePorts&gt;$Target/Host/Host/Host/Property[Type="AP.F5.LTM.SyncFailoverGroup"]/Ports$&lt;/DevicePorts&gt;&lt;DeviceCommunities&gt;$Target/Host/Host/Host/Property[Type="AP.F5.LTM.SyncFailoverGroup"]/Communities$&lt;/DeviceCommunities&gt;&lt;PoolMemberName&gt;$Target/Property[Type="AP.F5.LTM.PoolMember"]/FullName$&lt;/PoolMemberName&gt;&lt;PoolName&gt;$Target/Host/Property[Type="AP.F5.LTM.Pool"]/FullName$&lt;/PoolName&gt;</DataSourceConfig>
+        <DataSourceType>AP.F5.LTM.DataSource.Perf.PoolMemberConnections.Filtered</DataSourceType>
+        <CollectToDB>true</CollectToDB>
+        <CollectToDW>true</CollectToDW>
+      </PerformanceCollectionRuleConfig>
+    </Instance>
+    <Instance ID="Instance59cc69523b6342b9942ed655cb7c522a" Type="Microsoft.SystemCenter.Authoring.CodeGeneration.Monitoring.PerformanceCollectionRule" Version="1.0.0.0">
+      <PerformanceCollectionRuleConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+        <Id>Perf.Pool.Connections</Id>
+        <DisplayName>Pool Connections</DisplayName>
+        <Description>Collect Pool Connections via SNMP and Powershell</Description>
+        <Category>PerformanceCollection</Category>
+        <ConfirmDelivery>false</ConfirmDelivery>
+        <Target>AP.F5.LTM.Pool</Target>
+        <Enabled>true</Enabled>
+        <Remotable>true</Remotable>
+        <Priority>Normal</Priority>
+        <DiscardLevel>100</DiscardLevel>
+        <ConditionDetectionId>CD</ConditionDetectionId>
+        <DataSourceId>DS</DataSourceId>
+        <DataSourceConfig>&lt;IntervalSeconds&gt;900&lt;/IntervalSeconds&gt;&lt;SyncTime&gt;00:07&lt;/SyncTime&gt;&lt;Debug&gt;false&lt;/Debug&gt;&lt;DeviceAddresses&gt;$Target/Host/Host/Property[Type="AP.F5.LTM.SyncFailoverGroup"]/Addresses$&lt;/DeviceAddresses&gt;&lt;DevicePorts&gt;$Target/Host/Host/Property[Type="AP.F5.LTM.SyncFailoverGroup"]/Ports$&lt;/DevicePorts&gt;&lt;DeviceCommunities&gt;$Target/Host/Host/Property[Type="AP.F5.LTM.SyncFailoverGroup"]/Communities$&lt;/DeviceCommunities&gt;&lt;PoolName&gt;$Target/Property[Type="AP.F5.LTM.Pool"]/FullName$&lt;/PoolName&gt;</DataSourceConfig>
+        <DataSourceType>AP.F5.LTM.DataSource.PoolConnections.Filtered</DataSourceType>
+        <CollectToDB>true</CollectToDB>
+        <CollectToDW>true</CollectToDW>
+      </PerformanceCollectionRuleConfig>
+    </Instance>
+    <Instance ID="Instance86d2722a15314d048919175d7ce4c8c7" Type="Microsoft.SystemCenter.Authoring.CodeGeneration.Monitoring.PerformanceCollectionRule" Version="1.0.0.0">
+      <PerformanceCollectionRuleConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+        <Id>Perf.Node.Connections</Id>
+        <DisplayName>Node Connections</DisplayName>
+        <Description>Collect Node Connections via SNMP and Powershell</Description>
+        <Category>PerformanceCollection</Category>
+        <ConfirmDelivery>false</ConfirmDelivery>
+        <Target>AP.F5.LTM.Node</Target>
+        <Enabled>true</Enabled>
+        <Remotable>true</Remotable>
+        <Priority>Normal</Priority>
+        <DiscardLevel>100</DiscardLevel>
+        <ConditionDetectionId>CD</ConditionDetectionId>
+        <DataSourceId>DS</DataSourceId>
+        <DataSourceConfig>&lt;IntervalSeconds&gt;900&lt;/IntervalSeconds&gt;&lt;SyncTime&gt;00:09&lt;/SyncTime&gt;&lt;Debug&gt;false&lt;/Debug&gt;&lt;DeviceAddresses&gt;$Target/Host/Host/Property[Type="AP.F5.LTM.SyncFailoverGroup"]/Addresses$&lt;/DeviceAddresses&gt;&lt;DevicePorts&gt;$Target/Host/Host/Property[Type="AP.F5.LTM.SyncFailoverGroup"]/Ports$&lt;/DevicePorts&gt;&lt;DeviceCommunities&gt;$Target/Host/Host/Property[Type="AP.F5.LTM.SyncFailoverGroup"]/Communities$&lt;/DeviceCommunities&gt;&lt;NodeName&gt;$Target/Property[Type="AP.F5.LTM.Node"]/FullName$&lt;/NodeName&gt;</DataSourceConfig>
+        <DataSourceType>AP.F5.LTM.DataSource.Perf.NodeConnections.Filtered</DataSourceType>
+        <CollectToDB>true</CollectToDB>
+        <CollectToDW>true</CollectToDW>
+      </PerformanceCollectionRuleConfig>
+    </Instance>
+  </Instances>
+</TemplateGroup>

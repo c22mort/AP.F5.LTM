@@ -1,0 +1,75 @@
+﻿<ManagementPackFragment SchemaVersion="2.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <TypeDefinitions>
+    <EntityTypes>
+      <ClassTypes>
+
+        <!-- AP.F5.LTM.ProfileServerSSL -->
+        <ClassType ID="AP.F5.LTM.ProfileServerSSL" Base="System!System.LogicalEntity" Accessibility="Public" Abstract="false" Hosted="true" Singleton="false">
+          <Property ID="FullName" Key="true" Type="string"/>
+          <Property ID="Name" Key="false" Type="string"/>
+          <Property ID="Partition" Key="false" Type="string"/>
+          <Property ID="DeviceGroup" Key="false" Type="string"/>
+          <Property ID="Description" Key="false" Type="string"/>
+          <Property ID="CertFileNames" Key="false" Type="string" MaxLength="512"/>
+        </ClassType>
+      </ClassTypes>
+
+      <RelationshipTypes>
+
+        <!-- ProfileServerSSL -> Certificate Containment Relationship -->
+        <RelationshipType ID="AP.F5.LTM.ProfileServerSSL.ContainsCertificates" Base="System!System.Containment" Abstract="false" Accessibility="Public">
+          <Source ID="Source" Type="AP.F5.LTM.ProfileServerSSL"/>
+          <Target ID="Target" Type="AP.F5.LTM.Certificate"/>
+        </RelationshipType>
+
+      </RelationshipTypes>
+
+    </EntityTypes>
+  </TypeDefinitions>
+
+
+  <LanguagePacks>
+    <LanguagePack ID="ENU" IsDefault="true">
+      <DisplayStrings>
+
+        <!-- AP.F5.LTM.ProfileServerSSL -->
+        <DisplayString ElementID="AP.F5.LTM.ProfileServerSSL">
+          <Name>F5 Server SSL Profile</Name>
+          <Description>F5 Server SSL Profile Class</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.ProfileServerSSL" SubElementID="Name">
+          <Name>Name</Name>
+          <Description>Name of Server SSL Profile</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.ProfileServerSSL" SubElementID="FullName">
+          <Name>Full Name</Name>
+          <Description>Full Name of Server SSL Profile, including partition</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.ProfileServerSSL" SubElementID="Partition">
+          <Name>Partition</Name>
+          <Description>Name of hosting Partition</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.ProfileServerSSL" SubElementID="DeviceGroup">
+          <Name>Device Group</Name>
+          <Description>Name of Hosting Device Group</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.ProfileServerSSL" SubElementID="Description">
+          <Name>Description</Name>
+          <Description>Description  of Server SSL Profile</Description>
+        </DisplayString>
+        <DisplayString ElementID="AP.F5.LTM.ProfileServerSSL" SubElementID="CertFileNames">
+          <Name>Certificate File Names</Name>
+          <Description>File Name(s) of Server SSL Profile Certificate(s)</Description>
+        </DisplayString>
+
+        <!-- AP.F5.LTM.ProfileServerSSL.ContainsCertificates -->
+        <DisplayString ElementID="AP.F5.LTM.ProfileServerSSL.ContainsCertificates">
+          <Name>Server SSL Profile Contains Certificates</Name>
+          <Description>Defines the containment relationship between Server SSL Profiles and Certificates</Description>
+        </DisplayString>
+
+      </DisplayStrings>
+
+    </LanguagePack>
+  </LanguagePacks>
+</ManagementPackFragment>
