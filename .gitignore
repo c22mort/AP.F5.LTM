@@ -263,3 +263,4 @@ __pycache__/
 # AP.F5 Ignores
 devices.csv
 config.csv
+Installer/
