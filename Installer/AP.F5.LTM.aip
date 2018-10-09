@@ -9,10 +9,10 @@
     <ROW Property="ARPCOMMENTS" Value="This installer database contains the logic and data required to install [|ProductName]." ValueLocId="*"/>
     <ROW Property="CTRLS" Value="1"/>
     <ROW Property="Manufacturer" Value="AP Management Packs"/>
-    <ROW Property="ProductCode" Value="2057:{592E1300-F7D1-458E-9C7B-3B2B08B0C15A} " Type="16"/>
+    <ROW Property="ProductCode" Value="2057:{349D1F83-00ED-4E82-A7E0-894AD6AC01B3} " Type="16"/>
     <ROW Property="ProductLanguage" Value="2057"/>
     <ROW Property="ProductName" Value="AP.F5.LTM"/>
-    <ROW Property="ProductVersion" Value="18.10.2" Type="32"/>
+    <ROW Property="ProductVersion" Value="18.10.3" Type="32"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND"/>
     <ROW Property="UpgradeCode" Value="{6B96375A-0C6E-4738-A24B-16F819CD359C}"/>
     <ROW Property="VIEWREADME" Value="1" Type="4"/>
