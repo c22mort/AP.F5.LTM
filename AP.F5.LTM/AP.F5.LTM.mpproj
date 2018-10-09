@@ -5,7 +5,7 @@
     <RootNamespace>AP.F5.LTM</RootNamespace>
     <Name>AP.F5.LTM</Name>
     <ManagementPackName>AP.F5.LTM</ManagementPackName>
-    <Version>18.10.1.0</Version>
+    <Version>18.10.2.0</Version>
     <MpFrameworkVersion>v7.0.2</MpFrameworkVersion>
     <MpFrameworkProfile>OM</MpFrameworkProfile>
     <ProductVersion>1.1.0.0</ProductVersion>
@@ -22,17 +22,18 @@
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
     <DebugSymbols>false</DebugSymbols>
     <OutputPath>bin\Release\</OutputPath>
-    <DelaySigning>false</DelaySigning>
-    <Company>MyCompany</Company>
-    <Copyright>Copyright (c) MyCompany. All rights reserved.</Copyright>
+    <DelaySigning>False</DelaySigning>
+    <Company>AP Management Packs</Company>
+    <Copyright>Copyright (c) AP Management Packs. All rights reserved.</Copyright>
     <DelaySign>false</DelaySign>
-    <AssemblyOriginatorKeyFile />
+    <AssemblyOriginatorKeyFile>C:\VSAE\AP.F5.LTM\key.snk</AssemblyOriginatorKeyFile>
+    <GenerateSealed>True</GenerateSealed>
   </PropertyGroup>
   <ItemGroup>
     <ManagementPackReference Include="AP.F5.Base">
-      <HintPath>C:\VSAE-2012R2\AP.F5.Base\AP.F5.Base\bin\Debug\AP.F5.Base.mp</HintPath>
+      <HintPath>C:\VSAE\AP.F5.Base\AP.F5.Base\bin\Release\AP.F5.Base.mp</HintPath>
       <Alias>APF5</Alias>
-      <MinVersion>18.10.1.78</MinVersion>
+      <MinVersion>18.10.1.83</MinVersion>
       <PackageToBundle>False</PackageToBundle>
     </ManagementPackReference>
     <ManagementPackReference Include="Microsoft.SystemCenter.DataWarehouse.Library">

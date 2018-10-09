@@ -1,7 +1,7 @@
 <TemplateGroup>
   <Instances>
     <Instance ID="Instance30bbb391a8b14de9a4ceec22bc94afab" Type="Microsoft.SystemCenter.Authoring.CodeGeneration.Monitoring.DependencyMonitor" Version="1.0.0.0">
-      <DependencyMonitorConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <DependencyMonitorConfig xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
         <Algorithm>
           <Algorithm>WorstOf</Algorithm>
         </Algorithm>
@@ -25,8 +25,8 @@
         <AlertSeverity>MatchMonitorHealth</AlertSeverity>
       </DependencyMonitorConfig>
     </Instance>
-    <Instance ID="Instance0d97df2bb32745b38728cdbf75ad8fc9" Type="Microsoft.SystemCenter.Authoring.CodeGeneration.Monitoring.DependencyMonitor" Version="1.0.0.0">
-      <DependencyMonitorConfig xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <Instance ID="Instance12b5546b8fc840cd91260fea803a748b" Type="Microsoft.SystemCenter.Authoring.CodeGeneration.Monitoring.DependencyMonitor" Version="1.0.0.0">
+      <DependencyMonitorConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
         <Algorithm>
           <Algorithm>WorstOf</Algorithm>
         </Algorithm>
@@ -50,33 +50,8 @@
         <AlertSeverity>MatchMonitorHealth</AlertSeverity>
       </DependencyMonitorConfig>
     </Instance>
-    <Instance ID="Instance12b5546b8fc840cd91260fea803a748b" Type="Microsoft.SystemCenter.Authoring.CodeGeneration.Monitoring.DependencyMonitor" Version="1.0.0.0">
-      <DependencyMonitorConfig xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-        <Algorithm>
-          <Algorithm>WorstOf</Algorithm>
-        </Algorithm>
-        <MemberMonitor>AP.F5.LTM.Monitor.Certificate.Expiration.Status</MemberMonitor>
-        <MemberInMaintenance>Ignore</MemberInMaintenance>
-        <MemberUnavailable>Ignore</MemberUnavailable>
-        <RelationshipType>AP.F5.LTM.ProfileClientSSL.ContainsCertificates</RelationshipType>
-        <ParentMonitor>Health!System.Health.AvailabilityState</ParentMonitor>
-        <Accessibility>Public</Accessibility>
-        <Id>ProfileClientSSL.Certificate.Expiration.RollUp.Monitor</Id>
-        <DisplayName>ProfileClientSSL &lt;- Certificate Expiration RollUp Monitor</DisplayName>
-        <Description>Rolls-up Certificate Expiration Monitor to Client SSL Profile</Description>
-        <Target>AP.F5.LTM.ProfileClientSSL</Target>
-        <Enabled>true</Enabled>
-        <Category>AvailabilityHealth</Category>
-        <Remotable>true</Remotable>
-        <Priority>Normal</Priority>
-        <AlertAutoResolve>true</AlertAutoResolve>
-        <AlertOnState>None</AlertOnState>
-        <AlertPriority>Normal</AlertPriority>
-        <AlertSeverity>MatchMonitorHealth</AlertSeverity>
-      </DependencyMonitorConfig>
-    </Instance>
     <Instance ID="Instance716052b86c5a468c89a9527fa7a0fce8" Type="Microsoft.SystemCenter.Authoring.CodeGeneration.Monitoring.DependencyMonitor" Version="1.0.0.0">
-      <DependencyMonitorConfig xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <DependencyMonitorConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
         <Algorithm>
           <Algorithm>WorstOf</Algorithm>
         </Algorithm>
@@ -101,7 +76,7 @@
       </DependencyMonitorConfig>
     </Instance>
     <Instance ID="Instance3688c1a64e6c4da6ab65e52c9e2c7907" Type="Microsoft.SystemCenter.Authoring.CodeGeneration.Monitoring.DependencyMonitor" Version="1.0.0.0">
-      <DependencyMonitorConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <DependencyMonitorConfig xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
         <Algorithm>
           <Algorithm>WorstOf</Algorithm>
           <AlgorithmParameter>40</AlgorithmParameter>
@@ -127,7 +102,7 @@
       </DependencyMonitorConfig>
     </Instance>
     <Instance ID="Instance35b3156a19224d82981260b8f056aad5" Type="Microsoft.SystemCenter.Authoring.CodeGeneration.Monitoring.DependencyMonitor" Version="1.0.0.0">
-      <DependencyMonitorConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <DependencyMonitorConfig xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
         <Algorithm>
           <Algorithm>WorstOf</Algorithm>
           <AlgorithmParameter>40</AlgorithmParameter>
@@ -153,7 +128,7 @@
       </DependencyMonitorConfig>
     </Instance>
     <Instance ID="Instance89a1e2ae810344e6aaa0742c68098c1f" Type="Microsoft.SystemCenter.Authoring.CodeGeneration.Monitoring.DependencyMonitor" Version="1.0.0.0">
-      <DependencyMonitorConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <DependencyMonitorConfig xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
         <Algorithm>
           <Algorithm>WorstOf</Algorithm>
           <AlgorithmParameter>40</AlgorithmParameter>
@@ -179,7 +154,7 @@
       </DependencyMonitorConfig>
     </Instance>
     <Instance ID="Instanceb347e445989643778e5132acd066d916" Type="Microsoft.SystemCenter.Authoring.CodeGeneration.Monitoring.DependencyMonitor" Version="1.0.0.0">
-      <DependencyMonitorConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <DependencyMonitorConfig xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
         <Algorithm>
           <Algorithm>WorstOf</Algorithm>
           <AlgorithmParameter>40</AlgorithmParameter>
@@ -194,6 +169,31 @@
         <DisplayName>Partition &lt;- Certificate Roll-up Monitor</DisplayName>
         <Description>Rolls up Certificate Availability to Partition Availability</Description>
         <Target>AP.F5.LTM.Partition</Target>
+        <Enabled>true</Enabled>
+        <Category>AvailabilityHealth</Category>
+        <Remotable>true</Remotable>
+        <Priority>Normal</Priority>
+        <AlertAutoResolve>true</AlertAutoResolve>
+        <AlertOnState>None</AlertOnState>
+        <AlertPriority>Normal</AlertPriority>
+        <AlertSeverity>MatchMonitorHealth</AlertSeverity>
+      </DependencyMonitorConfig>
+    </Instance>
+    <Instance ID="Instance39b38c852d6f4bb19f7e62c8ef689633" Type="Microsoft.SystemCenter.Authoring.CodeGeneration.Monitoring.DependencyMonitor" Version="1.0.0.0">
+      <DependencyMonitorConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+        <Algorithm>
+          <Algorithm>WorstOf</Algorithm>
+        </Algorithm>
+        <MemberMonitor>AP.F5.LTM.Monitor.Certificate.Expiration.Status</MemberMonitor>
+        <MemberInMaintenance>Ignore</MemberInMaintenance>
+        <MemberUnavailable>Ignore</MemberUnavailable>
+        <RelationshipType>AP.F5.LTM.ProfileClientSSL.ContainsCertificates</RelationshipType>
+        <ParentMonitor>Health!System.Health.AvailabilityState</ParentMonitor>
+        <Accessibility>Public</Accessibility>
+        <Id>ProfileClientSSL.Certificate.Expiration.RollUp.Monitor</Id>
+        <DisplayName>ProfileClientSSL &lt;- Certificate Expiration RollUp Monitor</DisplayName>
+        <Description>Rolls-up Certificate Expiration Monitor to Client SSL Profile</Description>
+        <Target>AP.F5.LTM.ProfileClientSSL</Target>
         <Enabled>true</Enabled>
         <Category>AvailabilityHealth</Category>
         <Remotable>true</Remotable>

@@ -101,7 +101,7 @@ namespace AP.F5.LTM.Discovery.classes
                    10000);
                 retlist = response.ToList();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
             }
             return retlist;
@@ -138,7 +138,7 @@ namespace AP.F5.LTM.Discovery.classes
                 retlist = response.Pdu().Variables.ToList();
 
             }
-            catch (Exception ex)
+            catch (Exception)
             {
             }
             return retlist;

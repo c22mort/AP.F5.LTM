@@ -43,7 +43,7 @@ $api = New-Object -comObject 'MOM.ScriptAPI'
 $message =	$SCRIPT_NAME + " Started."
 Log-DebugEvent $SCRIPT_STARTED $message
 
-# Get All Servel SSL Profiles
+# Get All Server SSL Profiles
 $instances = Get-SCOMClass –Name "AP.F5.LTM.ProfileServerSSL" | Get-SCOMClassInstance | Select-Object *
 
 # Loop Through Them
