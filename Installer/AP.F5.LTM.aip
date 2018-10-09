@@ -32,7 +32,7 @@
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCompsComponent">
     <ROW Component="AP.F5.LTM.Discovery.exe" ComponentId="{ADE126B9-7387-4D15-B79D-6CC0630CA4EA}" Directory_="APPDIR" Attributes="256" KeyPath="AP.F5.LTM.Discovery.exe"/>
-    <ROW Component="AP.F5.LTM.mpb" ComponentId="{7E30AB01-CC49-4FE1-A8BF-69AB6F121C41}" Directory_="APPDIR" Attributes="0" KeyPath="AP.F5.LTM.mpb" Type="0"/>
+    <ROW Component="AP.F5.LTM.mpb" ComponentId="{7E30AB01-CC49-4FE1-A8BF-69AB6F121C41}" Directory_="APPDIR" Attributes="0" KeyPath="InstallGuide.rtf" Type="0"/>
     <ROW Component="AP.F5.LTM.mpb_1" ComponentId="{2ADBAA1D-0E40-4944-9301-455B773B582E}" Directory_="ManagementPacks_Dir" Attributes="0" KeyPath="AP.F5.LTM.mpb_1" Type="0"/>
     <ROW Component="LumenWorks.Framework.IO.dll" ComponentId="{FFDA1310-44F1-4C45-A24D-57F032406196}" Directory_="APPDIR" Attributes="0" KeyPath="LumenWorks.Framework.IO.dll"/>
     <ROW Component="ProductInformation" ComponentId="{A0E80527-9C8E-4349-A76B-4BBE56D8D0F6}" Directory_="APPDIR" Attributes="260" KeyPath="Version"/>
@@ -46,7 +46,6 @@
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFilesComponent">
     <ROW File="AP.F5.LTM.Discovery.exe" Component_="AP.F5.LTM.Discovery.exe" FileName="APF5LT~1.EXE|AP.F5.LTM.Discovery.exe" Attributes="0" SourcePath="..\AP.F5.LTM.Discovery\bin\x64\Release\AP.F5.LTM.Discovery.exe" SelfReg="false" NextFile="example_devices.csv" DigSign="true"/>
-    <ROW File="AP.F5.LTM.mpb" Component_="AP.F5.LTM.mpb" FileName="APF5LT~1.MPB|AP.F5.LTM.mpb" Attributes="0" SourcePath="..\AP.F5.LTM\bin\Release\AP.F5.LTM.mpb" SelfReg="false" NextFile="example_config.csv"/>
     <ROW File="AP.F5.LTM.mpb_1" Component_="AP.F5.LTM.mpb_1" FileName="APF5LT~1.MPB|AP.F5.LTM.mpb" Attributes="0" SourcePath="..\AP.F5.LTM\bin\Release\AP.F5.LTM.mpb" SelfReg="false" NextFile="InstallGuide.rtf"/>
     <ROW File="InstallGuide.rtf" Component_="AP.F5.LTM.mpb" FileName="INSTAL~1.RTF|Install-Guide.rtf" Attributes="0" SourcePath="Install-Guide.rtf" SelfReg="false" NextFile="ReadMe.txt"/>
     <ROW File="LumenWorks.Framework.IO.dll" Component_="LumenWorks.Framework.IO.dll" FileName="LUMENW~1.DLL|LumenWorks.Framework.IO.dll" Attributes="0" SourcePath="..\packages\LumenWorks.Framework.IO.3.8.0\lib\net20\LumenWorks.Framework.IO.dll" SelfReg="false" NextFile="SharpSnmpLib.dll"/>

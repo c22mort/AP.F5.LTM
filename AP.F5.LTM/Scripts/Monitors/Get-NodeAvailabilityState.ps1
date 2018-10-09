@@ -62,6 +62,8 @@ $walkMode = [Lextm.SharpSnmpLib.Messaging.WalkMode]::WithinSubtree
 [string]$ltmNodeAddrStatusEnabledState = ".1.3.6.1.4.1.3375.2.2.4.3.2.1.4" 
 # bigipTrafficMgmt.bigipLocalTM.ltmNodes.ltmNodeAddrStatus.ltmNodeAddrStatusTable.ltmNodeAddrStatusEntry.ltmNodeAddrStatusAvailState
 [string]$ltmNodeAddrStatusAvailState = ".1.3.6.1.4.1.3375.2.2.4.3.2.1.3"
+# bigipTrafficMgmt.bigipLocalTM.ltmNodes.ltmNodeAddrStatus.ltmNodeAddrStatusTable.ltmNodeAddrStatusEntry.ltmNodeAddrStatusDetailReason
+[string]$ltmNodeAddrStatusDetailReason = ".1.3.6.1.4.1.3375.2.2.4.3.2.1.6" 
 
 # Loop Through All Devices
 For ($i=0;$i -lt $DeviceAddressList.Count;$i++) {
@@ -84,6 +86,10 @@ For ($i=0;$i -lt $DeviceAddressList.Count;$i++) {
 		$NodeAvailabilityStateList = New-Object 'System.Collections.Generic.List[Lextm.SharpSnmpLib.Variable]'
 		[Lextm.SharpSnmpLib.Messaging.Messenger]::Walk($ver, $svr, $DeviceCommunityList[$i], $ltmNodeAddrStatusAvailState , $NodeAvailabilityStateList, 3000, $walkMode)
 
+		# Get Node DetailedReason from SNMP
+		$NodeDetailedReasonList = New-Object 'System.Collections.Generic.List[Lextm.SharpSnmpLib.Variable]'
+		[Lextm.SharpSnmpLib.Messaging.Messenger]::Walk($ver, $svr, $DeviceCommunityList[$i], $ltmNodeAddrStatusDetailReason , $NodeDetailedReasonList, 3000, $walkMode)
+
 		# Loop Through Results
 		For($i=0; $i -lt $NodeNameList.Count; $i++) {
 			[int]$NodeEnabledState = $NodeEnabledStateList[$i].Data.ToString()
@@ -91,12 +97,14 @@ For ($i=0;$i -lt $DeviceAddressList.Count;$i++) {
 			If ($NodeEnabledState -eq 1) {			
 				[string]$NodeName = $NodeNameList[$i].Data.ToString()
 				[int]$NodeAvailabilityState = $NodeAvailabilityStateList[$i].Data.ToString()
-
+				[string]$NodeDetailedReason = $NodeDetailedReasonList[$i].Data.ToString()
+	
 				#Create a property bag.
 				Log-DebugEvent $SCRIPT_EVENT " Creating Property bag for $NodeName"
 				$bag = $api.CreatePropertyBag()
 				$bag.AddValue("NodeName", $NodeName)
 				$bag.AddValue("AvailabilityState", $NodeAvailabilityState)
+				$bag.AddValue("DetailedReason", $NodeDetailedReason)
 				#$api.Return($bag)
 				$bag		
 			} 

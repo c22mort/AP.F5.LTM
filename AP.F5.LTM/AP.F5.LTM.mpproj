@@ -33,7 +33,7 @@
     <ManagementPackReference Include="AP.F5.Base">
       <HintPath>C:\VSAE\AP.F5.Base\AP.F5.Base\bin\Release\AP.F5.Base.mp</HintPath>
       <Alias>APF5</Alias>
-      <MinVersion>18.10.1.83</MinVersion>
+      <MinVersion>18.10.3.1</MinVersion>
       <PackageToBundle>False</PackageToBundle>
     </ManagementPackReference>
     <ManagementPackReference Include="Microsoft.SystemCenter.DataWarehouse.Library">
