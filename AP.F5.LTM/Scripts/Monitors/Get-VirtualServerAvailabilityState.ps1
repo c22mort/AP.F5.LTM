@@ -102,7 +102,8 @@ For ($i=0;$i -lt $DeviceAddressList.Count;$i++) {
 				[string]$VirtualServerDetailedReason = $VirtualServerDetailedReasonList[$i].Data.ToString()
 
 				#Create a property bag.
-				Log-DebugEvent $SCRIPT_PROPERTYBAG_CREATED "Creating Property bag for $VirtualServerName"
+				[string] $message = "Creating Property bag for : " + $VirtualServerName + "`r`nAvailability State : " + $VirtualServerAvailabilityState + "`r`nDetailed Reason : " + $VirtualServerDetailedReason
+				Log-DebugEvent $SCRIPT_PROPERTYBAG_CREATED $message
 				$bag = $api.CreatePropertyBag()
 				$bag.AddValue("VirtualServerName", $VirtualServerName)
 				$bag.AddValue("AvailabilityState", $VirtualServerAvailabilityState)

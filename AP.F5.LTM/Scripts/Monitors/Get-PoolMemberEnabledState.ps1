@@ -83,8 +83,8 @@ For ($i=0;$i -lt $DeviceAddressList.Count;$i++) {
 		[Lextm.SharpSnmpLib.Messaging.Messenger]::Walk($ver, $svr, $DeviceCommunityList[$i], $ltmPoolMbrStatusNodeName , $PoolMemberNameList, 3000, $walkMode)
 
 		# Get Pool Member Status from SNMP
-		$PoolMemberAvailabilityStateList = New-Object 'System.Collections.Generic.List[Lextm.SharpSnmpLib.Variable]'
-		[Lextm.SharpSnmpLib.Messaging.Messenger]::Walk($ver, $svr, $DeviceCommunityList[$i], $ltmPoolMbrStatusEnabledState , $PoolMemberAvailabilityStateList, 3000, $walkMode)
+		$PoolMemberEnabledStateList = New-Object 'System.Collections.Generic.List[Lextm.SharpSnmpLib.Variable]'
+		[Lextm.SharpSnmpLib.Messaging.Messenger]::Walk($ver, $svr, $DeviceCommunityList[$i], $ltmPoolMbrStatusEnabledState , $PoolMemberEnabledStateList, 3000, $walkMode)
 
 		# Get Pool Member Detailed Reasons from SNMP
 		$PoolMemberDetailedReasonList = New-Object 'System.Collections.Generic.List[Lextm.SharpSnmpLib.Variable]'
@@ -95,15 +95,16 @@ For ($i=0;$i -lt $DeviceAddressList.Count;$i++) {
 
 			[string]$PoolName = $PoolNameList[$i].Data.ToString()
 			[string]$PoolMemberName = $PoolMemberNameList[$i].Data.ToString()
-			[string]$PoolMemberAvailabilityState = $PoolMemberAvailabilityStateList[$i].Data.ToString()
+			[string]$PoolMemberEnabledState = $PoolMemberEnabledStateList[$i].Data.ToString()
 			[string]$PoolMemberDetailedReason = $PoolMemberDetailedReasonList[$i].Data.ToString()
 
 			#Create a property bag.
-			Log-DebugEvent $SCRIPT_PROPERTYBAG_CREATED "Creating Property bag for $PoolMemberName"
+			[string] $message = "Creating Property bag for : " + $PoolName + "`r`nPool Member : " + $PoolMemberName + "`r`nEnabled State : " + $PoolMemberEnabledState + "`r`nDetailed Reason : " + $PoolMemberDetailedReason
+			Log-DebugEvent $SCRIPT_PROPERTYBAG_CREATED $message
 			$bag = $api.CreatePropertyBag()
 			$bag.AddValue("PoolName", $PoolName)
 			$bag.AddValue("PoolMemberName", $PoolMemberName)
-			$bag.AddValue("EnabledState", $PoolMemberAvailabilityState)
+			$bag.AddValue("EnabledState", $PoolMemberEnabledState)
 			$bag.AddValue("DetailedReason", $PoolMemberDetailedReason)
 			#$api.Return($bag)
 			$bag		

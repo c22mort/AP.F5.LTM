@@ -101,7 +101,8 @@ For ($i=0;$i -lt $DeviceAddressList.Count;$i++) {
 				[string]$PoolDetailedReason = $PoolDetailedReasonList[$i].Data.ToString()
 
 				#Create a property bag.
-				Log-DebugEvent $SCRIPT_PROPERTYBAG_CREATED "Creating Property bag for $PoolName"
+				[string] $message = "Creating Property bag for : " + $PoolName + "`r`nAvailability State : " + $PoolAvailabilityState + "`r`nDetailed Reason : " + $PoolDetailedReason
+				Log-DebugEvent $SCRIPT_PROPERTYBAG_CREATED $message
 				$bag = $api.CreatePropertyBag()
 				$bag.AddValue("PoolName", $PoolName)
 				$bag.AddValue("AvailabilityState", $PoolAvailabilityState)

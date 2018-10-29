@@ -103,7 +103,8 @@ For ($i=0;$i -lt $DeviceAddressList.Count;$i++) {
 				[string]$NodeDetailedReason = $NodeDetailedReasonList[$i].Data.ToString()
 	
 				#Create a property bag.
-				Log-DebugEvent $SCRIPT_PROPERTYBAG_CREATED "Creating Property bag for $NodeName"
+				[string] $message = "Creating Property bag for : " + $NodeName + "`r`nAvailability State : " + $NodeAvailabilityState + "`r`nDetailed Reason : " + $NodeDetailedReason
+				Log-DebugEvent $SCRIPT_PROPERTYBAG_CREATED $message
 				$bag = $api.CreatePropertyBag()
 				$bag.AddValue("NodeName", $NodeName)
 				$bag.AddValue("AvailabilityState", $NodeAvailabilityState)
