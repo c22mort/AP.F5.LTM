@@ -8,16 +8,20 @@
 # Get the named parameters
 param($Debug,$DeviceAddresses,$DevicePorts,$DeviceCommunities,$SharpSnmpLocation)
 
+# Get Start Time For Script
+$StartTime = (GET-DATE)
+
 #Constants used for event logging
 $SCRIPT_NAME			= 'Get-VirtualServerConnections.ps1'
 $EVENT_LEVEL_ERROR 		= 1
-$VENT_LEVEL_WARNING 	= 2
+$EVENT_LEVEL_WARNING 	= 2
 $EVENT_LEVEL_INFO 		= 4
 
-$SCRIPT_STARTED			= 4601
-$PROPERTYBAG_CREATED	= 4602
-$SCRIPT_EVENT			= 4603
-$SCRIPT_ENDED			= 4604
+$SCRIPT_STARTED				= 4601
+$SCRIPT_PROPERTYBAG_CREATED	= 4602
+$SCRIPT_EVENT				= 4603
+$SCRIPT_ENDED				= 4604
+$SCRIPT_ERROR				= 4605
 
 #==================================================================================
 # Sub:		LogDebugEvent
@@ -39,8 +43,7 @@ function Log-DebugEvent
 $api = New-Object -comObject 'MOM.ScriptAPI'
 
 # Log Startup Message
-$message =	$SCRIPT_NAME + " Started."
-Log-DebugEvent $SCRIPT_STARTED " Script Started."
+Log-DebugEvent $SCRIPT_STARTED "Script Started."
 
 # Get Working All Device Addresses, Ports and Communities
 [System.Collections.ArrayList]$DeviceAddressList = $DeviceAddresses.Split(",")
@@ -114,20 +117,31 @@ For ($i=0;$i -lt $DeviceAddressList.Count;$i++) {
 	}
 	Catch
 	{
-		Log-DebugEvent $SCRIPT_EVENT "Could not Contact $DeviceAddressList[$i]"		
+		$message = "SNMP Server : " + $DeviceAddressList[$i] + "`r`nSNMP Port : " + $DevicePortList[$i] + "`r`nSNMP Community : " + $DeviceCommunityList[$i] + "`r`nSharpSnmp Location : " + $SharpSnmpLocation + "`r`nError : $_"
+		Log-DebugEvent $SCRIPT_ERROR $message
 	}
 }
 
 # Create Property bags From the Array
 For($i=0;$i -lt $ConnectionsArray.Count; $i++){
+		# Get Conenctions
+		$Connections = [int]$ConnectionsArray[$i].Connections
+		# Get VIP Name
+		$Name = $ConnectionsArray[$i].VirtualServerName
+
 		#Create a property bag.
-		Log-DebugEvent $SCRIPT_EVENT " Creating Property bag for $VirtualServerName"
+		[string] $message = "Created Node Property bag for $Name`r`n" + "Connections : " + $Connections
+		Log-DebugEvent $SCRIPT_PROPERTYBAG_CREATED $message
 		$bag = $api.CreatePropertyBag()
-		$bag.AddValue("VirtualServerName", $ConnectionsArray[$i].VirtualServerName)
-		$bag.AddValue("Connections", [int]$ConnectionsArray[$i].Connections)
+		$bag.AddValue("VirtualServerName", $Name)
+		$bag.AddValue("Connections", $Connections)
 		#$api.Return($bag)
 		$bag		
 
 }
+# Get End Time For Script
+$EndTime = (GET-DATE)
+$TimeTaken = NEW-TIMESPAN -Start $StartTime -End $EndTime
+$Seconds = [math]::Round($TimeTaken.TotalSeconds, 2)
 # Log Finished Message
-Log-DebugEvent $SCRIPT_ENDED " Script Ended."
+Log-DebugEvent $SCRIPT_ENDED "Script Finished. Took $Seconds Seconds to Complete!"
