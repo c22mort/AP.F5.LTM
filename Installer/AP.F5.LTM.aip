@@ -7,12 +7,14 @@
     <ROW Property="AI_BITMAP_DISPLAY_MODE" Value="0"/>
     <ROW Property="ALLUSERS" Value="1"/>
     <ROW Property="ARPCOMMENTS" Value="This installer database contains the logic and data required to install [|ProductName]." ValueLocId="*"/>
+    <ROW Property="ARPPRODUCTICON" Value="scom_icon.exe" Type="8"/>
+    <ROW Property="ARPURLINFOABOUT" Value="https://github.com/c22mort/AP.F5.LTM"/>
     <ROW Property="CTRLS" Value="1"/>
     <ROW Property="Manufacturer" Value="AP Management Packs"/>
-    <ROW Property="ProductCode" Value="2057:{349D1F83-00ED-4E82-A7E0-894AD6AC01B3} " Type="16"/>
+    <ROW Property="ProductCode" Value="2057:{CB4B727D-AE1B-4678-BD4E-E1719DBE1A2C} " Type="16"/>
     <ROW Property="ProductLanguage" Value="2057"/>
     <ROW Property="ProductName" Value="AP.F5.LTM"/>
-    <ROW Property="ProductVersion" Value="18.10.3" Type="32"/>
+    <ROW Property="ProductVersion" Value="18.10.7" Type="32"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND"/>
     <ROW Property="UpgradeCode" Value="{6B96375A-0C6E-4738-A24B-16F819CD359C}"/>
     <ROW Property="VIEWREADME" Value="1" Type="4"/>
@@ -129,6 +131,9 @@
     <ROW Action="SET_APPDIR" Type="307" Source="APPDIR" Target="[ProgramFilesFolder][Manufacturer]\[ProductName]" MultiBuildTarget="DefaultBuild:[ProgramFiles64Folder][Manufacturer]\[ProductName]"/>
     <ROW Action="SET_SHORTCUTDIR" Type="307" Source="SHORTCUTDIR" Target="[ProgramMenuFolder][ProductName]"/>
     <ROW Action="SET_TARGETDIR_TO_APPDIR" Type="51" Source="TARGETDIR" Target="[APPDIR]"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiIconsComponent">
+    <ROW Name="scom_icon.exe" SourcePath="..\..\AP.F5.Base\AP.F5.Base.Discovery\scom_icon.ico" Index="0"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiInstExSeqComponent">
     <ROW Action="AI_DOWNGRADE" Condition="AI_NEWERPRODUCTFOUND AND (UILevel &lt;&gt; 5)" Sequence="210"/>

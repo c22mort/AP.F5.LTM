@@ -14,8 +14,8 @@
     <DebugSymbols>true</DebugSymbols>
     <OutputPath>bin\Debug\</OutputPath>
     <GenerateSealed>True</GenerateSealed>
-    <Company>AP Managment Packs</Company>
-    <Copyright>Copyright (c) AP Managment Packs. All rights reserved.</Copyright>
+    <Company>AP Management Packs</Company>
+    <Copyright>Copyright (c) AP Management Packs. All rights reserved.</Copyright>
     <DelaySigning>False</DelaySigning>
     <AssemblyOriginatorKeyFile>C:\VSAE\AP.F5.LTM\key.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
