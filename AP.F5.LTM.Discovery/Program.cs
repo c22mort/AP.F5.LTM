@@ -31,7 +31,6 @@ namespace AP.F5.LTM.Discovery
 
         // Create Snapshot Discovery Data Object
         private static SnapshotDiscoveryData discoData = new SnapshotDiscoveryData();
-        private static IncrementalDiscoveryData incrementalDiscoveryData = new IncrementalDiscoveryData();
 
 
         // Interface to F5 Device
@@ -86,31 +85,37 @@ namespace AP.F5.LTM.Discovery
                     // Log Progress
                     log.Info("Starting Device Discovery...");
                     Console.WriteLine();
-                    // Get Devices
+                    // Get Devices from SCOM
                     SCOM_DeviceList = new SCOM_Devices();
+                    // Get Devices from CSV
                     GetDevices();
                     // Log Progress
-                    log.Info(SCOM_DeviceList.Items.Count + " Devices Found...");
+                    log.Info(SCOM_DeviceList.Items.Count + " Devices Found in SCOM...");
+                    log.Info(DeviceList.Count + " Devices Found in CSV...");
                     Console.WriteLine();
 
                     // Get Device Groups / Traffic Groups
                     log.Info("Get Device Groups / Traffic Groups from...");
                     GetDeviceGroups();
 
-                    // Write Discovered Data to SCOM Database ( For Relationships
+                    // Create Discovery Data
                     Console.WriteLine();
                     log.Info("Writing Discovery Data to " + m_managementServer);
-
                     // Add Data to Discovery Data
                     AddDataToDiscoveryData();
+                    // Write Discovery Data
                     discoData.Overwrite(SCOM.m_monitoringConnector);
-
 
                     // Write Discovered Relationship Data to SCOM Database
                     Console.WriteLine();
                     log.Info("Writing Relationship Data to " + m_managementServer);
                     CreateRelationships();
-                    incrementalDiscoveryData.Overwrite(SCOM.m_monitoringConnector);
+                    // Write Discovery Data
+                    discoData.Overwrite(SCOM.m_monitoringConnector);
+
+
+                    Console.WriteLine();
+
 
                 }
                 else
@@ -191,7 +196,6 @@ namespace AP.F5.LTM.Discovery
                 string[] devGroupNameList = m_interfaces.ManagementDeviceGroup.get_list();
                 ManagementDeviceGroupFailoverStatus failover = m_interfaces.ManagementDeviceGroup.get_failover_status();
                 CommonEnabledState[] status = m_interfaces.ManagementDeviceGroup.get_network_failover_enabled_state(devGroupNameList);
-
                 // Check Each Device Group
                 foreach (string devGroupFullName in devGroupNameList)
                 {
@@ -273,6 +277,7 @@ namespace AP.F5.LTM.Discovery
                                 newGroup.TrafficGroupList.Add(newTrafficGroup);
                             }
 
+                            newGroup.deviceStrings = m_interfaces.ManagementDeviceGroup.get_device(new string[] { devGroupFullName })[0];
                             // Add DeviceGroup to List
                             SyncFailoverGroupList.Add(newGroup);
                         }
@@ -303,13 +308,24 @@ namespace AP.F5.LTM.Discovery
 
                 // Get Serial Key Suffix
                 string KeySuffix = "";
-                foreach (f5Device device in sfog.DeviceList)
+
+                foreach (string deviceName in sfog.deviceStrings)
                 {
-                    sfog.Addresses += device.Address + ",";
-                    sfog.Ports += device.Port.ToString() + ",";
-                    sfog.Communities += device.Community + ",";
-                    KeySuffix += "-" + device.SerialNumber;
+                    foreach (EnterpriseManagementObject objDevice in SCOM_DeviceList.Items)
+                    {
+                        string sFullName = "/common/" + objDevice.DisplayName.ToLower();
+                        if (deviceName.ToLower() == sFullName)
+                        {
+                            sfog.Addresses += objDevice.Values[2].ToString() + ",";
+                            sfog.Ports += objDevice.Values[3].ToString() + ",";
+                            sfog.Communities += objDevice.Values[4].ToString() + ",";
+                            KeySuffix += "-" + objDevice.Values[13].ToString();
+                            break;
+                        }
+                    }
                 }
+
+
                 sfog.Addresses = sfog.Addresses.TrimEnd(',');
                 sfog.Ports = sfog.Ports.TrimEnd(',');
                 sfog.Communities = sfog.Communities.TrimEnd(',');
@@ -768,7 +784,7 @@ namespace AP.F5.LTM.Discovery
                     CreatableEnterpriseManagementRelationshipObject obj_SyncFailoverGroupContainsDevice = new CreatableEnterpriseManagementRelationshipObject(SCOM.m_managementGroup, mpr_SyncFailoverGroupContainsDevice);
                     obj_SyncFailoverGroupContainsDevice.SetSource(syncFailoverGroupObject);
                     obj_SyncFailoverGroupContainsDevice.SetTarget(dev.SCOM_DeviceObject);
-                    incrementalDiscoveryData.Add(obj_SyncFailoverGroupContainsDevice);
+                    discoData.Include(obj_SyncFailoverGroupContainsDevice);
                 }
 
                 // Loop Through Traffic Groups
@@ -782,7 +798,7 @@ namespace AP.F5.LTM.Discovery
                         CreatableEnterpriseManagementRelationshipObject obj_TrafficGroupContainsDevice = new CreatableEnterpriseManagementRelationshipObject(SCOM.m_managementGroup, mpr_TrafficGroupContainsDevices);
                         obj_TrafficGroupContainsDevice.SetSource(tg.SCOM_Object);
                         obj_TrafficGroupContainsDevice.SetTarget(dev.SCOM_DeviceObject);
-                        incrementalDiscoveryData.Add(obj_TrafficGroupContainsDevice);
+                        discoData.Include(obj_TrafficGroupContainsDevice);
                     }
                 }
 
@@ -808,7 +824,7 @@ namespace AP.F5.LTM.Discovery
                                 CreatableEnterpriseManagementRelationshipObject obj_Containment = new CreatableEnterpriseManagementRelationshipObject(SCOM.m_managementGroup, mpr_Containment);
                                 obj_Containment.SetSource(profile_Object);
                                 obj_Containment.SetTarget(cert_Object);
-                                incrementalDiscoveryData.Add(obj_Containment);
+                                discoData.Include(obj_Containment);
                             }
                         }
                     }
@@ -831,7 +847,7 @@ namespace AP.F5.LTM.Discovery
                                 CreatableEnterpriseManagementRelationshipObject obj_Containment = new CreatableEnterpriseManagementRelationshipObject(SCOM.m_managementGroup, mpr_Containment);
                                 obj_Containment.SetSource(profile_Object);
                                 obj_Containment.SetTarget(cert_Object);
-                                incrementalDiscoveryData.Add(obj_Containment);
+                                discoData.Include(obj_Containment);
                             }
                         }
                     }
@@ -852,7 +868,7 @@ namespace AP.F5.LTM.Discovery
                             CreatableEnterpriseManagementRelationshipObject obj_VirtualServerContainsProfile = new CreatableEnterpriseManagementRelationshipObject(SCOM.m_managementGroup, mpr_VirtualServerContainsProfile);
                             obj_VirtualServerContainsProfile.SetSource(vipObject);
                             obj_VirtualServerContainsProfile.SetTarget(profileObject);
-                            incrementalDiscoveryData.Add(obj_VirtualServerContainsProfile);
+                            discoData.Include(obj_VirtualServerContainsProfile);
 
                         }
                         // Do Server SSL Profiles
@@ -865,7 +881,7 @@ namespace AP.F5.LTM.Discovery
                             CreatableEnterpriseManagementRelationshipObject obj_VirtualServerContainsProfile = new CreatableEnterpriseManagementRelationshipObject(SCOM.m_managementGroup, mpr_VirtualServerContainsProfile);
                             obj_VirtualServerContainsProfile.SetSource(vipObject);
                             obj_VirtualServerContainsProfile.SetTarget(profileObject);
-                            incrementalDiscoveryData.Add(obj_VirtualServerContainsProfile);
+                            discoData.Include(obj_VirtualServerContainsProfile);
 
                         }
 
@@ -880,7 +896,7 @@ namespace AP.F5.LTM.Discovery
                             CreatableEnterpriseManagementRelationshipObject obj_VirtualServerContainsPools = new CreatableEnterpriseManagementRelationshipObject(SCOM.m_managementGroup, mpr_VirtualServerContainsPools);
                             obj_VirtualServerContainsPools.SetSource(vipObject);
                             obj_VirtualServerContainsPools.SetTarget(poolObject);
-                            incrementalDiscoveryData.Add(obj_VirtualServerContainsPools);
+                            discoData.Include(obj_VirtualServerContainsPools);
 
                         }
 

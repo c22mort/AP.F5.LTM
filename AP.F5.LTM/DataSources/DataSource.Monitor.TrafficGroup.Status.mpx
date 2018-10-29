@@ -15,9 +15,11 @@
             <SchemaType>SNMP!System.SnmpVarBindsSchema</SchemaType>
           </IncludeSchemaTypes>
           <xsd:element name="IntervalSeconds" type="xsd:integer" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+          <xsd:element name="Debug" type="xsd:boolean"/>
         </Configuration>
         <OverrideableParameters>
           <OverrideableParameter ID="IntervalSeconds" Selector="$Config/IntervalSeconds$" ParameterType="int" />
+          <OverrideableParameter ID="Debug" Selector="$Config/Debug$" ParameterType="bool"/>
         </OverrideableParameters>
         <MonitorImplementation>
           <MemberModules>
@@ -34,6 +36,10 @@
               <ScriptBody>$IncludeFileContent/Scripts/Monitors/Get-TrafficGroupStatus.ps1$</ScriptBody>
               <SnapIns />
               <Parameters>
+                <Parameter>
+                  <Name>Debug</Name>
+                  <Value>$Config/Debug$</Value>
+                </Parameter>
                 <Parameter>
                   <Name>TrafficGroupName</Name>
                   <Value>$Target/Property[Type="AP.F5.LTM.TrafficGroup"]/FullName$</Value>

@@ -435,8 +435,7 @@
       </View>
       <!-- AP.F5.LTM.View.State.AllServerSslProfiles -->
       <View ID="AP.F5.LTM.View.State.AllServerSslProfiles" Target="AP.F5.LTM.ProfileServerSSL" TypeID="SC!Microsoft.SystemCenter.StateViewType" Accessibility="Internal" Enabled="true" Visible="true">
-        <Category>Custom</Category>
-        <Criteria />
+        <Category>Operations</Category>
       </View>
 
     </Views>

@@ -9,16 +9,20 @@
 # Get the named parameters
 param($Debug)
 
+# Get Start Time For Script
+$StartTime = (GET-DATE)
+
 #Constants used for event logging
 $SCRIPT_NAME			= 'Get-ServerProfileSslStatus.ps1'
 $EVENT_LEVEL_ERROR 		= 1
 $VENT_LEVEL_WARNING 	= 2
 $EVENT_LEVEL_INFO 		= 4
 
-$SCRIPT_STARTED			= 4601
-$PROPERTYBAG_CREATED	= 4602
-$SCRIPT_EVENT			= 4603
-$SCRIPT_ENDED			= 4604
+$SCRIPT_STARTED				= 4601
+$SCRIPT_PROPERTYBAG_CREATED	= 4602
+$SCRIPT_EVENT				= 4603
+$SCRIPT_ENDED				= 4604
+$SCRIPT_ERROR				= 4605
 
 #==================================================================================
 # Sub:		LogDebugEvent
@@ -51,7 +55,7 @@ foreach ($instance in $instances) {
 	$cert = $instance.'[AP.F5.LTM.ProfileServerSSL].CertFileNames'.value
 	$name = $instance.'[AP.F5.LTM.ProfileServerSSL].FullName'.value
 	if ($cert -eq ""){
-		Log-DebugEvent $PROPERTYBAG_CREATED "Created PropertyBag for $name"
+		Log-DebugEvent $SCRIPT_PROPERTYBAG_CREATED "Created PropertyBag for $name"
 		#Create a property bag.
 		$bag = $api.CreatePropertyBag()
 		$bag.AddValue('ProfileName', $name)
@@ -62,6 +66,9 @@ foreach ($instance in $instances) {
 	}
 }
 
+# Get End Time For Script
+$EndTime = (GET-DATE)
+$TimeTaken = NEW-TIMESPAN -Start $StartTime -End $EndTime
+$Seconds = [math]::Round($TimeTaken.TotalSeconds, 2)
 # Log Finished Message
-$message =	$SCRIPT_NAME + " Ended."
-Log-DebugEvent $SCRIPT_ENDED $message
+Log-DebugEvent $SCRIPT_ENDED "Script Finished. Took $Seconds Seconds to Complete!"

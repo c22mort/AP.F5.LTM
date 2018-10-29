@@ -28,6 +28,9 @@ namespace AP.F5.LTM.Discovery.classes
         // List of Device Objects
         public List<f5Device> DeviceList = new List<f5Device>();
 
+        // String List of Devices
+        public string[] deviceStrings;
+
         // List of TrafficGroup Objects
         public List<TrafficGroup> TrafficGroupList = new List<TrafficGroup>();
 

@@ -1,7 +1,7 @@
 <TemplateGroup>
   <Instances>
     <Instance ID="Instance41e7786bdd57493ebc9d6ff47376cb1a" Type="Microsoft.SystemCenter.Authoring.CodeGeneration.Monitoring.UnitMonitor" Version="1.0.0.0">
-      <UnitMonitorConfig xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <UnitMonitorConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
         <MonitorType>AP.F5.LTM.DataSource.Monitor.CertificateExpiration</MonitorType>
         <MonitorConfig>&lt;IntervalSeconds&gt;3600&lt;/IntervalSeconds&gt;&lt;SyncTime /&gt;&lt;OkayThreshold&gt;90&lt;/OkayThreshold&gt;&lt;CriticalThreshold&gt;30&lt;/CriticalThreshold&gt;</MonitorConfig>
         <MonitorOperationalStates>
@@ -50,7 +50,7 @@ Expiration Days : $Target/Property[Type="AP.F5.LTM.Certificate"]/ExpirationDays$
       </UnitMonitorConfig>
     </Instance>
     <Instance ID="Instance0c7ff3a22d5b4ab1a13dbac0cfc7fc3e" Type="Microsoft.SystemCenter.Authoring.CodeGeneration.Monitoring.UnitMonitor" Version="1.0.0.0">
-      <UnitMonitorConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <UnitMonitorConfig xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
         <MonitorType>AP.F5.LTM.Monitor.NodeAvailabilityState.Powershell</MonitorType>
         <MonitorConfig>&lt;IntervalSeconds&gt;600&lt;/IntervalSeconds&gt;&lt;SyncTime&gt;00:04&lt;/SyncTime&gt;&lt;Debug&gt;false&lt;/Debug&gt;&lt;DeviceAddresses&gt;$Target/Host/Host/Property[Type="AP.F5.LTM.SyncFailoverGroup"]/Addresses$&lt;/DeviceAddresses&gt;&lt;DevicePorts&gt;$Target/Host/Host/Property[Type="AP.F5.LTM.SyncFailoverGroup"]/Ports$&lt;/DevicePorts&gt;&lt;DeviceCommunities&gt;$Target/Host/Host/Property[Type="AP.F5.LTM.SyncFailoverGroup"]/Communities$&lt;/DeviceCommunities&gt;&lt;NodeName&gt;$Target/Property[Type="AP.F5.LTM.Node"]/FullName$&lt;/NodeName&gt;</MonitorConfig>
         <MonitorOperationalStates>
@@ -99,7 +99,7 @@ Given Reason is : $Data/Context/Property[@Name='DetailedReason']$
       </UnitMonitorConfig>
     </Instance>
     <Instance ID="Instance1988e735c02945088025e02c397c362f" Type="Microsoft.SystemCenter.Authoring.CodeGeneration.Monitoring.UnitMonitor" Version="1.0.0.0">
-      <UnitMonitorConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <UnitMonitorConfig xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
         <MonitorType>AP.F5.LTM.Monitor.NodeEnabledState.Powershell</MonitorType>
         <MonitorConfig>&lt;IntervalSeconds&gt;600&lt;/IntervalSeconds&gt;&lt;SyncTime&gt;00:04&lt;/SyncTime&gt;&lt;Debug&gt;false&lt;/Debug&gt;&lt;DeviceAddresses&gt;$Target/Host/Host/Property[Type="AP.F5.LTM.SyncFailoverGroup"]/Addresses$&lt;/DeviceAddresses&gt;&lt;DevicePorts&gt;$Target/Host/Host/Property[Type="AP.F5.LTM.SyncFailoverGroup"]/Ports$&lt;/DevicePorts&gt;&lt;DeviceCommunities&gt;$Target/Host/Host/Property[Type="AP.F5.LTM.SyncFailoverGroup"]/Communities$&lt;/DeviceCommunities&gt;&lt;NodeName&gt;$Target/Property[Type="AP.F5.LTM.Node"]/FullName$&lt;/NodeName&gt;</MonitorConfig>
         <MonitorOperationalStates>
@@ -141,7 +141,7 @@ Given Reason is : $Data/Context/Property[@Name='DetailedReason']$</AlertDescript
       </UnitMonitorConfig>
     </Instance>
     <Instance ID="Instance9f98a54c7c5b4b22b93b41f64eaa0d96" Type="Microsoft.SystemCenter.Authoring.CodeGeneration.Monitoring.UnitMonitor" Version="1.0.0.0">
-      <UnitMonitorConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <UnitMonitorConfig xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
         <MonitorType>AP.F5.LTM.Monitor.PoolAvailabilityState.Powershell</MonitorType>
         <MonitorConfig>&lt;IntervalSeconds&gt;600&lt;/IntervalSeconds&gt;&lt;SyncTime&gt;00:02&lt;/SyncTime&gt;&lt;Debug&gt;false&lt;/Debug&gt;&lt;DeviceAddresses&gt;$Target/Host/Host/Property[Type="AP.F5.LTM.SyncFailoverGroup"]/Addresses$&lt;/DeviceAddresses&gt;&lt;DevicePorts&gt;$Target/Host/Host/Property[Type="AP.F5.LTM.SyncFailoverGroup"]/Ports$&lt;/DevicePorts&gt;&lt;DeviceCommunities&gt;$Target/Host/Host/Property[Type="AP.F5.LTM.SyncFailoverGroup"]/Communities$&lt;/DeviceCommunities&gt;&lt;PoolName&gt;$Target/Property[Type="AP.F5.LTM.Pool"]/FullName$&lt;/PoolName&gt;</MonitorConfig>
         <MonitorOperationalStates>
@@ -190,7 +190,7 @@ Given Reason is : $Data/Context/Property[@Name='DetailedReason']$
       </UnitMonitorConfig>
     </Instance>
     <Instance ID="Instanceced94feed3094ac8b0e42b7a6180c6f5" Type="Microsoft.SystemCenter.Authoring.CodeGeneration.Monitoring.UnitMonitor" Version="1.0.0.0">
-      <UnitMonitorConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <UnitMonitorConfig xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
         <MonitorType>AP.F5.LTM.Monitor.PoolEnabledState.Powershell</MonitorType>
         <MonitorConfig>&lt;IntervalSeconds&gt;600&lt;/IntervalSeconds&gt;&lt;SyncTime&gt;00:02&lt;/SyncTime&gt;&lt;Debug&gt;false&lt;/Debug&gt;&lt;DeviceAddresses&gt;$Target/Host/Host/Property[Type="AP.F5.LTM.SyncFailoverGroup"]/Addresses$&lt;/DeviceAddresses&gt;&lt;DevicePorts&gt;$Target/Host/Host/Property[Type="AP.F5.LTM.SyncFailoverGroup"]/Ports$&lt;/DevicePorts&gt;&lt;DeviceCommunities&gt;$Target/Host/Host/Property[Type="AP.F5.LTM.SyncFailoverGroup"]/Communities$&lt;/DeviceCommunities&gt;&lt;PoolName&gt;$Target/Property[Type="AP.F5.LTM.Pool"]/FullName$&lt;/PoolName&gt;</MonitorConfig>
         <MonitorOperationalStates>
@@ -232,7 +232,7 @@ Given Reason is : $Data/Context/Property[@Name='EnabledState']$</AlertDescriptio
       </UnitMonitorConfig>
     </Instance>
     <Instance ID="Instancec380f864b9be44518f1ff63070539894" Type="Microsoft.SystemCenter.Authoring.CodeGeneration.Monitoring.UnitMonitor" Version="1.0.0.0">
-      <UnitMonitorConfig xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <UnitMonitorConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
         <MonitorType>AP.F5.LTM.Monitor.PoolMemberAvailabilityState.Powershell</MonitorType>
         <MonitorConfig>&lt;IntervalSeconds&gt;600&lt;/IntervalSeconds&gt;&lt;SyncTime&gt;00:03&lt;/SyncTime&gt;&lt;Debug&gt;false&lt;/Debug&gt;&lt;DeviceAddresses&gt;$Target/Host/Host/Host/Property[Type="AP.F5.LTM.SyncFailoverGroup"]/Addresses$&lt;/DeviceAddresses&gt;&lt;DevicePorts&gt;$Target/Host/Host/Host/Property[Type="AP.F5.LTM.SyncFailoverGroup"]/Ports$&lt;/DevicePorts&gt;&lt;DeviceCommunities&gt;$Target/Host/Host/Host/Property[Type="AP.F5.LTM.SyncFailoverGroup"]/Communities$&lt;/DeviceCommunities&gt;&lt;PoolMemberName&gt;$Target/Property[Type="AP.F5.LTM.PoolMember"]/FullName$&lt;/PoolMemberName&gt;&lt;PoolName&gt;$Target/Property[Type="AP.F5.LTM.PoolMember"]/PoolName$&lt;/PoolName&gt;</MonitorConfig>
         <MonitorOperationalStates>
@@ -280,7 +280,7 @@ Given Reason is : $Data/Context/Property[@Name='DetailedReason']$
       </UnitMonitorConfig>
     </Instance>
     <Instance ID="Instance9672103b887d4b7ca3d4d205b4300094" Type="Microsoft.SystemCenter.Authoring.CodeGeneration.Monitoring.UnitMonitor" Version="1.0.0.0">
-      <UnitMonitorConfig xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <UnitMonitorConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
         <MonitorType>AP.F5.LTM.Monitor.PoolMemberEnabledState.Powershell</MonitorType>
         <MonitorConfig>&lt;IntervalSeconds&gt;600&lt;/IntervalSeconds&gt;&lt;SyncTime&gt;00:03&lt;/SyncTime&gt;&lt;Debug&gt;false&lt;/Debug&gt;&lt;DeviceAddresses&gt;$Target/Host/Host/Host/Property[Type="AP.F5.LTM.SyncFailoverGroup"]/Addresses$&lt;/DeviceAddresses&gt;&lt;DevicePorts&gt;$Target/Host/Host/Host/Property[Type="AP.F5.LTM.SyncFailoverGroup"]/Ports$&lt;/DevicePorts&gt;&lt;DeviceCommunities&gt;$Target/Host/Host/Host/Property[Type="AP.F5.LTM.SyncFailoverGroup"]/Communities$&lt;/DeviceCommunities&gt;&lt;PoolMemberName&gt;$Target/Property[Type="AP.F5.LTM.PoolMember"]/FullName$&lt;/PoolMemberName&gt;&lt;PoolName&gt;$Target/Property[Type="AP.F5.LTM.PoolMember"]/PoolName$&lt;/PoolName&gt;</MonitorConfig>
         <MonitorOperationalStates>
@@ -324,7 +324,7 @@ Given Reason is : $Data/Context/Property[@Name='DetailedReason']$
       </UnitMonitorConfig>
     </Instance>
     <Instance ID="Instancecca35749606b465183306cfe8bf964be" Type="Microsoft.SystemCenter.Authoring.CodeGeneration.Monitoring.UnitMonitor" Version="1.0.0.0">
-      <UnitMonitorConfig xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <UnitMonitorConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
         <MonitorType>AP.F5.LTM.DataSource.Monitor.ServerSslProfile.Status</MonitorType>
         <MonitorConfig>&lt;IntervalSeconds&gt;3600&lt;/IntervalSeconds&gt;&lt;SyncTime&gt;00:05&lt;/SyncTime&gt;&lt;Debug&gt;false&lt;/Debug&gt;</MonitorConfig>
         <MonitorOperationalStates>
@@ -359,9 +359,9 @@ Given Reason is : $Data/Context/Property[@Name='DetailedReason']$
       </UnitMonitorConfig>
     </Instance>
     <Instance ID="Instancecd372478565f406694615a0e632d09e6" Type="Microsoft.SystemCenter.Authoring.CodeGeneration.Monitoring.UnitMonitor" Version="1.0.0.0">
-      <UnitMonitorConfig xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <UnitMonitorConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
         <MonitorType>AP.F5.LTM.DataSource.Monitor.TrafficGroup.Status</MonitorType>
-        <MonitorConfig>&lt;IntervalSeconds&gt;600&lt;/IntervalSeconds&gt;</MonitorConfig>
+        <MonitorConfig>&lt;IntervalSeconds&gt;600&lt;/IntervalSeconds&gt;&lt;Debug&gt;false&lt;/Debug&gt;</MonitorConfig>
         <MonitorOperationalStates>
           <OperationalState>
             <OperationalStateId>TrafficGroupActive</OperationalStateId>
@@ -404,7 +404,7 @@ Has changed Enabled State to $Data/Context/Property[@Name='Value']$  ( unknown=0
       </UnitMonitorConfig>
     </Instance>
     <Instance ID="Instance7f0dd6f601cc44fcb681e3534e123396" Type="Microsoft.SystemCenter.Authoring.CodeGeneration.Monitoring.UnitMonitor" Version="1.0.0.0">
-      <UnitMonitorConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <UnitMonitorConfig xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
         <MonitorType>AP.F5.LTM.Monitor.VirtualServerAvailabilityState.Powershell</MonitorType>
         <MonitorConfig>&lt;IntervalSeconds&gt;600&lt;/IntervalSeconds&gt;&lt;SyncTime&gt;00:01&lt;/SyncTime&gt;&lt;Debug&gt;false&lt;/Debug&gt;&lt;DeviceAddresses&gt;$Target/Host/Host/Property[Type="AP.F5.LTM.SyncFailoverGroup"]/Addresses$&lt;/DeviceAddresses&gt;&lt;DevicePorts&gt;$Target/Host/Host/Property[Type="AP.F5.LTM.SyncFailoverGroup"]/Ports$&lt;/DevicePorts&gt;&lt;DeviceCommunities&gt;$Target/Host/Host/Property[Type="AP.F5.LTM.SyncFailoverGroup"]/Communities$&lt;/DeviceCommunities&gt;&lt;VirtualServerName&gt;$Target/Property[Type="AP.F5.LTM.VirtualServer"]/FullName$&lt;/VirtualServerName&gt;</MonitorConfig>
         <MonitorOperationalStates>
@@ -452,7 +452,7 @@ Given Reason is : $Data/Context/Property[@Name='DetailedReason']$</AlertDescript
       </UnitMonitorConfig>
     </Instance>
     <Instance ID="Instance32b30b751b9e436aa133317bb0febfab" Type="Microsoft.SystemCenter.Authoring.CodeGeneration.Monitoring.UnitMonitor" Version="1.0.0.0">
-      <UnitMonitorConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <UnitMonitorConfig xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
         <MonitorType>AP.F5.LTM.Monitor.VirtualServerEnabledState.Powershell</MonitorType>
         <MonitorConfig>&lt;IntervalSeconds&gt;600&lt;/IntervalSeconds&gt;&lt;SyncTime&gt;00:01&lt;/SyncTime&gt;&lt;Debug&gt;false&lt;/Debug&gt;&lt;DeviceAddresses&gt;$Target/Host/Host/Property[Type="AP.F5.LTM.SyncFailoverGroup"]/Addresses$&lt;/DeviceAddresses&gt;&lt;DevicePorts&gt;$Target/Host/Host/Property[Type="AP.F5.LTM.SyncFailoverGroup"]/Ports$&lt;/DevicePorts&gt;&lt;DeviceCommunities&gt;$Target/Host/Host/Property[Type="AP.F5.LTM.SyncFailoverGroup"]/Communities$&lt;/DeviceCommunities&gt;&lt;VirtualServerName&gt;$Target/Property[Type="AP.F5.LTM.VirtualServer"]/FullName$&lt;/VirtualServerName&gt;</MonitorConfig>
         <MonitorOperationalStates>
