@@ -703,14 +703,23 @@ namespace AP.F5.LTM.Discovery
                     // Loop Through All Pools
                     for (int i = 0; i < poolNames.Length; i++)
                     {
+                        // Get Full Name
+                        string sPoolName = poolNames[i];
+
+                        // Get Node Short Name
+                        string sShortPoolName = sPoolName.Substring(sPoolName.LastIndexOf("/") + 1);
+
+                        // Ignore _auto_ Nodes
+                        if (sShortPoolName.ToLower().StartsWith("_auto_")) { continue; }
+
                         // Get Oid Suffix
-                        string OidSuffix = GetOidSuffix(poolNames[i], SNMP.ltmPoolStatusName, PoolSnmpResults);
+                        string OidSuffix = GetOidSuffix(sPoolName, SNMP.ltmPoolStatusName, PoolSnmpResults);
 
                         // Get Monitor Rule
                         string MonitorRule = SNMP.GetSNMP(SNMP.ltmPoolMonitorRule + OidSuffix, sfog.DeviceList[0].Address, sfog.DeviceList[0].Port, sfog.DeviceList[0].Community)[0].Data.ToString();
 
                         // Create new Pool
-                        Pool newPool = new Pool(sfog, partition.partition_name, poolNames[i], poolDescriptions[i],MonitorRule, poolMembers[i].Length, poolActiveMemberCount[i]);
+                        Pool newPool = new Pool(sfog, partition.partition_name, sPoolName, sShortPoolName, poolDescriptions[i],MonitorRule, poolMembers[i].Length, poolActiveMemberCount[i]);
 
                         // Add Pool Members
                         for (int j = 0; j < poolMembers[i].Length; j++)
@@ -721,7 +730,7 @@ namespace AP.F5.LTM.Discovery
                             string pmMonitorRule = SNMP.GetSNMP(SNMP.ltmPoolMemberMonitorRule + pmOidSuffix, sfog.DeviceList[0].Address, sfog.DeviceList[0].Port, sfog.DeviceList[0].Community)[0].Data.ToString();
 
                             // Create New Pool Member
-                            PoolMember newPoolMember = new PoolMember(sfog, partition.partition_name, poolNames[i], poolMembers[i][j].address, poolMemberDescriptions[i][j], poolMembers[i][j].port.ToString(), pmMonitorRule);
+                            PoolMember newPoolMember = new PoolMember(sfog, partition.partition_name, sPoolName, poolMembers[i][j].address, poolMemberDescriptions[i][j], poolMembers[i][j].port.ToString(), pmMonitorRule);
 
                             // Add to Pool
                             newPool.PoolMembers.Add(newPoolMember);
@@ -733,7 +742,7 @@ namespace AP.F5.LTM.Discovery
                         // Match To Virtual Servers (DefaultPool)
                         foreach (VirtualServer vs in newPartition.VirtualServerList)
                         {
-                            if (vs.DefaultPoolName == poolNames[i])
+                            if (vs.DefaultPoolName == sPoolName)
                             {
                                 vs.DefaultPool = newPool;
                             }
@@ -747,10 +756,19 @@ namespace AP.F5.LTM.Discovery
                     string[] nodeDescriptionList = m_interfaces.LocalLBNodeAddressV2.get_description(nodeNameList);
                     for (int i = 0; i < nodeNameList.Length; i++)
                     {
+                        // Get Node Full Name
+                        string sNodeName = nodeNameList[i];
+
+                        // Get Node Short Name
+                        string sShortNodeName = sNodeName.Substring(sNodeName.LastIndexOf("/") + 1);
+
+                        // Ignore _auto_ Nodes
+                        if (sShortNodeName.ToLower().StartsWith("_auto_")) { continue; }
+
                         string MonitorRules = "";
                         try
                         {
-                            LocalLBMonitorRule[] nodeMonitorRuleList = m_interfaces.LocalLBNodeAddressV2.get_monitor_rule(new string[] { nodeNameList[i] });
+                            LocalLBMonitorRule[] nodeMonitorRuleList = m_interfaces.LocalLBNodeAddressV2.get_monitor_rule(new string[] { sNodeName });
                             for (int j = 0; j < nodeMonitorRuleList[0].monitor_templates.Length; j++)
                             {
                                 MonitorRules += nodeMonitorRuleList[0].monitor_templates[j].ToString() + ",";
@@ -763,7 +781,7 @@ namespace AP.F5.LTM.Discovery
                         }
 
                         // Create a New Node
-                        Node newNode = new Node(sfog.Key, partition.partition_name, nodeNameList[i],nodeAddressList[i],nodeDescriptionList[i], MonitorRules);
+                        Node newNode = new Node(sfog.Key, partition.partition_name, sNodeName, sShortNodeName, nodeAddressList[i],nodeDescriptionList[i], MonitorRules);
                         newPartition.NodeList.Add(newNode);
                     }
 

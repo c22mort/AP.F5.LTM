@@ -13,10 +13,8 @@ namespace AP.F5.LTM.Discovery.classes
         // Pool Member List
         public List<PoolMember> PoolMemberList = new List<PoolMember>();
 
-        public Node(string SyncFailoverGroupKey, string PartitionName, string NodeFullName, string Address, string Description, string MonitorRules)
+        public Node(string SyncFailoverGroupKey, string PartitionName, string NodeFullName, string NodeShortName, string Address, string Description, string MonitorRules)
         {
-            // Set ShortName
-            string ShortName = NodeFullName.Substring(NodeFullName.LastIndexOf("/") + 1);
             // Set Partition
             string Partition = NodeFullName.Substring(1, NodeFullName.LastIndexOf("/") - 1);
 
@@ -28,7 +26,7 @@ namespace AP.F5.LTM.Discovery.classes
             // Create Root Entity Class & Key Property
             ManagementPackClass mpc_Entity = SCOM.GetManagementPackClass("System.Entity");
             ManagementPackProperty mpp_EntityDisplayName = mpc_Entity.PropertyCollection["DisplayName"];
-            SCOM_Object[mpp_EntityDisplayName].Value = ShortName;
+            SCOM_Object[mpp_EntityDisplayName].Value = NodeShortName;
 
             // Create SyncFailoverGroup Management Pack Class & Key Property
             ManagementPackClass mpc_SyncFailoverGroup = SCOM.GetManagementPackClass("AP.F5.LTM.SyncFailoverGroup");
@@ -43,7 +41,7 @@ namespace AP.F5.LTM.Discovery.classes
             // Set Node Properties
             // Create our Virtual Server Properties
             ManagementPackProperty mpp_Name = mpc_Node.PropertyCollection["Name"];
-            SCOM_Object[mpp_Name].Value = ShortName;
+            SCOM_Object[mpp_Name].Value = NodeShortName;
             ManagementPackProperty mpp_FullName = mpc_Node.PropertyCollection["FullName"];
             SCOM_Object[mpp_FullName].Value = NodeFullName;
             ManagementPackProperty mpp_Description = mpc_Node.PropertyCollection["Description"];

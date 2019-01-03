@@ -23,10 +23,8 @@ namespace AP.F5.LTM.Discovery.classes
         /// <param name="MonitorRule"></param>
         /// <param name="TotalMembers"></param>
         /// <param name="ActiveMembers"></param>
-        public Pool(SyncFailoverGroup dg, string PartitionName, string FullName, string Description, string MonitorRule, long TotalMembers, long ActiveMembers)
+        public Pool(SyncFailoverGroup dg, string PartitionName, string FullName, string ShortName, string Description, string MonitorRule, long TotalMembers, long ActiveMembers)
         {
-            // Set ShortName
-            string ShortName = FullName.Substring(FullName.LastIndexOf("/") + 1);
             // Set Partition
             string Partition = FullName.Substring(1, FullName.LastIndexOf("/") - 1);
 
