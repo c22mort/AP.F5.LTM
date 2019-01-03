@@ -67,6 +67,8 @@ $walkMode = [Lextm.SharpSnmpLib.Messaging.WalkMode]::WithinSubtree
 [string]$ltmVsStatusAvailState = ".1.3.6.1.4.1.3375.2.2.10.13.2.1.2" 
 # bigipTrafficMgmt.bigipLocalTM.ltmVirtualServers.ltmVirtualServStatus.ltmVsStatusTable.ltmVsStatusEntry.ltmVsStatusDetailReason
 [string]$ltmVsStatusDetailedReason = ".1.3.6.1.4.1.3375.2.2.10.13.2.1.5" 
+# bigipTrafficMgmt.bigipLocalTM.ltmVirtualServers.ltmVirtualServ.ltmVirtualServTable.ltmVirtualServEntry.ltmVirtualServDefaultPool
+[string]$ltmVsDefaultPool = ".1.3.6.1.4.1.3375.2.2.10.1.2.1.19" 
 
 # Loop Through All Devices
 For ($i=0;$i -lt $DeviceAddressList.Count;$i++) {
@@ -78,6 +80,11 @@ For ($i=0;$i -lt $DeviceAddressList.Count;$i++) {
 		# Get VirtualServer Names from SNMP
 		$VirtualServerNameList = New-Object 'System.Collections.Generic.List[Lextm.SharpSnmpLib.Variable]'
 		[Lextm.SharpSnmpLib.Messaging.Messenger]::Walk($ver, $svr, $DeviceCommunityList[$i], $ltmVsStatusName, $VirtualServerNameList, 3000, $walkMode)
+
+		# Get VirtualServer Default Pool Names
+		$VirtualServerDefaultPoolList = New-Object 'System.Collections.Generic.List[Lextm.SharpSnmpLib.Variable]'
+		[Lextm.SharpSnmpLib.Messaging.Messenger]::Walk($ver, $svr, $DeviceCommunityList[$i], $ltmVsDefaultPool, $VirtualServerDefaultPoolList, 3000, $walkMode)
+		Write-Host "Pools" : $VirtualServerDefaultPoolList.Count
 
 		# Get VirtualServer Enabled State from SNMP
 		$VirtualServerEnabledStateList = New-Object 'System.Collections.Generic.List[Lextm.SharpSnmpLib.Variable]'
@@ -98,6 +105,7 @@ For ($i=0;$i -lt $DeviceAddressList.Count;$i++) {
 			# Only Get Enabled Virtual Servers
 			If ($VirtualServerEnabledState -eq 1){
 				[string]$VirtualServerName = $VirtualServerNameList[$i].Data.ToString()
+				[string]$DefaultPoolName = $VirtualServerDefaultPoolList[$i].Data.ToString()
 				[int]$VirtualServerAvailabilityState = $VirtualServerAvailabilityStateList[$i].Data.ToString()
 				[string]$VirtualServerDetailedReason = $VirtualServerDetailedReasonList[$i].Data.ToString()
 
@@ -106,6 +114,7 @@ For ($i=0;$i -lt $DeviceAddressList.Count;$i++) {
 				Log-DebugEvent $SCRIPT_PROPERTYBAG_CREATED $message
 				$bag = $api.CreatePropertyBag()
 				$bag.AddValue("VirtualServerName", $VirtualServerName)
+				$bag.AddValue("DefaultPoolName", $DefaultPoolName)
 				$bag.AddValue("AvailabilityState", $VirtualServerAvailabilityState)
 				$bag.AddValue("DetailedReason", $VirtualServerDetailedReason)
 				#$api.Return($bag)

@@ -677,15 +677,45 @@
             </ProbeAction>
             <ConditionDetection ID="VirtualServerOkayFilter" TypeID="System!System.ExpressionFilter">
               <Expression>
-                <SimpleExpression>
-                  <ValueExpression>
-                    <XPathQuery Type="Integer">Property[@Name='AvailabilityState']</XPathQuery>
-                  </ValueExpression>
-                  <Operator>Equal</Operator>
-                  <ValueExpression>
-                    <Value Type="Integer">1</Value>
-                  </ValueExpression>
-                </SimpleExpression>
+                <Or>
+                  <Expression>
+                    <SimpleExpression>
+                      <ValueExpression>
+                        <XPathQuery Type="Integer">Property[@Name='AvailabilityState']</XPathQuery>
+                      </ValueExpression>
+                      <Operator>Equal</Operator>
+                      <ValueExpression>
+                        <Value Type="Integer">1</Value>
+                      </ValueExpression>
+                    </SimpleExpression>
+                  </Expression>
+                  <Expression>
+                    <And>
+                      <Expression>
+                        <SimpleExpression>
+                          <ValueExpression>
+                            <XPathQuery Type="Integer">Property[@Name='AvailabilityState']</XPathQuery>
+                          </ValueExpression>
+                          <Operator>Equal</Operator>
+                          <ValueExpression>
+                            <Value Type="Integer">4</Value>
+                          </ValueExpression>
+                        </SimpleExpression>
+                      </Expression>
+                      <Expression>
+                        <SimpleExpression>
+                          <ValueExpression>
+                            <XPathQuery Type="String">Property[@Name='DefaultPoolName']</XPathQuery>
+                          </ValueExpression>
+                          <Operator>Equal</Operator>
+                          <ValueExpression>
+                            <Value Type="String"></Value>
+                          </ValueExpression>
+                        </SimpleExpression>
+                      </Expression>
+                    </And>
+                  </Expression>
+                </Or>
               </Expression>
             </ConditionDetection>
             <ConditionDetection ID="VirtualServerWarningFilter" TypeID="System!System.ExpressionFilter">
@@ -703,15 +733,30 @@
                     </SimpleExpression>
                   </Expression>
                   <Expression>
-                    <SimpleExpression>
-                      <ValueExpression>
-                        <XPathQuery Type="Integer">Property[@Name='AvailabilityState']</XPathQuery>
-                      </ValueExpression>
-                      <Operator>Equal</Operator>
-                      <ValueExpression>
-                        <Value Type="Integer">4</Value>
-                      </ValueExpression>
-                    </SimpleExpression>
+                    <And>
+                      <Expression>
+                        <SimpleExpression>
+                          <ValueExpression>
+                            <XPathQuery Type="Integer">Property[@Name='AvailabilityState']</XPathQuery>
+                          </ValueExpression>
+                          <Operator>Equal</Operator>
+                          <ValueExpression>
+                            <Value Type="Integer">4</Value>
+                          </ValueExpression>
+                        </SimpleExpression>
+                      </Expression>
+                      <Expression>
+                        <SimpleExpression>
+                          <ValueExpression>
+                            <XPathQuery Type="String">Property[@Name='DefaultPoolName']</XPathQuery>
+                          </ValueExpression>
+                          <Operator>NotEqual</Operator>
+                          <ValueExpression>
+                            <Value Type="String"></Value>
+                          </ValueExpression>
+                        </SimpleExpression>
+                      </Expression>
+                    </And>
                   </Expression>
                 </Or>
               </Expression>

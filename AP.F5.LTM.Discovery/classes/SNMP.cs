@@ -101,8 +101,9 @@ namespace AP.F5.LTM.Discovery.classes
                    10000);
                 retlist = response.ToList();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                string error = ex.Message;
             }
             return retlist;
         }
